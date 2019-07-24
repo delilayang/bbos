@@ -31,7 +31,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/i18n.js', // webpack plugin
+    '@/plugins/i18n', // webpack plugin
   ],
   /*
   ** Nuxt.js modules
@@ -42,7 +42,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['vue-i18n'], // webpack vue-i18n.bundle.js
     transpile: [/^element-ui/],
     /*
     ** You can extend webpack config here

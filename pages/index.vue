@@ -6,74 +6,114 @@
       <button>儲存</button>
       <button>發佈</button>
     </el-header>
+    
+    <div class="side-content-main" style="display: none;">
+      <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
 
-    <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value">
-      </el-option>
-    </el-select>
+      <div class="tab-menu" v-if="isSelected1">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane v-for="tab in tabList"
+            :key="tab.value"
+            :label="tab.label"
+            :name="tab.name">
+          </el-tab-pane>
+        </el-tabs>
+        
+        <div class="page-management" v-if="isShow1">
+          <ul>
+            <li>
+              <span>LOGO</span>
+            </li>
+            <li>
+              <span>頁首導航列</span>
+              <el-button round class="btn btn-setting"><i class="el-icon-more"></i></el-button>
+              </li>
+            <li>頁尾導航列</li>
+            <li>橫幅</li>
+            <li>輪播特效</li>
+            <li>跑馬燈</li>
+            <li>內容</li>
+            <li>頁尾</li>
+            <li>新增區塊</li>
+          </ul>
+        </div>
+        <div class="system-setting" v-if="isShow2">
+          <ul>
+            <li>排版</li>
+            <li>字型</li>
+            <li>顏色</li>
+            <li>社群媒體</li>
+          </ul>
+        </div>
+        <div class="floating-img" v-if="isShow3">
+          <ul>
+            <li>浮動圖設定</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="tab-menu" v-if="isSelected1">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane v-for="tab in tabList"
-          :key="tab.value"
-          :label="tab.label"
-          :name="tab.name">
-        </el-tab-pane>
-      </el-tabs>
-      
-      <div class="page-management" v-if="isShow1">
-        <ul>
-          <li>LOGO</li>
-          <li>頁首導航列</li>
-          <li>頁尾導航列</li>
-          <li>橫幅</li>
-          <li>輪播特效</li>
-          <li>跑馬燈</li>
-          <li>內容</li>
-          <li>頁尾</li>
-          <li>新增區塊</li>
-        </ul>
-      </div>
-      <div class="system-setting" v-if="isShow2">
-        <ul>
-          <li>排版</li>
-          <li>字型</li>
-          <li>顏色</li>
-          <li>社群媒體</li>
-        </ul>
-      </div>
-      <div class="floating-img" v-if="isShow3">
-        <ul>
-          <li>浮動圖設定</li>
-        </ul>
-      </div>
+      <div class="tab-menu" v-if="isSelected2"><p>視訊直播編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected3"><p>電子遊藝編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected4"><p>優惠活動編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected5"><p>捕魚大廳編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected6"><p>VIP編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected7"><p>常見問題編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected8"><p>支付選項編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected9"><p>合作夥伴編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected10"><p>404編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected11"><p>加入會員編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected12"><p>代理註冊編輯區</p></div>
+      <div class="tab-menu" v-if="isSelected13"><p>忘記密碼編輯區</p></div>
+
+      <el-select class="other-setting" v-model="value2" placeholder="其他設定">
+        <el-option
+          v-for="list in setting"
+          :key="list.value"
+          :label="list.label"
+          :value="list.value">
+        </el-option>
+      </el-select>
     </div>
 
-    <div class="tab-menu" v-if="isSelected2"><p>視訊直播編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected3"><p>電子遊藝編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected4"><p>優惠活動編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected5"><p>捕魚大廳編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected6"><p>VIP編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected7"><p>常見問題編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected8"><p>支付選項編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected9"><p>合作夥伴編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected10"><p>404編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected11"><p>加入會員編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected12"><p>代理註冊編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected13"><p>忘記密碼編輯區</p></div>
-
-    <el-select class="other-setting" v-model="value2" placeholder="其他設定">
-      <el-option
-        v-for="list in setting"
-        :key="list.value"
-        :label="list.label"
-        :value="list.value">
-      </el-option>
-    </el-select>
+    <div class="side-content-setting">
+      <ul>
+        <li>
+          <el-button round class="btn-back"><i class="el-icon-more"></i></el-button>
+          <span>頁首導航列設定</span>
+        </li>
+        <li>
+          <span>首頁</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>視訊直播</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>電子遊藝</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>捕魚大廳</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>優惠活動</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>新增頁面</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+      </ul>
+    </div>
   </el-aside>
   
   <el-container>
@@ -153,10 +193,6 @@ export default {
     }
   },
   methods: {
-    // changeLanguage (language) {
-    //     this.$i18n.locale = language
-    //     document.cookie = "locale=" + language // 將當前語言保存到cookie 中，代碼僅作爲演示，自己完善下哈
-    // },
     handleClick(tab) {
       switch(tab) {
         case "first": //頁面管理
@@ -171,8 +207,8 @@ export default {
           break;
         case "third": //浮動圖
           this.isShow1 = false;
-        this.isShow2 = false;
-        this.isShow3 = true;
+          this.isShow2 = false;
+          this.isShow3 = true;
           break;
       }
     },
@@ -259,16 +295,6 @@ export default {
 .el-select {
   width: 250px;
 }
-.page-management, .system-setting, .floating-img {
-  ul {
-    list-style: none;
-    padding-left: 0;
-    li {
-      padding: 10px;
-      border-bottom: 1px solid #DCDFE6;
-    }
-  }
-}
 
 .web-preview {
   background: #ddd; 
@@ -294,6 +320,31 @@ export default {
   }
 }
 
+  ul {
+    list-style: none;
+    padding-left: 0;
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #DCDFE6;
+      display: flex;
+      justify-content: flex-start;
+      position: relative;
+      .el-button {
+        top: 0;
+        position: absolute;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        &.btn-setting {
+          right: 0;
+        }
+        &.btn-back {
+          left: 0;
+        }
+      }
+    }
+  }
+
 .mobile-preview {
   background: #ddd; 
   width: 375px;
@@ -306,4 +357,9 @@ export default {
   position: absolute;
   bottom: 0;
 }
+
+.el-icon-more {
+  transform:rotate(90deg);
+}
+
 </style>

@@ -7,8 +7,8 @@ export default ({ app, store }) => {
     // Set i18n instance on app
     // This way we can use it in middleware and pages asyncData/fetch
     app.i18n = new VueI18n({
-        locale: store.state.locale,
-        fallbackLocale: store.state.locale || 'tw',
+        locale: store.state.main.locale,
+        fallbackLocale: store.state.main.locale || 'tw',
         messages: {
             'tw': require('~/locales/tw.json'),
             'jp': require('~/locales/jp.json'),
@@ -16,12 +16,4 @@ export default ({ app, store }) => {
             'cn': require('~/locales/cn.json')
         }
     })
-
-    app.i18n.path = (link) => {
-        if (app.i18n.locale === app.i18n.fallbackLocale) {
-            return `/${link}`
-        }
-
-        return `/${app.i18n.locale}/${link}`
-    }
 }

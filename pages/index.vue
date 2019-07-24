@@ -16,55 +16,7 @@
       </el-option>
     </el-select>
 
-    <div class="tab-menu" v-if="isSelected1">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane v-for="tab in tabList"
-          :key="tab.value"
-          :label="tab.label"
-          :name="tab.name">
-        </el-tab-pane>
-      </el-tabs>
-      
-      <div class="page-management" v-if="isShow1">
-        <ul>
-          <li>LOGO</li>
-          <li>頁首導航列</li>
-          <li>頁尾導航列</li>
-          <li>橫幅</li>
-          <li>輪播特效</li>
-          <li>跑馬燈</li>
-          <li>內容</li>
-          <li>頁尾</li>
-          <li>新增區塊</li>
-        </ul>
-      </div>
-      <div class="system-setting" v-if="isShow2">
-        <ul>
-          <li>排版</li>
-          <li>字型</li>
-          <li>顏色</li>
-          <li>社群媒體</li>
-        </ul>
-      </div>
-      <div class="floating-img" v-if="isShow3">
-        <ul>
-          <li>浮動圖設定</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tab-menu" v-if="isSelected2"><p>視訊直播編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected3"><p>電子遊藝編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected4"><p>優惠活動編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected5"><p>捕魚大廳編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected6"><p>VIP編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected7"><p>常見問題編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected8"><p>支付選項編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected9"><p>合作夥伴編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected10"><p>404編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected11"><p>加入會員編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected12"><p>代理註冊編輯區</p></div>
-    <div class="tab-menu" v-if="isSelected13"><p>忘記密碼編輯區</p></div>
+    <tab-menu></tab-menu>
 
     <el-select class="other-setting" v-model="value2" placeholder="其他設定">
       <el-option
@@ -87,25 +39,25 @@
     
     <el-main>
       <div class="web-preview" v-if="isPreview">
-        <div class="web-preview index" v-if="isSelected1">
+        <div class="web-preview index" v-if="isHome">
           <span>首頁 Web-Preview</span>
           <h2>{{ $t("hello123") }}</h2>
           <h2>{{ $t("bye123")}}</h2>
           <p>{{ $tc('car') }}</p>
           <p>{{ $tc('car', 10, { count: 10}) }}</p>
         </div>
-        <div class="web-preview live" v-if="isSelected2"><span>視訊直播 Web-Preview</span></div>
-        <div class="web-preview game" v-if="isSelected3"><span>電子遊藝 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected4"><span>優惠活動 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected5"><span>捕魚大廳 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected6"><span>VIP Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected7"><span>常見問題 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected8"><span>支付選項 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected9"><span>合作夥伴 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected10"><span>404 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected11"><span>加入會員 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected12"><span>代理註冊 Web-Preview</span></div>
-        <div class="web-preview" v-if="isSelected13"><span>忘記密碼 Web-Preview</span></div>
+        <div class="web-preview live" v-if="isLiveStream"><span>視訊直播 Web-Preview</span></div>
+        <div class="web-preview game" v-if="isEPlay"><span>電子遊藝 Web-Preview</span></div>
+        <div class="web-preview" v-if="isPreferential"><span>優惠活動 Web-Preview</span></div>
+        <div class="web-preview" v-if="isFishing"><span>捕魚大廳 Web-Preview</span></div>
+        <div class="web-preview" v-if="isVip"><span>VIP Web-Preview</span></div>
+        <div class="web-preview" v-if="isQA"><span>常見問題 Web-Preview</span></div>
+        <div class="web-preview" v-if="isPayOption"><span>支付選項 Web-Preview</span></div>
+        <div class="web-preview" v-if="isPartner"><span>合作夥伴 Web-Preview</span></div>
+        <div class="web-preview" v-if="is404"><span>404 Web-Preview</span></div>
+        <div class="web-preview" v-if="isJoin"><span>加入會員 Web-Preview</span></div>
+        <div class="web-preview" v-if="isAgentReg"><span>代理註冊 Web-Preview</span></div>
+        <div class="web-preview" v-if="isForgot"><span>忘記密碼 Web-Preview</span></div>
       </div>
       <div class="mobile-preview" v-else></div>
     </el-main>
@@ -114,8 +66,13 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
+import TabMenu from "~/components/TabMenu";
+
 export default {
+  components: {
+    TabMenu
+  },
   head() {
     return {
       title: 'Home-Page',
@@ -134,23 +91,25 @@ export default {
       page: '',
       value2: '',
       isPreview: true,
-      isShow1: true,
-      isShow2: false,
-      isShow3: false,
-      isSelected1: true,
-      isSelected2: false,
-      isSelected3: false,
-      isSelected4: false,
-      isSelected5: false,
-      isSelected6: false,
-      isSelected7: false,
-      isSelected8: false,
-      isSelected9: false,
-      isSelected10: false,
-      isSelected11: false,
-      isSelected12: false,
-      isSelected13: false
     }
+  },
+  computed: {
+    ...mapState("main", ["langs", "options", "setting", "tabList"]),
+    ...mapGetters("main", [
+      "isHome",
+      "isLiveStream",
+      "isEPlay",
+      "isPreferential",
+      "isFishing",
+      "isVip",
+      "isQA",
+      "isPayOption",
+      "isPartner",
+      "is404",
+      "isJoin",
+      "isAgentReg",
+      "isForgot"
+    ]),
   },
   methods: {
     // changeLanguage (language) {
@@ -180,57 +139,8 @@ export default {
       this.isPreview = !this.isPreview;
     },
     mainSelect(val) {
-      switch(val) {
-        case "opt1": //首頁
-          this.isSelected1 = true;
-          this.isSelected2 = false;
-          this.isSelected3 = false;
-          this.isSelected4 = false;
-          this.isSelected5 = false;
-          this.isSelected6 = false;
-          this.isSelected7 = false;
-          this.isSelected8 = false;
-          this.isSelected9 = false;
-          this.isSelected10 = false;
-          this.isSelected11 = false;
-          this.isSelected12 = false;
-          this.isSelected13 = false;
-          break;
-        case "opt2": //視訊直播
-          this.isSelected1 = false;
-          this.isSelected2 = true;
-          this.isSelected3 = false;
-          this.isSelected4 = false;
-          this.isSelected5 = false;
-          this.isSelected6 = false;
-          this.isSelected7 = false;
-          this.isSelected8 = false;
-          this.isSelected9 = false;
-          this.isSelected10 = false;
-          this.isSelected11 = false;
-          this.isSelected12 = false;
-          this.isSelected13 = false;
-          break;
-        case "opt3": //電子遊藝
-          this.isSelected1 = false;
-          this.isSelected2 = false;
-          this.isSelected3 = true;
-          this.isSelected4 = false;
-          this.isSelected5 = false;
-          this.isSelected6 = false;
-          this.isSelected7 = false;
-          this.isSelected8 = false;
-          this.isSelected9 = false;
-          this.isSelected10 = false;
-          this.isSelected11 = false;
-          this.isSelected12 = false;
-          this.isSelected13 = false;
-          break;
-      }
+      this.$store.commit("main/updateSelect", { value: val });
     }
-  },
-  computed: {
-    ...mapState("main", ["langs", "options", "setting", "tabList"])
   }
 };
 </script>

@@ -1,16 +1,14 @@
 <template>
   <el-container style="height: 100vh; border: 1px solid #eee;">
   <el-aside width="250px" style="background-color: rgb(238, 241, 246)">
-    <el-dropdown>
-      <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-    </el-dropdown>
+    <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value">
+      </el-option>
+    </el-select>
 
     <div class="tab-menu" v-if="isSelected1">
       <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -53,16 +51,14 @@
     <div class="tab-menu" v-if="isSelected3"><p>電子遊藝編輯區</p></div>
   
     
-    <el-dropdown class="other-setting">
-      <el-select v-model="value2" placeholder="其他設定">
-        <el-option
-          v-for="list in setting"
-          :key="list.value"
-          :label="list.label"
-          :value="list.value">
-        </el-option>
-      </el-select>
-    </el-dropdown>
+    <el-select v-model="value2" placeholder="其他設定">
+      <el-option
+        v-for="list in setting"
+        :key="list.value"
+        :label="list.label"
+        :value="list.value">
+      </el-option>
+    </el-select>
   </el-aside>
   
   <el-container>
@@ -128,19 +124,23 @@ export default {
     toggle() {
       this.isPreview = !this.isPreview;
     },
-    mainSelect(page) {
-      if(page.label == "首頁") {
-        this.isSelected1 = true;
-        this.isSelected2 = false;
-        this.isSelected3 = false;
-      } else if(page.label == "視訊直播") {
-        this.isSelected1 = false;
-        this.isSelected2 = true;
-        this.isSelected3 = false;
-      } else if(page.label == "電子遊藝") {
-        this.isSelected1 = false;
-        this.isSelected2 = false;
-        this.isSelected3 = true;
+    mainSelect(val) {
+      switch(val) {
+        case "opt1": //首頁
+          this.isSelected1 = true;
+          this.isSelected2 = false;
+          this.isSelected3 = false;
+          break;
+        case "opt2": //視訊直播
+          this.isSelected1 = false;
+          this.isSelected2 = true;
+          this.isSelected3 = false;
+          break;
+        case "opt3": //電子遊藝
+          this.isSelected1 = false;
+          this.isSelected2 = false;
+          this.isSelected3 = true;
+          break;
       }
     }
   },

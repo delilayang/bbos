@@ -1,11 +1,11 @@
 <template>
   <el-container style="height: 100vh; border: 1px solid #eee;">
   <el-aside width="250px" style="background-color: rgb(238, 241, 246)">
-    <div>
+    <el-header style="height: 40px;">
       <button>捨棄當前編輯</button>
       <button>儲存</button>
       <button>發佈</button>
-    </div>
+    </el-header>
 
     <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
       <el-option
@@ -77,7 +77,7 @@
   </el-aside>
   
   <el-container>
-    <el-header style="height: 30px;">
+    <el-header style="height: 40px;">
       <el-select v-model="$i18n.locale">
         <el-option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</el-option>
       </el-select>

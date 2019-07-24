@@ -7,7 +7,7 @@
       <button>發佈</button>
     </el-header>
     
-    <div class="side-content-main" style="">
+    <div class="side-content-main" style="display: none;">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
         <el-option
           v-for="item in options"
@@ -18,18 +18,11 @@
       </el-select>
 
       <tab-menu></tab-menu>
+      </div>
+      
+    
 
-      <el-select class="other-setting" v-model="value2" placeholder="其他設定">
-        <el-option
-          v-for="list in setting"
-          :key="list.value"
-          :label="list.label"
-          :value="list.value">
-        </el-option>
-      </el-select>
-    </div>
-
-    <div class="side-content-setting" style="display: none;">
+    <div class="side-content-setting" style="">
       <ul>
         <li>
           <el-button round class="btn-back"><i class="el-icon-more"></i></el-button>
@@ -61,6 +54,15 @@
         </li>
       </ul>
     </div>
+
+    <el-select class="other-setting" v-model="value2" placeholder="其他設定">
+        <el-option
+          v-for="list in setting"
+          :key="list.value"
+          :label="list.label"
+          :value="list.value">
+        </el-option>
+      </el-select>
   </el-aside>
   
   <el-container>

@@ -7,7 +7,7 @@
       <button>發佈</button>
     </el-header>
     
-    <div class="side-content-main" style="display: none;">
+    <div class="side-content-main" style="">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
         <el-option
           v-for="item in options"
@@ -17,16 +17,7 @@
         </el-option>
       </el-select>
 
-    <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value">
-      </el-option>
-    </el-select>
-
-    <tab-menu></tab-menu>
+      <tab-menu></tab-menu>
 
       <el-select class="other-setting" v-model="value2" placeholder="其他設定">
         <el-option
@@ -38,7 +29,7 @@
       </el-select>
     </div>
 
-    <div class="side-content-setting">
+    <div class="side-content-setting" style="display: none;">
       <ul>
         <li>
           <el-button round class="btn-back"><i class="el-icon-more"></i></el-button>
@@ -156,25 +147,6 @@ export default {
     ]),
   },
   methods: {
-    handleClick(tab) {
-      switch(tab) {
-        case "first": //頁面管理
-          this.isShow1 = true;
-          this.isShow2 = false;
-          this.isShow3 = false;
-          break;
-        case "second": //系統設置
-          this.isShow1 = false;
-          this.isShow2 = true;
-          this.isShow3 = false;
-          break;
-        case "third": //浮動圖
-          this.isShow1 = false;
-          this.isShow2 = false;
-          this.isShow3 = true;
-          break;
-      }
-    },
     toggle() {
       this.isPreview = !this.isPreview;
     },

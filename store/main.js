@@ -1,44 +1,45 @@
 const state = () => ({
     locales: ['tw', 'en', 'jp', 'cn'],
     locale: "tw",
+    currentSelect: 'home',
     options: [{
-        value: 'opt1',
+        value: 'home',
         label: '首頁'
     }, {
-        value: 'opt2',
+        value: 'liveStream',
         label: '視訊直播'
     }, {
-        value: 'opt3',
+        value: 'ePlay',
         label: '電子遊藝'
     }, {
-        value: 'opt4',
+        value: 'preferential',
         label: '優惠活動'
     }, {
-        value: 'opt5',
+        value: 'fishing',
         label: '捕魚大廳'
     }, {
-        value: 'opt6',
+        value: 'vip',
         label: 'VIP'
     }, {
-        value: 'opt7',
+        value: 'qa',
         label: '常見問題'
     }, {
-        value: 'opt8',
+        value: 'payOption',
         label: '支付選項'
     }, {
-        value: 'opt9',
+        value: 'partner',
         label: '合作夥伴'
     }, {
-        value: 'opt10',
+        value: '404',
         label: '404'
     }, {
-        value: 'opt11',
+        value: 'join',
         label: '加入會員'
     }, {
-        value: 'opt12',
+        value: 'agentReg',
         label: '代理註冊'
     }, {
-        value: 'opt13',
+        value: 'forgot',
         label: '忘記密碼'
     }],
     setting: [{
@@ -71,9 +72,57 @@ const state = () => ({
 
 const getters = {
 
-    // optionList: (state, getters, rootState, rootGetters) => {
-    //   return state.options;
-    // }
+    isHome: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'home';
+    },
+
+    isLiveStream: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'liveStream';
+    },
+
+    isEPlay: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'ePlay';
+    },
+
+    isPreferential: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'preferential';
+    },
+
+    isFishing: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'fishing';
+    },
+
+    isVip: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'vip';
+    },
+
+    isQA: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'qa';
+    },
+
+    isPayOption: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'payOption';
+    },
+
+    isPartner: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'partner';
+    },
+
+    is404: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === '404';
+    },
+
+    isJoin: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'join';
+    },
+
+    isAgentReg: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'agentReg';
+    },
+
+    isForgot: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'forgot';
+    },
 
 }
 
@@ -93,10 +142,10 @@ const actions = {
 
 const mutations = {
 
-    // setGameList(state, payload) {
-    //   const { list } = payload;
-    //   state.gameList = list;
-    // },
+    updateSelect(state, payload) {
+      const { value } = payload;
+      state.currentSelect = value;
+    },
 
     // setBannerList(state, payload) {
     //   const { list } = payload;

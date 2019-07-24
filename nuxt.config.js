@@ -30,7 +30,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/i18n.js', // webpack plugin
   ],
   /*
   ** Nuxt.js modules
@@ -41,11 +42,18 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['vue-i18n'], // webpack vue-i18n.bundle.js
     transpile: [/^element-ui/],
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
     }
+  },
+  router: {              // customize nuxt.js router (vue-router).
+    middleware: 'i18n'   // middleware all pages of the application
+  },
+  generate: {
+    routes: ['/']
   }
 }

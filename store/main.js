@@ -1,4 +1,5 @@
 const state = () => ({
+    langs: ['tw', 'en', 'jp', 'cn'],
     options: [{
         value: 'opt1',
         label: '首頁'

@@ -1,6 +1,12 @@
 <template>
   <el-container style="height: 100vh; border: 1px solid #eee;">
   <el-aside width="250px" style="background-color: rgb(238, 241, 246)">
+    <div>
+      <button>捨棄當前編輯</button>
+      <button>儲存</button>
+      <button>發佈</button>
+    </div>
+
     <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
       <el-option
         v-for="item in options"
@@ -49,9 +55,18 @@
 
     <div class="tab-menu" v-if="isSelected2"><p>視訊直播編輯區</p></div>
     <div class="tab-menu" v-if="isSelected3"><p>電子遊藝編輯區</p></div>
-  
-    
-    <el-select v-model="value2" placeholder="其他設定">
+    <div class="tab-menu" v-if="isSelected4"><p>優惠活動編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected5"><p>捕魚大廳編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected6"><p>VIP編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected7"><p>常見問題編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected8"><p>支付選項編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected9"><p>合作夥伴編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected10"><p>404編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected11"><p>加入會員編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected12"><p>代理註冊編輯區</p></div>
+    <div class="tab-menu" v-if="isSelected13"><p>忘記密碼編輯區</p></div>
+
+    <el-select class="other-setting" v-model="value2" placeholder="其他設定">
       <el-option
         v-for="list in setting"
         :key="list.value"
@@ -63,12 +78,35 @@
   
   <el-container>
     <el-header style="height: 30px;">
+      <el-select v-model="$i18n.locale">
+        <el-option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</el-option>
+      </el-select>
       <button @click="toggle"><i class="el-icon-monitor"></i></button>
       <button @click="toggle"><i class="el-icon-mobile-phone"></i></button>
     </el-header>
     
     <el-main>
-      <div class="web-preview" v-if="isPreview"></div>
+      <div class="web-preview" v-if="isPreview">
+        <div class="web-preview index" v-if="isSelected1">
+          <span>首頁 Web-Preview</span>
+          <h2>{{ $t("hello123") }}</h2>
+          <h2>{{ $t("bye123")}}</h2>
+          <p>{{ $tc('car') }}</p>
+          <p>{{ $tc('car', 10, { count: 10}) }}</p>
+        </div>
+        <div class="web-preview live" v-if="isSelected2"><span>視訊直播 Web-Preview</span></div>
+        <div class="web-preview game" v-if="isSelected3"><span>電子遊藝 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected4"><span>優惠活動 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected5"><span>捕魚大廳 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected6"><span>VIP Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected7"><span>常見問題 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected8"><span>支付選項 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected9"><span>合作夥伴 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected10"><span>404 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected11"><span>加入會員 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected12"><span>代理註冊 Web-Preview</span></div>
+        <div class="web-preview" v-if="isSelected13"><span>忘記密碼 Web-Preview</span></div>
+      </div>
       <div class="mobile-preview" v-else></div>
     </el-main>
   </el-container>
@@ -94,7 +132,6 @@ export default {
       activeName: 'first',
       activeVersion: 'web',
       page: '',
-      // value: '',
       value2: '',
       isPreview: true,
       isShow1: true,
@@ -102,23 +139,41 @@ export default {
       isShow3: false,
       isSelected1: true,
       isSelected2: false,
-      isSelected3: false
+      isSelected3: false,
+      isSelected4: false,
+      isSelected5: false,
+      isSelected6: false,
+      isSelected7: false,
+      isSelected8: false,
+      isSelected9: false,
+      isSelected10: false,
+      isSelected11: false,
+      isSelected12: false,
+      isSelected13: false
     }
   },
   methods: {
+    // changeLanguage (language) {
+    //     this.$i18n.locale = language
+    //     document.cookie = "locale=" + language // 將當前語言保存到cookie 中，代碼僅作爲演示，自己完善下哈
+    // },
     handleClick(tab) {
-      if(tab.name == "first") {
-        this.isShow1 = true;
-        this.isShow2 = false;
-        this.isShow3 = false;
-      } else if(tab.name == "second") {
-        this.isShow1 = false;
-        this.isShow2 = true;
-        this.isShow3 = false;
-      } else if(tab.name == "third") {
-        this.isShow1 = false;
+      switch(tab) {
+        case "first": //頁面管理
+          this.isShow1 = true;
+          this.isShow2 = false;
+          this.isShow3 = false;
+          break;
+        case "second": //系統設置
+          this.isShow1 = false;
+          this.isShow2 = true;
+          this.isShow3 = false;
+          break;
+        case "third": //浮動圖
+          this.isShow1 = false;
         this.isShow2 = false;
         this.isShow3 = true;
+          break;
       }
     },
     toggle() {
@@ -130,25 +185,52 @@ export default {
           this.isSelected1 = true;
           this.isSelected2 = false;
           this.isSelected3 = false;
+          this.isSelected4 = false;
+          this.isSelected5 = false;
+          this.isSelected6 = false;
+          this.isSelected7 = false;
+          this.isSelected8 = false;
+          this.isSelected9 = false;
+          this.isSelected10 = false;
+          this.isSelected11 = false;
+          this.isSelected12 = false;
+          this.isSelected13 = false;
           break;
         case "opt2": //視訊直播
           this.isSelected1 = false;
           this.isSelected2 = true;
           this.isSelected3 = false;
+          this.isSelected4 = false;
+          this.isSelected5 = false;
+          this.isSelected6 = false;
+          this.isSelected7 = false;
+          this.isSelected8 = false;
+          this.isSelected9 = false;
+          this.isSelected10 = false;
+          this.isSelected11 = false;
+          this.isSelected12 = false;
+          this.isSelected13 = false;
           break;
         case "opt3": //電子遊藝
           this.isSelected1 = false;
           this.isSelected2 = false;
           this.isSelected3 = true;
+          this.isSelected4 = false;
+          this.isSelected5 = false;
+          this.isSelected6 = false;
+          this.isSelected7 = false;
+          this.isSelected8 = false;
+          this.isSelected9 = false;
+          this.isSelected10 = false;
+          this.isSelected11 = false;
+          this.isSelected12 = false;
+          this.isSelected13 = false;
           break;
       }
     }
   },
   computed: {
-    ...mapState("main", ["options", "setting", "tabList"]),
-    // posts() {
-    //   return this.$store.state.posts.all
-    // }
+    ...mapState("main", ["langs", "options", "setting", "tabList"])
   }
 };
 </script>
@@ -196,6 +278,20 @@ export default {
   position: relative;
   align-items: center;
   overflow-y: auto;
+  .index, .live, .game {
+    color: #fff;
+    display: flex;
+    text-align: center;
+  }
+  .index {
+    background: rgb(69, 91, 145);
+  }
+  .live {
+    background: rgb(63, 47, 101);
+  }
+  .game {
+    background: #333;
+  }
 }
 
 .mobile-preview {

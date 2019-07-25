@@ -18,7 +18,7 @@
       </el-select>
 
       <tab-menu></tab-menu>
-      </div>
+    </div>
       
     
 
@@ -110,17 +110,6 @@ export default {
   components: {
     TabMenu
   },
-  head() {
-    return {
-      title: 'Home-Page',
-      meta: [
-        {name: 'twitter: title', content: 'bbos CMS content'},
-        {name: 'twitter: description', content: 'bbos CMS content'},
-        {name: 'twitter: image', content: ''},
-        {name: 'twitter: card', content: ''}
-      ]
-    }
-  },
   data() {
     return {
       activeName: 'first',
@@ -158,96 +147,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.el-header {
-  background-color: #B3C0D1;
-  color: #333;
-  line-height: 30px;
-  font-size: 12;
-  display: flex;
-  justify-content: center;
-}
-  
-.el-aside {
-  color: #333;
-}
-
-.el-dropdown-link {
-  cursor: pointer;
-  color: #409EFF;
-}
-.el-icon-arrow-down {
-  font-size: 12px;
-}
-.el-select {
-  width: 250px;
-}
-
-.web-preview {
-  background: #ddd; 
-  display: flex; 
-  flex-grow: 1; 
-  height: 100%;
-  position: relative;
-  align-items: center;
-  overflow-y: auto;
-  .index, .live, .game {
-    color: #fff;
-    display: flex;
-    text-align: center;
-  }
-  .index {
-    background: rgb(69, 91, 145);
-  }
-  .live {
-    background: rgb(63, 47, 101);
-  }
-  .game {
-    background: #333;
-  }
-}
-
-  ul {
-    list-style: none;
-    padding-left: 0;
-    li {
-      padding: 10px;
-      border-bottom: 1px solid #DCDFE6;
-      display: flex;
-      justify-content: flex-start;
-      position: relative;
-      .el-button {
-        top: 0;
-        position: absolute;
-        background: transparent;
-        border: 0;
-        padding: 0;
-        &.btn-setting {
-          right: 0;
-        }
-        &.btn-back {
-          left: 0;
-        }
-      }
-    }
-  }
-
-.mobile-preview {
-  background: #ddd; 
-  width: 375px;
-  max-height: 667px; 
-  height: 100%;
-  margin: 0 auto;
-}
-
-.other-setting {
-  position: absolute;
-  bottom: 0;
-}
-
-.el-icon-more {
-  transform:rotate(90deg);
-}
-
-</style>

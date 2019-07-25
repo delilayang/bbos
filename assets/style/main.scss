@@ -50,10 +50,10 @@
 .side-content {
   width: 100%;
   position: absolute;
-  &.main {
+  &.aside-main {
     z-index: 0;
   }
-  &.setting {
+  &.aside-setting {
     z-index: 1;
     li:nth-child(1) {
       justify-content: center;

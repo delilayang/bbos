@@ -6,8 +6,15 @@
       <button>儲存</button>
       <button>發佈</button>
     </el-header>
-    
+   
     <transition name="fade">
+     <aside-main></aside-main>
+    </transition>
+    <transition name="fade">
+      <aside-setting></aside-setting>
+    </transition>
+    
+    <!-- <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
         <el-option
@@ -61,7 +68,7 @@
           </el-tab-pane>
         </el-tabs>    
       </div>
-      <!-- <tab-menu></tab-menu> -->
+      
     </div>
     </transition>
     
@@ -100,7 +107,7 @@
         </li>
       </ul>
     </div>
-    </transition> 
+    </transition>  -->
 
     <el-select class="other-setting" v-model="value2" placeholder="其他設定">
         <el-option
@@ -151,21 +158,24 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import TabMenu from "~/components/TabMenu";
+import AsideMain from "~/components/AsideMain";
+import AsideSetting from "~/components/AsideSetting";
 
 export default {
   components: {
-    TabMenu
+    AsideMain,
+    AsideSetting
   },
   data() {
     return {
-      activeName: 'first',
+      // activeName: 'first',
       activeVersion: 'web',
-      page: '',
+      // page: '',
       value2: '',
       isPreview: true,
-      isLayer1: true,
-      isLayer2: false
+      // isLayer1: true,
+      // isLayer2: false
+      
     }
   },
   computed: {
@@ -187,25 +197,25 @@ export default {
     ]),
   },
   methods: {
-    showSetting() {
-      if(this.isLayer2 = !this.isLayer2) {
-        this.isLayer1 = false;
-      };
-    },
-    goBack() {
-      if(this.isLayer1 = !this.isLayer1) {
-        this.isLayer2 = false;
-      }
-    },
+    // showSetting() {
+    //   if(this.isLayer2 = !this.isLayer2) {
+    //     this.isLayer1 = false;
+    //   };
+    // },
+    // goBack() {
+    //   if(this.isLayer1 = !this.isLayer1) {
+    //     this.isLayer2 = false;
+    //   }
+    // },
     toggle() {
       this.isPreview = !this.isPreview;
     },
-    mainSelect(val) {
-      this.$store.commit("main/updateSelect", { value: val });
-    },
-    handleClick() {
+    // mainSelect(val) {
+    //   this.$store.commit("main/updateSelect", { value: val });
+    // },
+    // handleClick() {
       
-    }
+    // }
   },
   }
 

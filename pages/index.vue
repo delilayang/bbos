@@ -25,7 +25,9 @@
     <div class="side-content-setting" style="">
       <ul>
         <li>
-          <el-button round class="btn-back"><i class="el-icon-more"></i></el-button>
+          <el-button round class="btn-back" @back="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
           <span>頁首導航列設定</span>
         </li>
         <li>
@@ -149,6 +151,9 @@ export default {
     ]),
   },
   methods: {
+    goBack() {
+        console.log('go back');
+    },
     toggle() {
       this.isPreview = !this.isPreview;
     },
@@ -208,10 +213,16 @@ export default {
   }
 }
 
-  ul {
-    list-style: none;
-    padding-left: 0;
-    li {
+.side-content-setting {
+  li:nth-child(1) {
+    justify-content: center;
+  }
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  li {
       padding: 10px;
       border-bottom: 1px solid #DCDFE6;
       display: flex;
@@ -231,7 +242,7 @@ export default {
         }
       }
     }
-  }
+}
 
 .mobile-preview {
   background: #ddd; 

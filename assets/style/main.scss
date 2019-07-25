@@ -46,6 +46,12 @@
   }
 }
 
+.side-content-setting {
+  li:nth-child(1) {
+    justify-content: center;
+  }
+}
+
   ul {
     list-style: none;
     padding-left: 0;

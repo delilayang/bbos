@@ -68,7 +68,7 @@
   <el-container>
     <el-header style="height: 40px;">
       <el-select v-model="$i18n.locale">
-        <el-option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</el-option>
+        <el-option v-for="(lang, i) in locales" :key="`Lang${i}`" :value="lang">{{ lang }}</el-option>
       </el-select>
       <button @click="toggle"><i class="el-icon-monitor"></i></button>
       <button @click="toggle"><i class="el-icon-mobile-phone"></i></button>
@@ -120,7 +120,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["langs", "options", "setting", "tabList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",

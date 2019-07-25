@@ -9,6 +9,7 @@
   
 .el-aside {
   color: #333;
+  position: relative;
 }
 
 .el-dropdown-link {
@@ -46,9 +47,18 @@
   }
 }
 
-.side-content-setting {
-  li:nth-child(1) {
-    justify-content: center;
+.side-content {
+  width: 100%;
+  position: absolute;
+  &.main {
+    z-index: 0;
+  }
+  &.setting {
+    z-index: 1;
+    li:nth-child(1) {
+      justify-content: center;
+      background: #cdddf3;
+    }
   }
 }
 
@@ -67,6 +77,9 @@
         background: transparent;
         border: 0;
         padding: 0;
+        &:hover {
+          background: transparent;
+        }
         &.btn-setting {
           right: 0;
         }
@@ -92,4 +105,12 @@
 
 .el-icon-more {
   transform:rotate(90deg);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

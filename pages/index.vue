@@ -202,6 +202,9 @@ export default {
     },
     mainSelect(val) {
       this.$store.commit("main/updateSelect", { value: val });
+    },
+    handleClick() {
+      
     }
   },
   }

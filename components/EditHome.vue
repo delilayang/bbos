@@ -253,7 +253,7 @@ export default {
 }
 .list-group {
   margin: 10px 0;
-  box-shadow: 0 0 1px rgba(0,0,0, .2);
+  box-shadow: 0 0 5px rgba(0,0,0, .2);
   background: #fff;
 }
 

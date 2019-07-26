@@ -50,6 +50,8 @@
 .side-content {
   width: 100%;
   position: absolute;
+  border-right: 1px solid #DCDFE6;
+  overflow: auto;
   &.main {
     z-index: 0;
   }
@@ -71,6 +73,9 @@
       display: flex;
       justify-content: flex-start;
       position: relative;
+      &:hover {
+        border-right: 4px solid rgb(55, 88, 164);
+      }
       .el-button {
         top: 0;
         position: absolute;

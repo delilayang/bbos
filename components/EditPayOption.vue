@@ -1,5 +1,5 @@
  <template>
- <div class="edit-index">
+ <div class="edit-pay-option">
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
@@ -11,13 +11,13 @@
         </el-option>
       </el-select>
 
-      <div class="tab-menu" v-if="isHome">
+      <div class="tab-menu" v-if="isPayOption">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="頁面管理" name="first">
             <div class="page-management">
               <ul>
                 <li>
-                  <span>LOGO</span>
+                  <span>支付選項編輯畫面</span>
                 </li>
                 <li>
                   <span>頁首導航列</span>
@@ -104,9 +104,7 @@ export default {
   data() {
     return {
       activeName: 'first',
-    //   activeVersion: 'web',
       page: '',
-    //   value2: '',
       isPreview: true,
       isLayer1: true,
       isLayer2: false
@@ -141,9 +139,6 @@ export default {
         this.isLayer2 = false;
       }
     },
-    // toggle() {
-    //   this.isPreview = !this.isPreview;
-    // },
     mainSelect(val) {
       this.$store.commit("main/updateSelect", { value: val });
     },
@@ -153,6 +148,3 @@ export default {
   },
 }
  </script>
- 
- 
- 

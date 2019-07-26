@@ -1,6 +1,7 @@
-<template>
-<Fragment>
-    <div class="aside-main side-content" v-if="isLayer1">
+ <template>
+ <div class="edit-agent-reg">
+    <transition name="fade">
+    <div class="side-content main" v-if="isLayer1">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
         <el-option
           v-for="item in options"
@@ -10,13 +11,13 @@
         </el-option>
       </el-select>
 
-      <div class="tab-menu" v-if="isHome">
+      <div class="tab-menu" v-if="isAgentReg">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="頁面管理" name="first">
             <div class="page-management">
               <ul>
                 <li>
-                  <span>LOGO</span>
+                  <span>代理註冊編輯畫面</span>
                 </li>
                 <li>
                   <span>頁首導航列</span>
@@ -53,24 +54,58 @@
           </el-tab-pane>
         </el-tabs>    
       </div>
-      <!-- <tab-menu></tab-menu> -->
+      
     </div>
-</Fragment>
+    </transition>
+    
+    <transition name="fade">
+    <div class="side-content setting" v-if="isLayer2">
+      <ul>
+        <li>
+          <el-button round class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>頁首導航列設定</span>
+        </li>
+        <li>
+          <span>首頁</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>視訊直播</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>電子遊藝</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>捕魚大廳</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>優惠活動</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>新增頁面</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+      </ul>
+    </div>
+    </transition>
+</div>
 </template>
-
 <script>
-import { Fragment } from "vue-fragment";
 import { mapState, mapGetters } from "vuex";
-// import TabMenu from "./TabMenu";
 export default {
   components: {
-    Fragment,
-    // TabMenu
   },
   data() {
     return {
       activeName: 'first',
       page: '',
+      isPreview: true,
       isLayer1: true,
       isLayer2: false
     }
@@ -99,6 +134,11 @@ export default {
         this.isLayer1 = false;
       };
     },
+    goBack() {
+      if(this.isLayer1 = !this.isLayer1) {
+        this.isLayer2 = false;
+      }
+    },
     mainSelect(val) {
       this.$store.commit("main/updateSelect", { value: val });
     },
@@ -106,8 +146,5 @@ export default {
       
     }
   },
-  }
-</script>
-<style lang="scss" scoped>
-
-</style>
+}
+ </script>

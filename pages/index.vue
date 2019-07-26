@@ -7,7 +7,7 @@
       <button>發佈</button>
     </el-header>
        
-    <edit-index></edit-index>
+    <edit-home></edit-home>
     <edit-live-stream></edit-live-stream>
     <edit-ePlay></edit-ePlay>
     <edit-preferential></edit-preferential>
@@ -71,7 +71,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import EditIndex from "~/components/EditIndex";
+import EditHome from "~/components/EditHome";
 import EditLiveStream from "~/components/EditLiveStream";
 import EditEPlay from "~/components/EditEPlay";
 import EditPreferential from "~/components/EditPreferential";
@@ -87,7 +87,7 @@ import EditForgot from "~/components/EditForgot";
 
 export default {
   components: {
-    EditIndex,
+    EditHome,
     EditLiveStream,
     EditEPlay,
     EditPreferential,

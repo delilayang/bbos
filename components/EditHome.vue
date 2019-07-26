@@ -1,5 +1,5 @@
  <template>
- <div class="edit-index">
+ <div class="edit-home">
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">

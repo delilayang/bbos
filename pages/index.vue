@@ -22,7 +22,7 @@
     <edit-agent-reg></edit-agent-reg>
     <edit-forgot></edit-forgot>
 
-    <el-select class="other-setting" v-model="value2" placeholder="其他設定">
+    <el-select class="other-setting" v-model="value2" placeholder="其他設定" @change="open">
         <el-option
           v-for="list in setting"
           :key="list.value"
@@ -130,7 +130,18 @@ export default {
   methods: {
     toggle() {
       this.isPreview = !this.isPreview;
-    }
+    },
+    open() {
+        this.$alert('這是一段內容', '標題名稱', {
+          confirmButtonText: '確定',
+          // callback: action => {
+          //   this.$message({
+          //     type: 'info',
+          //     message: `action: ${ action }`
+          //   });
+          // }
+        });
+      }
   }
 }
 </script>

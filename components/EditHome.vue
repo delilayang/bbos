@@ -1,56 +1,5 @@
  <template>
  <div class="edit-home">
-<div class="row">
-    <!-- <div class="col-2">
-      <div class="form-group">
-        <div
-          class="btn-group-vertical buttons"
-          role="group"
-          aria-label="Basic example"
-        >
-          <button class="btn btn-secondary" @click="add">Add</button>
-          <button class="btn btn-secondary" @click="replace">Replace</button>
-        </div>
-
-        <div class="form-check">
-          <input
-            id="disabled"
-            type="checkbox"
-            v-model="enabled"
-            class="form-check-input"
-          />
-          <label class="form-check-label" for="disabled">DnD enabled</label>
-        </div>
-      </div>
-    </div> -->
-
-    <div>
-      <!-- <h3>Draggable {{ draggingInfo }}</h3> -->
-
-      <!-- <draggable
-        :list="list"
-        :disabled="!enabled"
-        class="list-group"
-        ghost-class="ghost"
-        :move="checkMove"
-        @start="dragging = true"
-        @end="dragging = false"
-      >
-        <div
-          class="list-group-item"
-          v-for="element in list"
-          :key="element.name"
-        >
-          {{ element.name }}
-        </div>
-      </draggable> -->
-    </div>
-
-    <!-- <rawDisplayer class="col-3" :value="list" title="List" /> -->
-  </div>
-
-
-
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
@@ -69,14 +18,22 @@
               <ul>
                 <li>
                   <span>LOGO</span>
-                </li>
-                <li>
-                  <span>頁首導航列</span>
-                  <el-button round class="btn-setting" @click="showSetting">
+                  <el-button round class="btn-setting" @click="SettingLogo">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
-                <li>頁尾導航列</li>
+                <li>
+                  <span>頁首導航列</span>
+                  <el-button round class="btn-setting" @click="SettingHeadNav">
+                    <i class="el-icon-more"></i>
+                  </el-button>
+                </li>
+                <li>
+                  <span>頁尾導航列</span>
+                  <el-button round class="btn-setting" @click="SettingFooterNav">
+                    <i class="el-icon-more"></i>
+                  </el-button>
+                </li>
                 <draggable
                   :list="moveList"
                   :disabled="!enabled"
@@ -94,7 +51,12 @@
                     {{ element.name }}
                   </li>
                 </draggable>
-                <li>頁尾</li>
+                <li>
+                  <span>頁尾</span>
+                  <el-button round class="btn-setting" @click="SettingFooter">
+                    <i class="el-icon-more"></i>
+                  </el-button>
+                </li>
                 <li>
                   <span>新增區塊</span>
                    <el-button round class="btn-setting" @click="add">
@@ -128,7 +90,7 @@
     </transition>
     
     <transition name="fade">
-    <div class="side-content setting" v-if="isLayer2">
+    <div class="side-content setting" v-if="isHeadNav">
       <ul>
         <li>
           <el-button round class="btn-back" @click="goBack">
@@ -163,6 +125,81 @@
       </ul>
     </div>
     </transition>
+
+    <transition name="fade">
+    <div class="side-content setting" v-if="isLOGO">
+      <ul>
+        <li>
+          <el-button round class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>LOGO設定</span>
+        </li>
+        <li>
+          <span>首頁</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>視訊直播</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>電子遊藝</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+      </ul>
+    </div>
+    </transition>
+
+    <transition name="fade">
+    <div class="side-content setting" v-if="isFooterNav">
+      <ul>
+        <li>
+          <el-button round class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>頁尾導航列設定</span>
+        </li>
+        <li>
+          <span>首頁</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>視訊直播</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>電子遊藝</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+      </ul>
+    </div>
+    </transition>
+
+    <transition name="fade">
+    <div class="side-content setting" v-if="isFooter">
+      <ul>
+        <li>
+          <el-button round class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>頁尾設定</span>
+        </li>
+        <li>
+          <span>首頁</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>視訊直播</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+        <li>
+          <span>電子遊藝</span>
+          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+        </li>
+      </ul>
+    </div>
+    </transition>
 </div>
 </template>
 <script>
@@ -181,7 +218,10 @@ export default {
       page: '',
       isPreview: true,
       isLayer1: true,
-      isLayer2: false,
+      isLOGO: false,
+      isHeadNav: false,
+      isFooterNav: false,
+      isFooter: false,
       //drag
       enabled: true,
       moveList: [
@@ -216,14 +256,37 @@ export default {
     }
   },
   methods: {
-    showSetting() {
-      if(this.isLayer2 = !this.isLayer2) {
+    // ShowSetting() {
+    //   if(this.isLOGO == !this.isLOGO || this.isHeadNav == !this.isHeadNav || this.isFooterNav == !this.isFooterNav || this.isFooter == !this.isFooter) {
+    //     this.isLayer1 = false;
+    //   }
+    // },
+    SettingLogo() {
+      if(this.isLOGO = !this.isLOGO) {
+        this.isLayer1 = false;
+      };
+    },
+    SettingHeadNav() {
+      if(this.isHeadNav = !this.isHeadNav) {
+        this.isLayer1 = false;
+      };
+    },
+    SettingFooterNav() {
+      if(this.isFooterNav = !this.isFooterNav) {
+        this.isLayer1 = false;
+      };
+    },
+    SettingFooter() {
+      if(this.isFooter = !this.isFooter) {
         this.isLayer1 = false;
       };
     },
     goBack() {
       if(this.isLayer1 = !this.isLayer1) {
-        this.isLayer2 = false;
+        this.isLOGO = false;
+        this.isHeadNav = false;
+        this.isFooterNav = false;
+        this.isFooter = false;
       }
     },
     mainSelect(val) {

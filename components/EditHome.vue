@@ -275,11 +275,17 @@ export default {
       enabled: true,
       dragging: false,
       //input
-      input: '首頁'
+      input: '首頁',
+      moveList: [
+        { name: "橫幅", id: 0 },
+        { name: "輪播特效", id: 1 },
+        { name: "跑馬燈", id: 2 },
+        { name: "內容", id: 3 }
+      ]
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "moveList", "fileList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",
@@ -380,7 +386,7 @@ export default {
     },
     handleClick() {},
     //drag
-    add: function() {
+    add() {
       this.moveList.push({ name: "新區塊" + id, id: id++ });
     },
     replace: function() {

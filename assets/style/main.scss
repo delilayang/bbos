@@ -11,6 +11,9 @@
   color: #333;
   position: relative;
   overflow: hidden;
+  .el-select {
+    width: 100%;
+  }
 }
 
 .el-dropdown-link {
@@ -20,9 +23,7 @@
 .el-icon-arrow-down {
   font-size: 12px;
 }
-.el-select {
-  width: 250px;
-}
+
 
 .web-preview {
   background: #ddd; 
@@ -137,8 +138,8 @@
   margin: 10px 0;
   box-shadow: 0 0 5px rgba(0,0,0, .2);
   background: #fff;
-  height: 170px;
-  overflow-y: auto;
+  // height: 170px;
+  // overflow-y: auto;
 }
 
 // .list-group-item {

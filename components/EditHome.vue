@@ -18,9 +18,11 @@
               <ul>
                 <li>
                   <span>LOGO</span>
-                  <el-button round class="btn-setting" @click="SettingLogo">
-                    <i class="el-icon-more"></i>
-                  </el-button>
+                  <el-tooltip class="item" effect="light" content="設定" placement="top">
+                    <el-button round class="btn-setting" @click="SettingLogo">
+                      <i class="el-icon-more"></i>
+                    </el-button>
+                  </el-tooltip>
                 </li>
                 <li>
                   <span>頁首導航列</span>
@@ -49,6 +51,18 @@
                     :key="element.name"
                   >
                     {{ element.name }}
+                    <el-button round class="btn-setting" @click="SettingBanner">
+                      <i class="el-icon-more"></i>
+                    </el-button>
+                    <el-button round class="btn-setting" @click="SettingSlider">
+                      <i class="el-icon-more"></i>
+                    </el-button>
+                    <el-button round class="btn-setting" @click="SettingMarquee">
+                      <i class="el-icon-more"></i>
+                    </el-button>
+                    <el-button round class="btn-setting" @click="SettingContent">
+                      <i class="el-icon-more"></i>
+                    </el-button>
                   </li>
                 </draggable>
                 <li>
@@ -135,18 +149,16 @@
           </el-button>
           <span>LOGO設定</span>
         </li>
-        <li>
-          <span>首頁</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>視訊直播</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>電子遊藝</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
+          <el-upload
+            class="upload-demo"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :file-list="fileList"
+            list-type="picture">
+            <el-button size="small" type="primary">點擊上傳</el-button>
+            <div slot="tip" class="el-upload__tip">只能上傳jpg/png文件，且不超過500kb</div>
+          </el-upload>
       </ul>
     </div>
     </transition>
@@ -221,6 +233,10 @@ export default {
       isLOGO: false,
       isHeadNav: false,
       isFooterNav: false,
+      isBanner: false,
+      isSlider: false,
+      isMarquee: false,
+      isContent: false,
       isFooter: false,
       //drag
       enabled: true,
@@ -230,7 +246,12 @@ export default {
         { name: "跑馬燈", id: 2 },
         { name: "內容", id: 3 }
       ],
-      dragging: false
+      dragging: false,
+      //Upload
+      fileList: [
+        {name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, 
+        {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}
+      ]
     }
   },
   computed: {
@@ -256,11 +277,6 @@ export default {
     }
   },
   methods: {
-    // ShowSetting() {
-    //   if(this.isLOGO == !this.isLOGO || this.isHeadNav == !this.isHeadNav || this.isFooterNav == !this.isFooterNav || this.isFooter == !this.isFooter) {
-    //     this.isLayer1 = false;
-    //   }
-    // },
     SettingLogo() {
       if(this.isLOGO = !this.isLOGO) {
         this.isLayer1 = false;
@@ -276,6 +292,27 @@ export default {
         this.isLayer1 = false;
       };
     },
+    SettingBanner() {
+      if(this.isBanner = !this.isBanner) {
+        this.isLayer1 = false;
+      };
+    },
+    SettingSlider() {
+      if(this.isSlider = !this.isSlider) {
+        this.isLayer1 = false;
+      };
+    },
+    SettingMarquee() {
+      if(this.isMarquee = !this.isMarquee) {
+        this.isLayer1 = false;
+      };
+    },
+    SettingContent() {
+      if(this.isContent = !this.isContent) {
+        this.isLayer1 = false;
+      };
+    },
+
     SettingFooter() {
       if(this.isFooter = !this.isFooter) {
         this.isLayer1 = false;
@@ -286,6 +323,10 @@ export default {
         this.isLOGO = false;
         this.isHeadNav = false;
         this.isFooterNav = false;
+        this.isBanner = false;
+        this.isSlider = false;
+        this.isMarquee = false;
+        this.isContent = false;
         this.isFooter = false;
       }
     },
@@ -302,30 +343,16 @@ export default {
     },
     checkMove: function(e) {
       window.console.log("Future index: " + e.draggedContext.futureIndex);
+    },
+    //Upload
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-.buttons {
-  margin-top: 35px;
-}
-.ghost {
-  opacity: .5;
-  background: #c8ebfb;
-}
-.list-group {
-  margin: 10px 0;
-  box-shadow: 0 0 5px rgba(0,0,0, .2);
-  background: #fff;
-}
-
-// .list-group-item {
-//   border: 1px solid #ddd;
-//   background: #fff;
-//   &:hover{border-right: 4px solid rgb(55, 88, 164);}
-// }
-</style>
-
  
  

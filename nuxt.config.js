@@ -1,7 +1,7 @@
 import config from './static/public/config'
 
 module.exports = {
-  mode: 'Universal',
+  mode: 'universal',
   /*
   ** Headers of the page
   */

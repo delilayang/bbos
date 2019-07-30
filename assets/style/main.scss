@@ -119,3 +119,24 @@
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+.buttons {
+  margin-top: 35px;
+}
+.ghost {
+  opacity: .5;
+  background: #c8ebfb;
+}
+.list-group {
+  margin: 10px 0;
+  box-shadow: 0 0 5px rgba(0,0,0, .2);
+  background: #fff;
+  height: 170px;
+  overflow-y: auto;
+}
+
+// .list-group-item {
+//   border: 1px solid #ddd;
+//   background: #fff;
+//   &:hover{border-right: 4px solid rgb(55, 88, 164);}
+// }

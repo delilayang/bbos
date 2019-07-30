@@ -67,7 +67,18 @@ const state = () => ({
     }, {
         name: 'third',
         label: '浮動圖'
-    }]
+    }],
+    moveList: [
+        { name: "橫幅", id: 0 },
+        { name: "輪播特效", id: 1 },
+        { name: "跑馬燈", id: 2 },
+        { name: "內容", id: 3 }
+    ],
+    //Upload
+    fileList: [
+        { name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' },
+        { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }
+    ]
 })
 
 const getters = {

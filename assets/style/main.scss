@@ -87,6 +87,12 @@
         }
         &.btn-setting {
           right: 0;
+          &.view {
+            right: 20px;
+          }
+          .icon-view_off {
+            color: #333;
+          }
         }
         &.btn-back {
           left: 0;

@@ -37,7 +37,8 @@
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
-                <draggable
+                <draggable class="list-group" :disabled="!enabled" ghost-class="ghost" @start="dragging = true" @end="dragging = false">
+                <!-- <draggable
                   :list="moveList"
                   :disabled="!enabled"
                   class="list-group"
@@ -45,25 +46,37 @@
                   @start="dragging = true"
                   @end="dragging = false"
                 >
-                  <li
+                <li
                     class="list-group-item"
                     v-for="element in moveList"
                     :key="element.name"
                   >
                     {{ element.name }}
-                    <el-button  class="btn-setting" @click="SettingBanner">
-                      <i class="el-icon-more"></i>
-                    </el-button>
-                    <el-button  class="btn-setting" @click="SettingSlider">
-                      <i class="el-icon-more"></i>
-                    </el-button>
-                    <el-button  class="btn-setting" @click="SettingMarquee">
-                      <i class="el-icon-more"></i>
-                    </el-button>
-                    <el-button  class="btn-setting" @click="SettingContent">
-                      <i class="el-icon-more"></i>
-                    </el-button>
-                  </li>
+                  </li> -->
+                <li>
+                  <span>橫幅</span>
+                  <el-button  class="btn-setting" @click="SettingBanner">
+                    <i class="el-icon-more"></i>
+                  </el-button>
+                </li>
+                <li>
+                  <span>輪播特效</span>
+                  <el-button  class="btn-setting" @click="SettingSlider">
+                    <i class="el-icon-more"></i>
+                  </el-button>
+                </li>
+                <li>
+                  <span>跑馬燈</span>
+                  <el-button  class="btn-setting" @click="SettingMarquee">
+                    <i class="el-icon-more"></i>
+                  </el-button>
+                </li>
+                <li>
+                  <span>內容</span>
+                  <el-button  class="btn-setting" @click="SettingContent">
+                    <i class="el-icon-more"></i>
+                  </el-button>
+                </li>
                 </draggable>
                 <li>
                   <span>頁尾</span>
@@ -72,13 +85,13 @@
                   </el-button>
                 </li>
                 <li>
-                  <span>新增區塊</span>
+                  <span>新增內容區塊</span>
                    <el-button  class="btn-setting" @click="add">
                     <i class="el-icon-plus"></i>
                   </el-button>
                 </li>
                  <li>
-                  <span>移除區塊</span>
+                  <span>移除內容區塊</span>
                    <el-button  class="btn-setting" @click="replace">
                     <i class="el-icon-minus"></i>
                   </el-button>
@@ -185,7 +198,7 @@
           </li>
           <li>
             <span>優惠活動</span>
-            <el-tooltip class="item" effect="light" content="刪除" placement="top">
+            <el-tooltip class="item" effect="light" content="刪除" placement="top" @click="remove">
               <el-button  class="btn-setting delete">
                 <i class="el-icon-delete"></i>
               </el-button>
@@ -273,6 +286,55 @@
           placeholder="請輸入內容"
           v-model="textarea1">
         </el-input>
+      </ul>
+    </div>
+    </transition>
+
+    <transition name="fade">
+    <div class="side-content setting" v-if="isBanner">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>橫幅設定</span>
+        </li>
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :file-list="fileList"
+          list-type="picture">
+          <el-button size="small" type="primary">點擊上傳</el-button>
+          <div slot="tip" class="el-upload__tip">
+            只能上傳pg/png文件，且不超過500kb<br>
+            檔案尺寸: 1920*400px</div>
+        </el-upload>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isSlider">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>橫幅設定</span>
+        </li>
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :file-list="fileList"
+          list-type="picture">
+          <el-button size="small" type="primary">點擊上傳</el-button>
+          <div slot="tip" class="el-upload__tip">
+            只能上傳pg/png文件，且不超過500kb<br>
+            檔案尺寸: 1920*400px</div>
+        </el-upload>
       </ul>
     </div>
     </transition>
@@ -453,6 +515,7 @@ export default {
       isContent: false,
       isFooter: false,
       //layer3
+      isBannerSetting: false,
       isHomeSetting: false,
       isLiveStreamSetting: false,
       isEPlaySetting: false,
@@ -483,7 +546,7 @@ export default {
         { name: "輪播特效", id: 1 },
         { name: "跑馬燈", id: 2 },
         { name: "內容", id: 3 }
-    ],
+      ]
     }
   },
   computed: {

@@ -20,20 +20,20 @@
                 <li>
                   <span>LOGO</span>
                   <el-tooltip class="item" effect="light" content="設定" placement="top">
-                    <el-button round class="btn-setting" @click="SettingLogo">
+                    <el-button  class="btn-setting" @click="SettingLogo">
                       <i class="el-icon-more"></i>
                     </el-button>
                   </el-tooltip>
                 </li>
                 <li>
                   <span>頁首導航列</span>
-                  <el-button round class="btn-setting" @click="SettingHeadNav">
+                  <el-button  class="btn-setting" @click="SettingHeadNav">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
                 <li>
                   <span>頁尾導航列</span>
-                  <el-button round class="btn-setting" @click="SettingFooterNav">
+                  <el-button  class="btn-setting" @click="SettingFooterNav">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
@@ -52,30 +52,36 @@
                     :key="element.name"
                   >
                     {{ element.name }}
-                    <el-button round class="btn-setting" @click="SettingBanner">
+                    <el-button  class="btn-setting" @click="SettingBanner">
                       <i class="el-icon-more"></i>
                     </el-button>
-                    <el-button round class="btn-setting" @click="SettingSlider">
+                    <el-button  class="btn-setting" @click="SettingSlider">
                       <i class="el-icon-more"></i>
                     </el-button>
-                    <el-button round class="btn-setting" @click="SettingMarquee">
+                    <el-button  class="btn-setting" @click="SettingMarquee">
                       <i class="el-icon-more"></i>
                     </el-button>
-                    <el-button round class="btn-setting" @click="SettingContent">
+                    <el-button  class="btn-setting" @click="SettingContent">
                       <i class="el-icon-more"></i>
                     </el-button>
                   </li>
                 </draggable>
                 <li>
                   <span>頁尾</span>
-                  <el-button round class="btn-setting" @click="SettingFooter">
+                  <el-button  class="btn-setting" @click="SettingFooter">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
                 <li>
                   <span>新增區塊</span>
-                   <el-button round class="btn-setting" @click="add">
+                   <el-button  class="btn-setting" @click="add">
                     <i class="el-icon-plus"></i>
+                  </el-button>
+                </li>
+                 <li>
+                  <span>移除區塊</span>
+                   <el-button  class="btn-setting" @click="replace">
+                    <i class="el-icon-minus"></i>
                   </el-button>
                 </li>
               </ul>
@@ -108,7 +114,7 @@
     <div class="side-content setting" v-if="isLOGO">
       <ul>
         <li>
-          <el-button round class="btn-back" @click="goBack">
+          <el-button  class="btn-back" @click="goBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>LOGO設定</span>
@@ -131,43 +137,70 @@
     <div class="side-content setting" v-if="isHeadNav">
       <ul>
         <li>
-          <el-button round class="btn-back" @click="goBack">
+          <el-button  class="btn-back" @click="goBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>頁首導航列設定</span>
         </li>
-        <li>
-          <span>首頁</span>
-          <el-tooltip class="item" effect="light" content="設定" placement="top">
-            <el-button round class="btn-setting" @click="SettingIndex">
+        <draggable class="layer2-draglist">
+          <li>
+            <span>首頁</span>
+            <el-tooltip class="item" effect="light" content="設定" placement="top">
+              <el-button  class="btn-setting" @click="SettingLayer3">
+                <i class="el-icon-more"></i>
+              </el-button>
+            </el-tooltip>
+          </li>
+          <li>
+            <span>視訊直播</span>
+            <el-button  class="btn-setting" @click="SettingLayer3">
               <i class="el-icon-more"></i>
             </el-button>
-          </el-tooltip>
-        </li>
-        <li>
-          <span>視訊直播</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
-          <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-            <el-button round class="btn-setting view" @click="showToggle">
-             <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+            <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+              <el-button  class="btn-setting view" @click="showToggle">
+              <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+              </el-button>
+            </el-tooltip>
+          </li>
+          <li>
+            <span>電子遊藝</span>
+            <el-button  class="btn-setting" @click="SettingLayer3">
+              <i class="el-icon-more"></i>
             </el-button>
-          </el-tooltip>
-        </li>
-        <li>
-          <span>電子遊藝</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>捕魚大廳</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>優惠活動</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
+            <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+              <el-button  class="btn-setting view" @click="showToggle">
+              <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+              </el-button>
+            </el-tooltip>
+          </li>
+          <li>
+            <span>捕魚大廳</span>
+            <el-button  class="btn-setting" @click="SettingLayer3">
+              <i class="el-icon-more"></i>
+            </el-button>
+            <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+              <el-button  class="btn-setting view" @click="showToggle">
+              <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+              </el-button>
+            </el-tooltip>
+          </li>
+          <li>
+            <span>優惠活動</span>
+            <el-tooltip class="item" effect="light" content="刪除" placement="top">
+              <el-button  class="btn-setting delete">
+                <i class="el-icon-delete"></i>
+              </el-button>
+            </el-tooltip>
+            <el-button  class="btn-setting" @click="SettingLayer3">
+              <i class="el-icon-more"></i>
+            </el-button>
+          </li>
+        </draggable>
         <li>
           <span>新增頁面</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+          <el-button  class="btn-setting" @click="add">
+            <i class="el-icon-plus"></i>
+          </el-button>
         </li>
       </ul>
     </div>
@@ -177,22 +210,22 @@
     <div class="side-content setting" v-if="isFooterNav">
       <ul>
         <li>
-          <el-button round class="btn-back" @click="goBack">
+          <el-button  class="btn-back" @click="goBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>頁尾導航列設定</span>
         </li>
         <li>
           <span>首頁</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
         </li>
         <li>
           <span>視訊直播</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
         </li>
         <li>
           <span>電子遊藝</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
         </li>
       </ul>
     </div>
@@ -202,38 +235,94 @@
     <div class="side-content setting" v-if="isFooter">
       <ul>
         <li>
-          <el-button round class="btn-back" @click="goBack">
+          <el-button  class="btn-back" @click="goBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>頁尾設定</span>
         </li>
         <li>
           <span>首頁</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
         </li>
         <li>
           <span>視訊直播</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
         </li>
         <li>
           <span>電子遊藝</span>
-          <el-button round class="btn-setting"><i class="el-icon-more"></i></el-button>
+          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
         </li>
       </ul>
     </div>
     </transition>
   <!-- layer3 -->
     <transition name="fade">
-    <div class="side-content setting" v-if="isHeadNavSetting">
+    <div class="side-content setting" v-if="isHomeSetting">
       <ul>
         <li>
-          <el-button round class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="goBack2">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>首頁設定</span>
         </li>
         <strong><h4>標題</h4></strong>
-        <el-input v-model="input" clearable></el-input>
+        <el-input v-model="input1" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isLiveStreamSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>視訊直播設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input2" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isEPlaySetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>電子遊藝設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input3" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isFishingSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>捕魚遊戲設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input4" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+     <transition name="fade">
+    <div class="side-content setting" v-if="isPreferentialSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>優惠活動設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input5" clearable></el-input>
       </ul>
     </div>
     </transition>
@@ -270,12 +359,20 @@ export default {
       isContent: false,
       isFooter: false,
       //layer3
-      isHeadNavSetting: false,
+      isHomeSetting: false,
+      isLiveStreamSetting: false,
+      isEPlaySetting: false,
+      isFishingSetting: false,
+      isPreferentialSetting: false,
       //drag
       enabled: true,
       dragging: false,
       //input
-      input: '首頁',
+      input1: '首頁',
+      input2: '視訊直播',
+      input3: '電子遊藝',
+      input4: '捕魚遊戲',
+      input5: '優惠活動',
       moveList: [
         { name: "橫幅", id: 0 },
         { name: "輪播特效", id: 1 },
@@ -357,10 +454,22 @@ export default {
       };
     },
     //layer3
-    SettingIndex() {
-      if(this.isHeadNavSetting = !this.isHeadNavSetting) {
+    SettingLayer3() {
+      if(this.isHomeSetting = !this.isHomeSetting) {
         this.isHeadNav = false;
-      };
+      }
+      if(this.isLiveStreamSetting = !this.isLiveStreamSetting) {
+        this.isHeadNav = false;
+      }
+      if(this.isEPlaySetting = !this.isEPlaySetting) {
+        this.isHeadNav = false;
+      }
+      if(this.isFishingSetting = !this.isFishingSetting) {
+        this.isHeadNav = false;
+      }
+      if(this.isPreferentialSetting = !this.isPreferentialSetting) {
+        this.isHeadNav = false;
+      }
     },
     //Back to layer1
     goBack() {
@@ -378,7 +487,11 @@ export default {
     //Back to layer2
     goBack2() {
       if(this.isHeadNav = !this.isHeadNav) {
-        this.isHeadNavSetting = false;
+        this.isHomeSetting = false;
+        this.isLiveStreamSetting = false;
+        this.isEPlaySetting = false;
+        this.isFishingSetting = false;
+        this.isPreferentialSetting = false;
       }
     },
     mainSelect(val) {

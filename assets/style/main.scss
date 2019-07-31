@@ -63,6 +63,15 @@
       background: #cdddf3;
     }
   }
+  .layer2-draglist {
+    li {
+      background: white;
+      &:nth-child(1) {
+        background: white;
+        justify-content: left;
+      }
+    }
+  }
 }
 
   ul {
@@ -78,17 +87,24 @@
         border-right: 4px solid rgb(55, 88, 164);
       }
       .el-button {
-        top: 0;
+        top: 15px;
         position: absolute;
         background: transparent;
         border: 0;
         padding: 0;
+        margin-right: 10px;
         &:hover {
+          background: transparent;
+        }
+        &:focus {
           background: transparent;
         }
         &.btn-setting {
           right: 0;
           &.view {
+            right: 20px;
+          }
+          &.delete {
             right: 20px;
           }
           .icon-view_off {
@@ -130,10 +146,10 @@
 .buttons {
   margin-top: 35px;
 }
-.ghost {
-  opacity: .5;
-  background: #c8ebfb;
-}
+// .ghost {
+//   opacity: .5;
+//   background: #c8ebfb;
+// }
 .list-group {
   margin: 10px 0;
   box-shadow: 0 0 5px rgba(0,0,0, .2);

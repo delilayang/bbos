@@ -42,7 +42,6 @@
                   :disabled="!enabled"
                   class="list-group"
                   ghost-class="ghost"
-                  :move="checkMove"
                   @start="dragging = true"
                   @end="dragging = false"
                 >
@@ -76,12 +75,6 @@
                   <span>新增區塊</span>
                    <el-button  class="btn-setting" @click="add">
                     <i class="el-icon-plus"></i>
-                  </el-button>
-                </li>
-                 <li>
-                  <span>移除區塊</span>
-                   <el-button  class="btn-setting" @click="replace">
-                    <i class="el-icon-minus"></i>
                   </el-button>
                 </li>
               </ul>
@@ -215,18 +208,36 @@
           </el-button>
           <span>頁尾導航列設定</span>
         </li>
-        <li>
-          <span>首頁</span>
-          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>視訊直播</span>
-          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>電子遊藝</span>
-          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
+        <draggable
+          :list="footerNavList"
+          :disabled="!enabled"
+          class="layer2-draglist"
+          ghost-class="ghost"
+          @start="dragging = true"
+          @end="dragging = false"
+        >
+          <li
+            class="list-group-item"
+            v-for="(element, index) in footerNavList"
+            :key="element.name"
+          >
+            {{ element.name }}
+             <el-tooltip class="item" effect="light" content="刪除" placement="top">
+              <el-button  class="btn-setting delete" @click="remove(index)">
+                <i class="el-icon-delete"></i>
+              </el-button>
+            </el-tooltip>
+            <el-button  class="btn-setting" @click="SettingBanner">
+              <i class="el-icon-more"></i>
+            </el-button>
+          </li>
+      </draggable>
+      <li>
+        <span>新增頁面</span>
+        <el-button  class="btn-setting" @click="add2">
+          <i class="el-icon-plus"></i>
+        </el-button>
+      </li>
       </ul>
     </div>
     </transition>
@@ -378,6 +389,13 @@ export default {
         { name: "輪播特效", id: 1 },
         { name: "跑馬燈", id: 2 },
         { name: "內容", id: 3 }
+      ],
+      footerNavList: [
+        {name: "VIP", id: 0},
+        { name: "常見問題", id: 1 },
+        { name: "支付選項", id: 2 },
+        { name: "合作夥伴", id: 3 },
+        { name: "代理註冊", id: 4 }
       ]
     }
   },
@@ -502,11 +520,14 @@ export default {
     add() {
       this.moveList.push({ name: "新區塊" + id, id: id++ });
     },
-    replace: function() {
-      this.moveList = [{ name: "移除區塊", id: id++ }];
+    add2() {
+      this.footerNavList.push({ name: "新頁面" + id, id: id++ });
     },
-    checkMove: function(e) {
-      window.console.log("Future index: " + e.draggedContext.futureIndex);
+    // replace: function() {
+    //   this.moveList = [{ name: "移除區塊", id: id++ }];
+    // },
+    remove(index) {
+      this.$delete(this.footerNavList, index);
     },
     //Upload
     handleRemove(file, fileList) {

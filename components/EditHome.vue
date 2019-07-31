@@ -321,7 +321,7 @@
           <el-button  class="btn-back" @click="goBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
-          <span>橫幅設定</span>
+          <span>輪播特效設定</span>
         </li>
         <el-upload
           class="upload-demo"

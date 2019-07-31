@@ -476,11 +476,18 @@ export default {
       input7: '常見問題',
       input8: '支付選項',
       input9: '合作夥伴',
-      input10: '代理註冊'
+      input10: '代理註冊',
+      //頁面管理draggable
+      moveList: [
+        { name: "橫幅", id: 0 },
+        { name: "輪播特效", id: 1 },
+        { name: "跑馬燈", id: 2 },
+        { name: "內容", id: 3 }
+    ],
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList", "moveList", "footerNavList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList", "footerNavList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",

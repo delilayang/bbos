@@ -77,6 +77,12 @@
                     <i class="el-icon-plus"></i>
                   </el-button>
                 </li>
+                 <li>
+                  <span>移除區塊</span>
+                   <el-button  class="btn-setting" @click="replace">
+                    <i class="el-icon-minus"></i>
+                  </el-button>
+                </li>
               </ul>
             </div>
           </el-tab-pane>
@@ -139,14 +145,14 @@
           <li>
             <span>首頁</span>
             <el-tooltip class="item" effect="light" content="設定" placement="top">
-              <el-button  class="btn-setting" @click="SettingLayer3">
+              <el-button  class="btn-setting" @click="SettingHome">
                 <i class="el-icon-more"></i>
               </el-button>
             </el-tooltip>
           </li>
           <li>
             <span>視訊直播</span>
-            <el-button  class="btn-setting" @click="SettingLayer3">
+            <el-button  class="btn-setting" @click="SettingLiveStream">
               <i class="el-icon-more"></i>
             </el-button>
             <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
@@ -157,7 +163,7 @@
           </li>
           <li>
             <span>電子遊藝</span>
-            <el-button  class="btn-setting" @click="SettingLayer3">
+            <el-button  class="btn-setting" @click="SettingEPlay">
               <i class="el-icon-more"></i>
             </el-button>
             <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
@@ -168,7 +174,7 @@
           </li>
           <li>
             <span>捕魚大廳</span>
-            <el-button  class="btn-setting" @click="SettingLayer3">
+            <el-button  class="btn-setting" @click="SettingFishing">
               <i class="el-icon-more"></i>
             </el-button>
             <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
@@ -184,7 +190,7 @@
                 <i class="el-icon-delete"></i>
               </el-button>
             </el-tooltip>
-            <el-button  class="btn-setting" @click="SettingLayer3">
+            <el-button  class="btn-setting" @click="SettingPreferential">
               <i class="el-icon-more"></i>
             </el-button>
           </li>
@@ -219,15 +225,14 @@
           <li
             class="list-group-item"
             v-for="(element, index) in footerNavList"
-            :key="element.name"
-          >
+            :key="element.name">
             {{ element.name }}
              <el-tooltip class="item" effect="light" content="刪除" placement="top">
               <el-button  class="btn-setting delete" @click="remove(index)">
                 <i class="el-icon-delete"></i>
               </el-button>
             </el-tooltip>
-            <el-button  class="btn-setting" @click="SettingBanner">
+            <el-button  class="btn-setting" @click="SettingVip">
               <i class="el-icon-more"></i>
             </el-button>
           </li>
@@ -251,18 +256,23 @@
           </el-button>
           <span>頁尾設定</span>
         </li>
-        <li>
-          <span>首頁</span>
-          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>視訊直播</span>
-          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
-        <li>
-          <span>電子遊藝</span>
-          <el-button  class="btn-setting"><i class="el-icon-more"></i></el-button>
-        </li>
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :file-list="fileList"
+          list-type="picture">
+          <el-button size="small" type="primary">點擊上傳</el-button>
+          <div slot="tip" class="el-upload__tip">只能上傳jpg/png文件，且不超過500kb</div>
+        </el-upload>
+        <div style="margin: 20px 0;"></div>
+        <el-input
+          type="textarea"
+          autosize
+          placeholder="請輸入內容"
+          v-model="textarea1">
+        </el-input>
       </ul>
     </div>
     </transition>
@@ -323,7 +333,7 @@
       </ul>
     </div>
     </transition>
-     <transition name="fade">
+    <transition name="fade">
     <div class="side-content setting" v-if="isPreferentialSetting">
       <ul>
         <li>
@@ -334,6 +344,76 @@
         </li>
         <strong><h4>標題</h4></strong>
         <el-input v-model="input5" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isVipSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>VIP設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input6" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isQASetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>常見問題設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input7" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isPayOptionSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>支付選項設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input8" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+    <transition name="fade">
+    <div class="side-content setting" v-if="isPartnerSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>合作夥伴設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input9" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
+     <transition name="fade">
+    <div class="side-content setting" v-if="isAgentRegSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>代理註冊設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input10" clearable></el-input>
       </ul>
     </div>
     </transition>
@@ -354,6 +434,9 @@ export default {
     return {
       activeName: 'first',
       page: '',
+      //Footer Copyright
+      textarea1: 'Copyright © NBB GLOBAL Reserved',
+      //Preview Switch
       isPreview: true,
       //view/view-off
       isView: true,
@@ -375,6 +458,11 @@ export default {
       isEPlaySetting: false,
       isFishingSetting: false,
       isPreferentialSetting: false,
+      isVipSetting: false,
+      isQASetting: false,
+      isPayOptionSetting: false,
+      isPartnerSetting: false,
+      isAgentRegSetting: false,
       //drag
       enabled: true,
       dragging: false,
@@ -384,23 +472,15 @@ export default {
       input3: '電子遊藝',
       input4: '捕魚遊戲',
       input5: '優惠活動',
-      moveList: [
-        { name: "橫幅", id: 0 },
-        { name: "輪播特效", id: 1 },
-        { name: "跑馬燈", id: 2 },
-        { name: "內容", id: 3 }
-      ],
-      footerNavList: [
-        {name: "VIP", id: 0},
-        { name: "常見問題", id: 1 },
-        { name: "支付選項", id: 2 },
-        { name: "合作夥伴", id: 3 },
-        { name: "代理註冊", id: 4 }
-      ]
+      input6: 'VIP',
+      input7: '常見問題',
+      input8: '支付選項',
+      input9: '合作夥伴',
+      input10: '代理註冊'
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList", "moveList", "footerNavList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",
@@ -472,21 +552,71 @@ export default {
       };
     },
     //layer3
-    SettingLayer3() {
+    SettingHome() {
       if(this.isHomeSetting = !this.isHomeSetting) {
         this.isHeadNav = false;
       }
+    },
+    SettingLiveStream() {
       if(this.isLiveStreamSetting = !this.isLiveStreamSetting) {
-        this.isHeadNav = false;
+       this.isHeadNav = false;
       }
+    },
+    SettingEPlay() {
       if(this.isEPlaySetting = !this.isEPlaySetting) {
         this.isHeadNav = false;
       }
+    },
+    SettingFishing() {
       if(this.isFishingSetting = !this.isFishingSetting) {
         this.isHeadNav = false;
       }
+    },
+    SettingPreferential() {
       if(this.isPreferentialSetting = !this.isPreferentialSetting) {
         this.isHeadNav = false;
+      }
+    },
+    // FooterNavLayer() {
+    //   if(this.isHomeSetting = !this.isHomeSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isQASetting = !this.isQASetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isPayOptionSetting = !this.isPayOptionSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isPartnerSetting = !this.isPartnerSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isAgentRegSetting = !this.isAgentRegSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    // },
+    SettingVip() {
+      if(this.isHomeSetting = !this.isHomeSetting) {
+        this.isFooterNav = false;
+      }
+    },
+    SettingQA() {
+      if(this.isQASetting = !this.isQASetting) {
+        this.isFooterNav = false;
+      }
+    },
+    SettingPayOption() {
+      if(this.isPayOptionSetting = !this.isPayOptionSetting) {
+        this.isFooterNav = false;
+      }
+    },
+    SettingPartner() {
+      if(this.isPartnerSetting = !this.isPartnerSetting) {
+        this.isFooterNav = false;
+      }
+    },
+    SettingAgentReg() {
+      if(this.isAgentRegSetting = !this.isAgentRegSetting) {
+        this.isFooterNav = false;
       }
     },
     //Back to layer1
@@ -510,6 +640,11 @@ export default {
         this.isEPlaySetting = false;
         this.isFishingSetting = false;
         this.isPreferentialSetting = false;
+        this.isVipSetting = false;
+        this.isQASetting = false;
+        this.isPayOptionSetting = false;
+        this.isPartnerSetting = false;
+        this.isAgentRegSetting = false;
       }
     },
     mainSelect(val) {
@@ -523,9 +658,9 @@ export default {
     add2() {
       this.footerNavList.push({ name: "新頁面" + id, id: id++ });
     },
-    // replace: function() {
-    //   this.moveList = [{ name: "移除區塊", id: id++ }];
-    // },
+    replace: function() {
+      this.moveList = [{ name: "移除區塊", id: id++ }];
+    },
     remove(index) {
       this.$delete(this.footerNavList, index);
     },

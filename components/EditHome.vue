@@ -538,11 +538,19 @@ export default {
         { name: "輪播特效", id: 1 },
         { name: "跑馬燈", id: 2 },
         { name: "內容", id: 3 }
+      ],
+      //頁尾導航列list
+      footerNavList: [
+        { name: "VIP", id: 0 },
+        { name: "常見問題", id: 1 },
+        { name: "支付選項", id: 2 },
+        { name: "合作夥伴", id: 3 },
+        { name: "代理註冊", id: 4 }
       ]
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList", "footerNavList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",

@@ -38,21 +38,6 @@
                   </el-button>
                 </li>
                 <draggable class="list-group" :disabled="!enabled" ghost-class="ghost" @start="dragging = true" @end="dragging = false">
-                <!-- <draggable
-                  :list="moveList"
-                  :disabled="!enabled"
-                  class="list-group"
-                  ghost-class="ghost"
-                  @start="dragging = true"
-                  @end="dragging = false"
-                >
-                <li
-                    class="list-group-item"
-                    v-for="element in moveList"
-                    :key="element.name"
-                  >
-                    {{ element.name }}
-                  </li> -->
                 <li>
                   <span>橫幅</span>
                   <el-button  class="btn-setting" @click="SettingBanner">
@@ -67,9 +52,6 @@
                 </li>
                 <li>
                   <span>跑馬燈</span>
-                  <el-button  class="btn-setting" @click="SettingMarquee">
-                    <i class="el-icon-more"></i>
-                  </el-button>
                 </li>
                 <li>
                   <span>內容</span>
@@ -82,18 +64,6 @@
                   <span>頁尾</span>
                   <el-button  class="btn-setting" @click="SettingFooter">
                     <i class="el-icon-more"></i>
-                  </el-button>
-                </li>
-                <li>
-                  <span>新增內容區塊</span>
-                   <el-button  class="btn-setting" @click="add">
-                    <i class="el-icon-plus"></i>
-                  </el-button>
-                </li>
-                 <li>
-                  <span>移除內容區塊</span>
-                   <el-button  class="btn-setting" @click="replace">
-                    <i class="el-icon-minus"></i>
                   </el-button>
                 </li>
               </ul>
@@ -324,6 +294,19 @@
           <span>輪播特效設定</span>
         </li>
         <el-upload-sortable></el-upload-sortable>
+        
+      </ul>
+    </div>
+    </transition>
+     <transition name="fade">
+    <div class="side-content setting" v-if="isContent">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>內容設定</span>
+        </li>
         
       </ul>
     </div>
@@ -603,11 +586,6 @@ export default {
     },
     SettingSlider() {
       if(this.isSlider = !this.isSlider) {
-        this.isLayer1 = false;
-      };
-    },
-    SettingMarquee() {
-      if(this.isMarquee = !this.isMarquee) {
         this.isLayer1 = false;
       };
     },

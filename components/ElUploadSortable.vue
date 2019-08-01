@@ -49,7 +49,9 @@ import { Fragment } from "vue-fragment";
 
 export default {
   name: 'ElUploadSortable',
-  components: { draggable },
+  components: { 
+    draggable, Fragment 
+  },
   props: {
     max: {
       type: Number,

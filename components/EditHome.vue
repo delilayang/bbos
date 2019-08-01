@@ -335,6 +335,7 @@
             只能上傳pg/png文件，且不超過500kb<br>
             檔案尺寸: 1920*400px</div>
         </el-upload>
+        
       </ul>
     </div>
     </transition>
@@ -484,6 +485,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
+// import ElUploadSortable from "el-upload-sortable";
 let id = 1;
 
 export default {

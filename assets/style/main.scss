@@ -154,12 +154,13 @@
   margin: 10px 0;
   box-shadow: 0 0 5px rgba(0,0,0, .2);
   background: #fff;
-  // height: 170px;
-  // overflow-y: auto;
 }
 
-// .list-group-item {
-//   border: 1px solid #ddd;
-//   background: #fff;
-//   &:hover{border-right: 4px solid rgb(55, 88, 164);}
-// }
+.upload-queue{
+  .el-upload-list__item:hover{
+    .el-upload-list__item-actions{
+      display: block;
+      opacity: 1;
+    }
+  }
+}

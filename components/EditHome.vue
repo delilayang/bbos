@@ -323,18 +323,7 @@
           </el-button>
           <span>輪播特效設定</span>
         </li>
-        <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
-          list-type="picture">
-          <el-button size="small" type="primary">點擊上傳</el-button>
-          <div slot="tip" class="el-upload__tip">
-            只能上傳pg/png文件，且不超過500kb<br>
-            檔案尺寸: 1920*400px</div>
-        </el-upload>
+        <el-upload-sortable></el-upload-sortable>
         
       </ul>
     </div>
@@ -485,14 +474,15 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
-// import ElUploadSortable from "el-upload-sortable";
+import ElUploadSortable from "./ElUploadSortable";
 let id = 1;
 
 export default {
   display: "Simple",
   order: 0,
   components: {
-    draggable
+    draggable,
+    ElUploadSortable
   },
   data() {
     return {

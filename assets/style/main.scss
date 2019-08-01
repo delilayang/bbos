@@ -129,6 +129,7 @@
 .other-setting {
   position: absolute;
   bottom: 0;
+  z-index: 1;
 }
 
 .el-icon-more {
@@ -156,11 +157,15 @@
   background: #fff;
 }
 
-.upload-queue{
-  .el-upload-list__item:hover{
-    .el-upload-list__item-actions{
+.upload-queue {
+  .el-upload-list__item:hover {
+    .el-upload-list__item-actions {
       display: block;
       opacity: 1;
     }
+  }
+  .el-upload-list--picture-card .el-upload-list__item, .el-upload--picture-card {
+    width: 100%;
+    height: 125px;
   }
 }

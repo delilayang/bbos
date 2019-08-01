@@ -40,12 +40,22 @@
                 <draggable class="list-group" :disabled="!enabled" ghost-class="ghost" @start="dragging = true" @end="dragging = false">
                 <li>
                   <span>橫幅</span>
+                  <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+                    <el-button  class="btn-setting view" @click="showToggle">
+                    <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+                    </el-button>
+                  </el-tooltip>
                   <el-button  class="btn-setting" @click="SettingBanner">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
                 <li>
                   <span>輪播特效</span>
+                  <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+                    <el-button  class="btn-setting view" @click="showToggle">
+                    <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+                    </el-button>
+                  </el-tooltip>
                   <el-button  class="btn-setting" @click="SettingSlider">
                     <i class="el-icon-more"></i>
                   </el-button>
@@ -55,6 +65,11 @@
                 </li>
                 <li>
                   <span>內容</span>
+                  <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+                    <el-button  class="btn-setting view" @click="showToggle">
+                    <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+                    </el-button>
+                  </el-tooltip>
                   <el-button  class="btn-setting" @click="SettingContent">
                     <i class="el-icon-more"></i>
                   </el-button>
@@ -307,7 +322,23 @@
           </el-button>
           <span>內容設定</span>
         </li>
-        
+        <li>
+          <span>新增區塊</span>
+          <el-button  class="btn-setting" @click="add">
+            <i class="el-icon-plus"></i>
+          </el-button>
+        </li>
+        <li>
+          <span>刪除區塊</span>
+          <el-button  class="btn-setting" @click="add">
+            <i class="el-icon-minus"></i>
+          </el-button>
+        </li>
+        <li><span>編輯區塊</span>
+          <el-button  class="btn-setting" @click="add">
+            <i class="el-icon-edit-outline"></i>
+          </el-button>
+        </li>
       </ul>
     </div>
     </transition>

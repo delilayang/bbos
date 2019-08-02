@@ -2,14 +2,8 @@
  <div class="edit-404">
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
-      <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+      
+      <page-select></page-select>
 
       <div class="tab-menu" v-if="is404">
         <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -98,8 +92,10 @@
 </template>
 <script>
 import { mapState, mapGetters } from "vuex";
+import PageSelect from "./common/pageSelect";
 export default {
   components: {
+    PageSelect
   },
   data() {
     return {
@@ -111,7 +107,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList"]),
+    ...mapState("main", ["locales", "setting", "tabList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",

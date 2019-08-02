@@ -334,7 +334,6 @@
             <i class="el-icon-minus"></i>
           </el-button>
         </li>
-        <!-- <edit-section></edit-section> -->
         <li>
           <span>編輯區塊</span>
           <el-button  class="btn-setting" @click="dialogVisible = true">
@@ -503,7 +502,6 @@
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
-import EditSection from "./EditSection";
 let id = 1;
 
 export default {

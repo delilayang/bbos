@@ -3,8 +3,14 @@
    <!-- layer1 -->
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
-
-      <page-select></page-select>
+      <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
 
       <div class="tab-menu" v-if="isHome">
         <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -328,22 +334,28 @@
             <i class="el-icon-minus"></i>
           </el-button>
         </li>
-        
+        <!-- <edit-section></edit-section> -->
+        <li>
+          <span>編輯區塊</span>
+          <el-button  class="btn-setting" @click="dialogVisible = true">
+            <i class="el-icon-edit-outline"></i>
+          </el-button>
+        </li>
       </ul>
     </div>
     </transition>
 
     <el-dialog
-      title="提示"
-      :visible.sync="dialogVisible"
-      width="100%"
-      :before-close="handleClose">
-      <span>編輯區塊</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-      </span>
-    </el-dialog>
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="100%"
+            >
+            <span>編輯區塊</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
   <!-- layer3 -->
     <transition name="fade">
     <div class="side-content setting" v-if="isHomeSetting">
@@ -491,14 +503,13 @@
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
-import PageSelect from "./common/pageSelect";
+import EditSection from "./EditSection";
 let id = 1;
 
 export default {
   display: "Simple",
   order: 0,
   components: {
-    PageSelect,
     draggable,
     ElUploadSortable
   },
@@ -570,7 +581,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["locales", "setting", "tabList", "fileList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",

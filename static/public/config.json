@@ -1,6 +1,6 @@
 {
     "version": "VERSION",
     "commit_hash": "COMMIT_HASH",
-    "api_host": "https://pf-api-heimdallr-dev.yifu.games",
-    "redirect_url": "https://pf-portal-dev.yifu.games"
+    "api_host": "",
+    "redirect_url": "http://localhost:3000"
  }

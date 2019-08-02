@@ -334,14 +334,27 @@
             <i class="el-icon-minus"></i>
           </el-button>
         </li>
-        <li><span>編輯區塊</span>
-          <el-button  class="btn-setting" @click="add">
+        <li>
+          <span>編輯區塊</span>
+          <el-button  class="btn-setting" @click="dialogVisible = true">
             <i class="el-icon-edit-outline"></i>
           </el-button>
         </li>
       </ul>
     </div>
     </transition>
+
+    <el-dialog
+      title="編輯區塊"
+      :visible.sync="dialogVisible"
+      width="100%"
+      :before-close="handleClose">
+      <span>圖文上傳編輯區</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">確 定</el-button>
+      </span>
+    </el-dialog>
   <!-- layer3 -->
     <transition name="fade">
     <div class="side-content setting" v-if="isHomeSetting">
@@ -502,6 +515,8 @@ export default {
     return {
       activeName: 'first',
       page: '',
+      //Edit content section pop-up
+      dialogVisible: false, 
       //Footer Copyright
       textarea1: 'Copyright © NBB GLOBAL Reserved',
       //Preview Switch
@@ -749,6 +764,14 @@ export default {
     },
     handlePreview(file) {
       console.log(file);
+    },
+    //Edit content section pop-up
+    handleClose(done) {
+      // this.$confirm('確認關閉')
+      // .then(_ => {
+      //   done();
+      // })
+      // .catch(_ => {});
     }
   }
 }

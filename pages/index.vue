@@ -22,14 +22,14 @@
     <edit-agent-reg></edit-agent-reg>
     <edit-forgot></edit-forgot>
 
-    <el-select class="other-setting" v-model="value2" placeholder="其他設定" @change="open">
+    <el-select class="other-setting" v-model="value2" placeholder="其他設定" @change="dialogVisible = true">
         <el-option
           v-for="list in setting"
           :key="list.value"
           :label="list.label"
           :value="list.value">
         </el-option>
-      </el-select>
+    </el-select>
   </el-aside>
   
   <el-container>
@@ -66,6 +66,19 @@
       <div class="mobile-preview" v-else></div>
     </el-main>
   </el-container>
+
+  <!-- Other-Setting pop-up -->
+  <el-dialog
+    title="其他設定"
+    :visible.sync="dialogVisible"
+    width="100%"
+    :before-close="handleClose">
+    <span>其他設定內容</span>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="dialogVisible = false">確 定</el-button>
+    </span>
+  </el-dialog>
 </el-container>
 </template>
 
@@ -106,7 +119,9 @@ export default {
       activeName: 'first',
       activeVersion: 'web',
       value2: '',
-      isPreview: true
+      isPreview: true,
+      //Other-setting pop-up
+      dialogVisible: false, 
     }
   },
   computed: {
@@ -131,17 +146,14 @@ export default {
     toggle() {
       this.isPreview = !this.isPreview;
     },
-    open() {
-        this.$alert('這是一段內容', '標題名稱', {
-          confirmButtonText: '確定',
-          // callback: action => {
-          //   this.$message({
-          //     type: 'info',
-          //     message: `action: ${ action }`
-          //   });
-          // }
-        });
-      }
+    //Other-setting pop-up
+    handleClose(done) {
+      // this.$confirm('確認關閉')
+      // .then(_ => {
+      //   done();
+      // })
+      // .catch(_ => {});
+    }
   }
 }
 </script>

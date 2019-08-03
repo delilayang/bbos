@@ -668,23 +668,6 @@ export default {
         this.isHeadNav = false;
       }
     },
-    // FooterNavLayer() {
-    //   if(this.isHomeSetting = !this.isHomeSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isQASetting = !this.isQASetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isPayOptionSetting = !this.isPayOptionSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isPartnerSetting = !this.isPartnerSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isAgentRegSetting = !this.isAgentRegSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    // },
     SettingVip() {
       if(this.isHomeSetting = !this.isHomeSetting) {
         this.isFooterNav = false;

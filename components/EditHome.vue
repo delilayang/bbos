@@ -309,7 +309,6 @@
           <span>輪播特效設定</span>
         </li>
         <el-upload-sortable></el-upload-sortable>
-        
       </ul>
     </div>
     </transition>
@@ -345,16 +344,15 @@
     </transition>
 
     <el-dialog
-            title="提示"
-            :visible.sync="dialogVisible"
-            width="100%"
-            >
-            <span>編輯區塊</span>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-            </span>
-        </el-dialog>
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="100%">
+        <span>編輯區塊</span>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+    </el-dialog>
   <!-- layer3 -->
     <transition name="fade">
     <div class="side-content setting" v-if="isHomeSetting">
@@ -523,7 +521,6 @@ export default {
       isPreview: true,
       //view/view-off
       isView: true,
-      popoverContent: '顯示',
       //layer1
       isLayer1: true,
       //layer2
@@ -598,16 +595,16 @@ export default {
     //drag
     draggingInfo() {
       return this.dragging ? "under drag" : "";
+    },
+    //popover
+    popoverContent(){
+      return this.isView ? "顯示" : "隱藏";
     }
   },
   methods: {
     //view/view-off
     showToggle() {
-			if(this.isView = !this.isView) {
-          this.popoverContent = '顯示';
-			} else {
-          this.popoverContent = '隱藏';
-			}
+      this.isView = !this.isView;
 		},
     //layer2
     SettingLogo() {

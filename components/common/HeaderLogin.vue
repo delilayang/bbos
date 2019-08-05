@@ -33,10 +33,7 @@
         <el-button>忘記密碼</el-button>
         <span>|</span> <el-button>加入會員</el-button>
     </div>
-    <div class="member-login">
-        <el-button>忘記密碼</el-button>
-        <span>|</span> <el-button>加入會員</el-button>
-    </div>
+    
 </div>
 </template>
 <script>

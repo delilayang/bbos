@@ -5,7 +5,7 @@
             <header-login></header-login>
 
             <!-- LOGO, Nav -->
-            <el-row :gutter="20" class="">
+            <el-row :gutter="20" style="margin-bottom: 0;">
                 <el-col :span="6">
                     <div class="grid-content">
                        <img src="" class="logo" width="100%" height="80">

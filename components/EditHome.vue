@@ -480,20 +480,6 @@
       </ul>
     </div>
     </transition>
-     <transition name="fade">
-    <div class="side-content setting" v-if="isAgentRegSetting">
-      <ul>
-        <li>
-          <el-button  class="btn-back" @click="goBack2">
-            <i class="el-icon-arrow-left"></i>
-          </el-button>
-          <span>代理註冊設定</span>
-        </li>
-        <strong><h4>標題</h4></strong>
-        <el-input v-model="input10" clearable></el-input>
-      </ul>
-    </div>
-    </transition>
 </div>
 </template>
 <script>
@@ -543,7 +529,6 @@ export default {
       isQASetting: false,
       isPayOptionSetting: false,
       isPartnerSetting: false,
-      isAgentRegSetting: false,
       //drag
       enabled: true,
       dragging: false,
@@ -557,7 +542,6 @@ export default {
       input7: '常見問題',
       input8: '支付選項',
       input9: '合作夥伴',
-      input10: '代理註冊',
       //頁面管理draggable
       moveList: [
         { name: "橫幅", id: 0 },
@@ -570,8 +554,7 @@ export default {
         { name: "VIP", id: 0 },
         { name: "常見問題", id: 1 },
         { name: "支付選項", id: 2 },
-        { name: "合作夥伴", id: 3 },
-        { name: "代理註冊", id: 4 }
+        { name: "合作夥伴", id: 3 }
       ]
     }
   },
@@ -589,7 +572,6 @@ export default {
       "isPartner",
       "is404",
       "isJoin",
-      "isAgentReg",
       "isForgot"
     ]),
     //drag
@@ -688,11 +670,6 @@ export default {
         this.isFooterNav = false;
       }
     },
-    SettingAgentReg() {
-      if(this.isAgentRegSetting = !this.isAgentRegSetting) {
-        this.isFooterNav = false;
-      }
-    },
     //Back to layer1
     goBack() {
       if(this.isLayer1 = !this.isLayer1) {
@@ -718,7 +695,6 @@ export default {
         this.isQASetting = false;
         this.isPayOptionSetting = false;
         this.isPartnerSetting = false;
-        this.isAgentRegSetting = false;
       }
     },
     mainSelect(val) {

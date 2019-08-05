@@ -54,7 +54,6 @@
     <div class="tab-menu" v-if="isPartner"><p>合作夥伴編輯區</p></div>
     <div class="tab-menu" v-if="is404"><p>404編輯區</p></div>
     <div class="tab-menu" v-if="isJoin"><p>加入會員編輯區</p></div>
-    <div class="tab-menu" v-if="isAgentReg"><p>代理註冊編輯區</p></div>
     <div class="tab-menu" v-if="isForgot"><p>忘記密碼編輯區</p></div>
   </Fragment>
 </template>
@@ -85,7 +84,6 @@ export default {
       "isPartner",
       "is404",
       "isJoin",
-      "isAgentReg",
       "isForgot"
     ]),
   },

@@ -120,7 +120,6 @@ export default {
       "isPartner",
       "is404",
       "isJoin",
-      "isAgentReg",
       "isForgot"
     ]),
   },

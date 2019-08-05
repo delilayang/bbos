@@ -31,6 +31,9 @@
                 </el-carousel-item>
             </el-carousel>
 
+            <!-- 跑馬燈 -->
+            <marquee-bar></marquee-bar>
+
             <!-- 內容區塊 -->
             <el-main>
             <el-row :gutter="20">
@@ -52,6 +55,7 @@
 </template>
 <script>
 import HeaderLogin from '~/components/common/HeaderLogin'
+import MarqueeBar from '~/components/common/MarqueeBar'
 export default {
     data() {
         return {
@@ -91,7 +95,8 @@ export default {
         }
     },
     components: {
-        HeaderLogin
+        HeaderLogin,
+        MarqueeBar
     }
 }
 </script>

@@ -5,20 +5,20 @@
             <header-login></header-login>
 
             <!-- LOGO, Nav -->
-            <el-row :gutter="20">
+            <el-row :gutter="20" class="">
                 <el-col :span="6">
                     <div class="grid-content">
-                       <img src="" class="logo" width="100%" height="100">
+                       <img src="" class="logo" width="100%" height="80">
                     </div>
                 </el-col>
                 <el-col :span="18">
                     <div class="grid-content">
                         <nav>
-                            <a href="/index/">首頁</a> |
-                            <a href="/livestream/">視訊直播</a> |
-                            <a href="/epaly/">電子遊藝</a> |
-                            <a href="/fishing/">捕魚大廳</a> |
-                            <a href="/preferencial/">優惠活動</a>
+                            <router-link to="/index/">首頁</router-link> |
+                            <router-link to="/livestream/">視訊直播</router-link> |
+                            <router-link to="/epaly/">電子遊藝</router-link> |
+                            <router-link to="/fishing/">捕魚大廳</router-link> |
+                            <router-link to="/preferencial/">優惠活動</router-link>
                         </nav>
                     </div>
                 </el-col>

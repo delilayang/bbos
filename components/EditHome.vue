@@ -61,15 +61,6 @@
                 </li>
 
                 </draggable>
-
-                <li>
-                  <span>新增/刪除 導航列功能</span>
-                  <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-                  </el-tooltip>
-                  <el-button  class="btn-setting" @click="SettingNavEdit">
-                    <i class="el-icon-more"></i>
-                  </el-button>
-                </li>
                 <!-- Vesper 新增/刪除 導航列功能 20190805 -->
 
                 <li>
@@ -190,13 +181,73 @@
             </el-button>
           </li>
         </draggable>
-        <li>
+        <!-- li>
           <span>新增頁面</span>
           <el-button  class="btn-setting" @click="add">
             <i class="el-icon-plus"></i>
           </el-button>
-        </li>
+        </li -->
+
+        <li>
+          <span>新增/刪除 導航列功能</span>
+          <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+          </el-tooltip>
+          <el-button  class="btn-setting" @click="dialogNavItemFormVisible = true">
+            <i class="el-icon-edit"></i>
+          </el-button>
+        </li>        
       </ul>
+
+    <!-- Vesper 新增/刪除 導航列功能 20190805 -->
+      <div style = "margin-top:8px;margin-left:8px;">        
+        <el-dialog title="新增/刪除 導航列功能" :visible.sync="dialogNavItemFormVisible" :modal-append-to-body="false">
+
+          <ul>
+            <li style="text-align:left; ">
+              <span>刪除 導航列功能</span>
+            </li>
+
+            <li v-for="(item) in this.navItemList" :key="item.id">
+              <span>{{item.name}}</span>
+
+              <div v-if="item.isDefine === false">
+                <el-button  class="btn-setting" @click="navItemRemove(item.id)">
+                  <i class="el-icon-delete"></i>
+                </el-button>          
+              </div>               
+            </li>
+          </ul>
+
+          <!-- Vesper 處理不了 上面 li 的 style 問題 暫時做一個一樣的 -->
+          <div style=" height:40px;background:#CDDDF3; text-align:center;padding-top: 10px;margin:10px 0px 10px 0px;">
+            新增 導航列功能
+          </div>
+
+          <el-form :model="navItemForm" label-width="80px">
+            <el-form-item  label="是否預設">
+              <el-switch v-model="navItemForm.isDefine"></el-switch>
+            </el-form-item>         
+            <el-form-item label="功能名稱">
+              <el-input v-model="navItemForm.name"></el-input>
+            </el-form-item>
+            <el-form-item label="可視按鈕">
+              <el-switch v-model="navItemForm.visableSwitch"></el-switch>
+            </el-form-item> 
+            <el-form-item label="設定按鈕">
+              <el-switch v-model="navItemForm.settingSwitch"></el-switch>
+            </el-form-item> 
+            <el-form-item label="設置面板">
+              <el-input v-model="navItemForm.setPanel"></el-input>
+            </el-form-item>                
+          </el-form> 
+
+          <div slot="footer" class="dialog-footer" >
+            <el-button size="small" type="primary" @click="navItemAdd();">新增</el-button>
+            <el-button size="small" type="warning" @click="navItemCancel();dialogNavItemFormVisible = false">取消</el-button>
+            <el-button size="small" type="success" @click="navItemListSave();dialogNavItemFormVisible = false">儲存</el-button>            
+          </div>
+        </el-dialog>
+      </div>    
     </div>
     </transition>
 
@@ -338,74 +389,55 @@
           </el-button>
         </li>
       </ul>
-    </div>
-    <!-- Vesper 新增/刪除 導航列功能 20190805 -->
-    <div class="side-content setting" v-if="isNavEdit">
-      <ul>
-        <li>
-          <el-button  class="btn-back" @click="goBack">
-            <i class="el-icon-arrow-left"></i>
-          </el-button>
-          <span>新增/刪除 導航列功能</span>
-        </li>
-
-        <li v-for="(item) in this.navItemList" :key="item.id">
-          <span>{{item.name}}</span>
-
-          <div v-if="item.isDefine === false">
-            <el-button  class="btn-setting" @click="navItemRemove(item.id)">
-              <i class="el-icon-minus"></i>
-            </el-button>          
-          </div>               
-        </li>
-      </ul>
-
-      <div style = "margin-top:8px;margin-left:8px;">
-        <el-button type="primary" @click="dialogNavItemFormVisible = true"> 新增功能 </el-button>
-        <el-button type="success" @click="navItemListSave();"> 儲存功能 </el-button>
-        
-        <el-dialog title="新增 導航列功能" :visible.sync="dialogNavItemFormVisible" :modal-append-to-body="false">
-          <el-form :model="navItemForm" label-width="80px">
-            <el-form-item  label="是否預設">
-              <el-switch v-model="navItemForm.isDefine"></el-switch>
-            </el-form-item>         
-            <el-form-item label="功能名稱">
-              <el-input v-model="navItemForm.name"></el-input>
-            </el-form-item>
-            <el-form-item label="可視按鈕">
-              <el-switch v-model="navItemForm.visableSwitch"></el-switch>
-            </el-form-item> 
-            <el-form-item label="設定按鈕">
-              <el-switch v-model="navItemForm.settingSwitch"></el-switch>
-            </el-form-item>     
-          </el-form> 
-
-          <div slot="footer" class="dialog-footer" >
-            <el-button size="small" type="primary" @click="navItemAdd();dialogNavItemFormVisible = false">新增</el-button>
-            <el-button size="small" type="warning" @click="navItemCancel();dialogNavItemFormVisible = false">取消</el-button>
-          </div>
-        </el-dialog>
-
-      </div>
-
-
-      <div style="margin-top:8px; border:1px solid #c0c0c0">
-       
-      </div>
-
-    </div>    
+    </div>  
     </transition>
+
+    <!-- ↓ Vesper 圖文編輯功能 layout 20190806 -->
     <el-dialog
       title="編輯區塊"
       :visible.sync="dialogVisible"
       width="100%"
       :before-close="handleClose">
-      <span>圖文上傳編輯區</span>
+      
+      <h3 style="margin-bottom:10px;font-size:16px;">圖片上傳說明</h3>
+      <p style="margin-bottom:10px;font-size:16px;">檔案⼤大⼩小: ⼤大於500KB, ⼩小於2MB</p>
+
+      <div style="margin-bottom:10px;">
+      <el-row :gutter="10">
+        <el-col :span="4">
+          <div class="grid-content bg-purple-dark">
+            <el-upload
+              class="avatar-uploader"
+              action=""
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload">
+              <img v-if="imageUrl" :src="imageUrl" class="avatar">
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>          
+          </div>
+        </el-col>
+
+        <el-col :span="20">
+          <el-row><el-input placeholder="標題" style="margin-bottom:2px;"></el-input> </el-row>
+          <el-row>
+            <el-input
+              type="textarea"
+              :rows="6"
+              placeholder="選擇與您風格和品牌故事相關的圖像和⽂文字。運⽤用⽂文字疊加讓客⼾戶更更加瞭解您的品牌。">
+            </el-input>
+          </el-row>
+        </el-col>
+      </el-row>      
+      </div>
+
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false">確 定</el-button>
       </span>
     </el-dialog>
+    <!-- ↑ Vesper 圖文編輯功能 layout 20190806 -->
+
   <!-- layer3 -->
     <transition name="fade">
     <div class="side-content setting" v-if="isHomeSetting">
@@ -573,6 +605,7 @@ export default {
       dialogVisible_navItemEdit: false, //Vesper 新增/刪除 導航列功能 20190805
       navItemForm:navItem.create(), //Vesper 新增/刪除 導航列功能 20190805
       dialogNavItemFormVisible:false, //Vesper 新增/刪除 導航列功能 20190805
+      imageUrl: '', //Vesper 圖文編輯功能 layout 20190806
       activeName: 'first',
       page: '',
       //Edit content section pop-up
@@ -705,6 +738,23 @@ export default {
       //setp2 this.navItemList call api 存到後台 如果需要存到後台 要注意失敗後的資料回滾
       console.log("navItemListSave")
     },
+    
+    handleAvatarSuccess(res, file) { //Vesper 圖文編輯功能 layout 20190806 upload
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) { //Vesper 圖文編輯功能 layout 20190806 upload
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+    },
+
     //view/view-off
     showToggle() {
 			if(this.isView = !this.isView) {
@@ -904,4 +954,11 @@ export default {
 }
 </script>
  
+<style> 
+// Vesper 圖文編輯功能 layout 暫留  layout 判斷區域大小用
+.bg-purple-dark {
+  background: #99a9bf;
+}
+ 
+</style>
  

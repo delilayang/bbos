@@ -1,171 +1,290 @@
 .el-header {
-  background-color: #B3C0D1;
-  color: #333;
-  line-height: 30px;
-  font-size: 12;
-  display: flex;
-  justify-content: center;
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 30px;
+    font-size: 12;
+    display: flex;
+    justify-content: center;
 }
-  
+
 .el-aside {
-  color: #333;
-  position: relative;
-  overflow: hidden;
-  .el-select {
-    width: 100%;
-  }
+    color: #333;
+    position: relative;
+    overflow: hidden;
+    .el-select {
+        width: 100%;
+    }
 }
 
 .el-dropdown-link {
-  cursor: pointer;
-  color: #409EFF;
+    cursor: pointer;
+    color: #409EFF;
 }
+
 .el-icon-arrow-down {
-  font-size: 12px;
+    font-size: 12px;
 }
 
-
+// .web-preview {
+//   background: #ddd; 
+//   display: flex; 
+//   flex-grow: 1; 
+//   height: 100%;
+//   position: relative;
+//   align-items: center;
+//   overflow-y: auto;
+//   .index, .live, .game {
+//     color: #fff;
+//     display: flex;
+//     text-align: center;
+//   }
+//   .index {
+//     background: rgb(69, 91, 145);
+//   }
+//   .live {
+//     background: rgb(63, 47, 101);
+//   }
+//   .game {
+//     background: #333;
+//   }
+// }
+//Vesper 新增內容區塊功能 20180806  
 .web-preview {
-  background: #ddd; 
-  display: flex; 
-  flex-grow: 1; 
-  height: 100%;
-  position: relative;
-  align-items: center;
-  overflow-y: auto;
-  .index, .live, .game {
-    color: #fff;
+    background: #F2EFE6;
+    height: 100%;
+    align-items: center;
+    overflow-y: auto;
+    .index,
+    .contents,
+    .live,
+    .game {
+        color: #fff;
+        display: flex;
+        text-align: center;
+    }
+    .index {
+        display: block;
+        border: 1px solid #c0c0c0;
+    }
+    .contents {
+        background: rgb(69, 91, 145);
+        border: 1px solid #c0c0c0;
+    }
+    .live {
+        background: rgb(63, 47, 101);
+    }
+    .game {
+        background: #333;
+    }
+}
+
+.web-preview .index .title {
+    height: 40px;
+    width: 100%;
+    color: #A3A380;
+    font-size: 18px;
+    text-align: left;
+    position: relative;
+    top: 0px;
+    padding: 8px 20px;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.web-preview .cards {
     display: flex;
-    text-align: center;
-  }
-  .index {
-    background: rgb(69, 91, 145);
-  }
-  .live {
-    background: rgb(63, 47, 101);
-  }
-  .game {
-    background: #333;
-  }
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.web-preview .card {
+    flex: 0 0 450px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.web-preview .card img {
+    max-width: 100%;
+}
+
+.web-preview .card h3 {
+    margin: 5px 0;
+}
+
+.web-preview .card .text {
+    padding: 0 20px 20px;
+    color: #A3A380;
 }
 
 .side-content {
-  width: 100%;
-  position: absolute;
-  border-right: 1px solid #DCDFE6;
-  &.main {
-    z-index: 0;
-  }
-  &.setting {
-    z-index: 1;
-    li:nth-child(1) {
-      justify-content: center;
-      background: #cdddf3;
+    width: 100%;
+    position: absolute;
+    border-right: 1px solid #DCDFE6;
+    &.main {
+        z-index: 0;
     }
-  }
-  .layer2-draglist {
-    li {
-      background: white;
-      &:nth-child(1) {
-        background: white;
-        justify-content: left;
-      }
+    &.setting {
+        z-index: 1;
+        li:nth-child(1) {
+            justify-content: center;
+            background: #cdddf3;
+        }
     }
-  }
+    .layer2-draglist {
+        li {
+            background: white;
+            &:nth-child(1) {
+                background: white;
+                justify-content: left;
+            }
+        }
+    }
 }
 
-  ul {
+ul {
     list-style: none;
     padding-left: 0;
     li {
-      padding: 10px;
-      border-bottom: 1px solid #DCDFE6;
-      display: flex;
-      justify-content: flex-start;
-      position: relative;
-      &:hover {
-        border-right: 4px solid rgb(55, 88, 164);
-      }
-      .el-button {
-        top: 15px;
-        position: absolute;
-        background: transparent;
-        border: 0;
-        padding: 0;
-        margin-right: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #DCDFE6;
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
         &:hover {
-          background: transparent;
+            border-right: 4px solid rgb(55, 88, 164);
         }
-        &:focus {
-          background: transparent;
+        .el-button {
+            top: 15px;
+            position: absolute;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            margin-right: 10px;
+            &:hover {
+                background: transparent;
+            }
+            &:focus {
+                background: transparent;
+            }
+            &.btn-setting {
+                right: 0;
+                &.view {
+                    right: 20px;
+                }
+                &.delete {
+                    right: 20px;
+                }
+                .icon-view_off {
+                    color: #333;
+                }
+            }
+            &.btn-back {
+                left: 0;
+            }
         }
-        &.btn-setting {
-          right: 0;
-          &.view {
-            right: 20px;
-          }
-          &.delete {
-            right: 20px;
-          }
-          .icon-view_off {
-            color: #333;
-          }
-        }
-        &.btn-back {
-          left: 0;
-        }
-      }
     }
-  }
+}
 
 .mobile-preview {
-  background: #ddd; 
-  width: 375px;
-  max-height: 667px; 
-  height: 100%;
-  margin: 0 auto;
+    background: #ddd;
+    width: 375px;
+    max-height: 667px;
+    height: 100%;
+    margin: 0 auto;
 }
 
 .other-setting {
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
 }
 
 .el-icon-more {
-  transform:rotate(90deg);
+    transform: rotate(90deg);
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+
+{
+    opacity: 0;
 }
 
 .buttons {
-  margin-top: 35px;
+    margin-top: 35px;
 }
+
 // .ghost {
 //   opacity: .5;
 //   background: #c8ebfb;
 // }
 .list-group {
-  margin: 10px 0;
-  box-shadow: 0 0 5px rgba(0,0,0, .2);
-  background: #fff;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    background: #fff;
 }
 
 .upload-queue {
-  .el-upload-list__item:hover {
-    .el-upload-list__item-actions {
-      display: block;
-      opacity: 1;
+    .el-upload-list__item:hover {
+        .el-upload-list__item-actions {
+            display: block;
+            opacity: 1;
+        }
     }
-  }
-  .el-upload-list--picture-card .el-upload-list__item, .el-upload--picture-card {
-    width: 100%;
-    height: 125px;
-  }
+    .el-upload-list--picture-card .el-upload-list__item,
+    .el-upload--picture-card {
+        width: 100%;
+        height: 125px;
+    }
+}
+
+// Vesper 圖文編輯功能 layout Upload 控件 style
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: #DCDDE0;
+}
+
+.avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+}
+
+.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+}
+
+.avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+}
+
+.el-dialog__header {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #CED1D9;
+}
+
+.el-dialog__footer {
+    display: flex;
+    justify-content: center;
+}
+
+.el-dialog__body .side-content.setting li:nth-child(1) {
+    list-style: none;
+    list-style-type: none;
 }

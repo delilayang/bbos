@@ -1,5 +1,5 @@
  <template>
- <div class="edit-preferential">
+ <div class="edit-agent-reg">
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
       <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
@@ -11,13 +11,13 @@
         </el-option>
       </el-select>
 
-      <div class="tab-menu" v-if="isPreferential">
+      <div class="tab-menu" v-if="isAgentReg">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="頁面管理" name="first">
             <div class="page-management">
               <ul>
                 <li>
-                  <span>優惠活動編輯畫面</span>
+                  <span>代理註冊編輯畫面</span>
                 </li>
                 <li>
                   <span>頁首導航列</span>

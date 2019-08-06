@@ -32,9 +32,4 @@ export default class Validate {
     return reg.test(value) ? true : false;
   }
 
-  static isvalidUsername(str) {
-    const valid_map = ['admin', 'editor'];
-    return valid_map.indexOf(str.trim()) >= 0;
-  }
-
 }

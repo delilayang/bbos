@@ -19,6 +19,7 @@
     <edit-partner></edit-partner>
     <edit-404></edit-404>
     <edit-join></edit-join>
+    <edit-agent-reg></edit-agent-reg>
     <edit-forgot></edit-forgot>
 
     <el-select class="other-setting" v-model="value2" placeholder="其他設定" @change="dialogVisible = true">
@@ -43,12 +44,11 @@
     <el-main>
       <div class="web-preview" v-if="isPreview">
         <div class="web-preview index" v-if="isHome">
-          <index-preview></index-preview>
-          <!-- <span>首頁 Web-Preview</span>
+          <span>首頁 Web-Preview</span>
           <h2>{{ $t("hello123") }}</h2>
           <h2>{{ $t("bye123")}}</h2>
           <p>{{ $tc('car') }}</p>
-          <p>{{ $tc('car', 10, { count: 10}) }}</p> -->
+          <p>{{ $tc('car', 10, { count: 10}) }}</p>
         </div>
         <div class="web-preview live" v-if="isLiveStream"><span>視訊直播 Web-Preview</span></div>
         <div class="web-preview game" v-if="isEPlay"><span>電子遊藝 Web-Preview</span></div>
@@ -60,6 +60,7 @@
         <div class="web-preview" v-if="isPartner"><span>合作夥伴 Web-Preview</span></div>
         <div class="web-preview" v-if="is404"><span>404 Web-Preview</span></div>
         <div class="web-preview" v-if="isJoin"><span>加入會員 Web-Preview</span></div>
+        <div class="web-preview" v-if="isAgentReg"><span>代理註冊 Web-Preview</span></div>
         <div class="web-preview" v-if="isForgot"><span>忘記密碼 Web-Preview</span></div>
       </div>
       <div class="mobile-preview" v-else></div>
@@ -94,8 +95,9 @@ import EditPayOption from "~/components/EditPayOption";
 import EditPartner from "~/components/EditPartner";
 import Edit404 from "~/components/Edit404";
 import EditJoin from "~/components/EditJoin";
+import EditAgentReg from "~/components/EditAgentReg";
 import EditForgot from "~/components/EditForgot";
-import IndexPreview from "~/components/previews/IndexPreview";
+
 export default {
   components: {
     EditHome,
@@ -109,8 +111,8 @@ export default {
     EditPartner,
     Edit404,
     EditJoin,
+    EditAgentReg,
     EditForgot,
-    IndexPreview
   },
   data() {
     return {
@@ -136,6 +138,7 @@ export default {
       "isPartner",
       "is404",
       "isJoin",
+      "isAgentReg",
       "isForgot"
     ]),
   },

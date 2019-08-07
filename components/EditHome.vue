@@ -27,7 +27,7 @@
                 </li>
 
                 <li>
-                  <span>TOP_Bar</span>
+                  <span>TOP BAR</span>
                   <el-tooltip class="item" effect="light" content="設定" placement="top">
                     <el-button  class="btn-setting">
                       <i class="el-icon-more"></i>

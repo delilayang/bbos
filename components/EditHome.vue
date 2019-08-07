@@ -27,6 +27,15 @@
                 </li>
 
                 <li>
+                  <span>TOP BAR</span>
+                  <el-tooltip class="item" effect="light" content="設定" placement="top">
+                    <el-button  class="btn-setting">
+                      <i class="el-icon-more"></i>
+                    </el-button>
+                  </el-tooltip>
+                </li>
+
+                <li>
                   <span>頁首導航列</span>
                   <el-button  class="btn-setting" @click="SettingHeadNav">
                     <i class="el-icon-more"></i>
@@ -115,6 +124,19 @@
             <el-button size="small" type="primary">點擊上傳</el-button>
             <div slot="tip" class="el-upload__tip">只能上傳jpg/png文件，且不超過500kb</div>
           </el-upload>
+      </ul>
+    </div>
+    </transition>
+
+    <transition name="fade">
+    <div class="side-content setting" v-if="isTopBar">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>TOP BAR設定</span>
+        </li>
       </ul>
     </div>
     </transition>
@@ -587,6 +609,7 @@ export default {
       isLayer1: true,
       //layer2
       isLOGO: false,
+      isTopBar: false,
       isHeadNav: false,
       isFooterNav: false,
       isBanner: false,
@@ -758,6 +781,11 @@ export default {
         this.isLayer1 = false;
       };
     },
+    SettingTopBar() {
+      if(this.isTopBar = !this.isTopBar) {
+        this.isLayer1 = false;
+      };
+    },
     SettingHeadNav() {
       if(this.isHeadNav = !this.isHeadNav) {
         this.isLayer1 = false;
@@ -915,6 +943,7 @@ export default {
     goBack() {
       if(this.isLayer1 = !this.isLayer1) {
         this.isLOGO = false;
+        this.isTopBar = false;
         this.isHeadNav = false;
         this.isFooterNav = false;
         this.isBanner = false;
@@ -986,7 +1015,7 @@ export default {
 </script>
  
 <style> 
-// Vesper 圖文編輯功能 layout 暫留  layout 判斷區域大小用
+/* Vesper 圖文編輯功能 layout 暫留  layout 判斷區域大小用 */
 .bg-purple-dark {
   background: #99a9bf;
 }

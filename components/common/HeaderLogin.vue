@@ -2,38 +2,52 @@
 <div class="header-login">
     <el-form class="login-form" status-icon :rules="loginRules" ref="loginForm" :model="loginForm" label-width="0">
         <el-form-item prop="username">
-            <el-input size="small" @keyup.enter.native="handleLogin" v-model="loginForm.username" auto-complete="off" placeholder="請輸入帳號">
+            <el-input size="small" >
             <i slot="prefix" class="icon-yonghu"></i>
             </el-input>
+            <!-- <el-input size="small" @keyup.enter.native="handleLogin" v-model="loginForm.username" auto-complete="off" placeholder="請輸入帳號">
+            <i slot="prefix" class="icon-yonghu"></i>
+            </el-input> -->
         </el-form-item>
         <el-form-item prop="password">
-            <el-input size="small" @keyup.enter.native="handleLogin" :type="passwordType" v-model="loginForm.password" auto-complete="off" placeholder="請輸入密碼">
-            <i class="el-icon-view el-input__icon" :style="fontstyle" slot="suffix" @click="showPassword"></i>
-            <i slot="prefix" class="icon-mima"></i>
+            <el-input size="small" auto-complete="off" placeholder="請輸入密碼">
+                <i class="el-icon-view el-input__icon" :style="fontstyle" slot="suffix"></i>
+                <i slot="prefix" class="icon-mima"></i>
             </el-input>
+            <!-- <el-input size="small" @keyup.enter.native="handleLogin" :type="passwordType" v-model="loginForm.password" auto-complete="off" placeholder="請輸入密碼">
+            <i class="el-icon-view el-input__icon" :style="fontstyle" slot="suffix" @click="showPassword"></i>
+            <i slot="prefix" class="icon-mima"></i> -->
         </el-form-item>
-        <el-form-item prop="verifycode">
+        <!-- <el-form-item prop="verifycode"> -->
+        <el-form-item>
         <!-- 注意：prop與input绑定的值一定要一致，否則驗證規則中的value會報undefined，因為value即為绑定的input輸入值 -->
-            <el-input size="small" v-model="loginForm.verifycode" placeholder="請輸入驗證碼" class="identifyinput"></el-input>
+            <el-input size="small" placeholder="請輸入驗證碼"></el-input>
+            <!-- <el-input size="small" v-model="loginForm.verifycode" placeholder="請輸入驗證碼" class="identifyinput"></el-input> -->
         </el-form-item>
         <el-form-item>
             <div class="identifybox">
-            <div @click="refreshCode">
-            <s-identify :identifyCode="identifyCode"></s-identify>
+            <div>
+            <s-identify></s-identify>
             </div>
+            <!-- <div @click="refreshCode">
+            <s-identify :identifyCode="identifyCode"></s-identify>
+            </div> -->
             <!-- <el-button @click="refreshCode" type='text' class="textbtn">點擊更新驗證碼</el-button> -->
             </div>
         </el-form-item>
         <!-- <el-checkbox v-model="checked">記住帳號</el-checkbox> -->
         <el-form-item>
-            <el-button type="primary" size="small" @click.native.prevent="handleLogin" class="login-submit">登入</el-button>
+            <el-button type="primary" size="small" class="login-submit">登入</el-button>
+            <!-- <el-button type="primary" size="small" @click.native.prevent="handleLogin" class="login-submit">登入</el-button> -->
         </el-form-item>       
     </el-form>
     <div class="member-login">
         <el-button>忘記密碼</el-button>
         <span>|</span> <el-button>加入會員</el-button>
     </div>
-    
+    <div>
+        <span>TW</span><span> | </span><span>EN</span><span> | </span><span>JP</span><span> | </span><span>CN</span>
+    </div>
 </div>
 </template>
 <script>
@@ -157,6 +171,7 @@ export default {
 .header-login {
     background: #99a9bf;
     display: flex;
+    align-items: center;
     .member-login {
         .el-button {
             height: 32px;
@@ -164,7 +179,6 @@ export default {
             border: transparent;
             padding: 10px 5px;
         }
-    }
-  
+    }  
 }
 </style>

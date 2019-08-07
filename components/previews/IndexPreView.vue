@@ -1,6 +1,12 @@
 <template>
     <div class="index-preview">
         <el-container>
+            <!-- <span>首頁 Web-Preview</span>
+          <h2>{{ $t("hello123") }}</h2>
+          <h2>{{ $t("bye123")}}</h2>
+          <p>{{ $tc('car') }}</p>
+          <p>{{ $tc('car', 10, { count: 10}) }}</p> -->
+
             <!-- Top Bar -->
             <header-login></header-login>
 

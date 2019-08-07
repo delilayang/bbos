@@ -11,20 +11,20 @@
             <header-login></header-login>
 
             <!-- LOGO, Nav -->
-            <el-row :gutter="20" style="margin-bottom: 0;">
+            <el-row :gutter="20" style="margin-bottom: 0; background: #4f85ab;">
                 <el-col :span="6">
                     <div class="grid-content">
                        <img src="" class="logo" width="100%" height="80">
                     </div>
                 </el-col>
                 <el-col :span="18">
-                    <div class="grid-content">
-                        <nav>
-                            <router-link to="/index/">首頁</router-link> |
-                            <router-link to="/livestream/">視訊直播</router-link> |
-                            <router-link to="/epaly/">電子遊藝</router-link> |
-                            <router-link to="/fishing/">捕魚大廳</router-link> |
-                            <router-link to="/preferencial/">優惠活動</router-link>
+                    <div class="grid-content" style="display: flex; justify-content: flex-end;">
+                        <nav style="margin: 2em;">
+                            <router-link to="">首頁</router-link> |
+                            <router-link to="">視訊直播</router-link> |
+                            <router-link to="">電子遊藝</router-link> |
+                            <router-link to="">捕魚大廳</router-link> |
+                            <router-link to="">優惠活動</router-link>
                         </nav>
                     </div>
                 </el-col>
@@ -63,6 +63,7 @@
 import HeaderLogin from '~/components/common/HeaderLogin'
 import MarqueeBar from '~/components/common/MarqueeBar'
 export default {
+    name: 'IndexPreview',
     data() {
         return {
             imgTxt: [{
@@ -154,6 +155,11 @@ export default {
   .el-image {
     width: 100%; 
     height: 100%;
+  }  
+  .el-carousel-item {
+    text-align: center;
+    h3 {
+      margin-top: 50%;
+    }
   }
-  
 </style>

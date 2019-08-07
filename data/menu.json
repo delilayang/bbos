@@ -1,0 +1,136 @@
+{
+    "navItemList": [{
+            "id": 1,
+            "name": "首頁",
+            "visableSwitch": false,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingHome"
+        },
+        {
+            "id": 2,
+            "name": "視訊直播",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingLiveStream"
+        },
+        {
+            "id": 3,
+            "name": "電子遊藝",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingEPlay"
+        },
+        {
+            "id": 4,
+            "name": "捕魚大廳",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingFishing"
+        },
+        {
+            "id": 5,
+            "name": "優惠活動",
+            "visableSwitch": false,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingPreferential"
+        }
+    ],
+    "indexBlockList": [{
+            "id": 1,
+            "name": "橫幅",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": false,
+            "setPanel": "SettingBanner"
+        },
+        {
+            "id": 2,
+            "name": "輪播特效",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "visableStatus": false,
+            "isDefine": false,
+            "setPanel": "SettingSlider"
+        },
+        {
+            "id": 3,
+            "name": "跑馬燈",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": ""
+        },
+        {
+            "id": 4,
+            "name": "內容",
+            "visableSwitch": false,
+            "settingSwitch": true,
+            "visableStatus": true,
+            "isDefine": false,
+            "setPanel": "SettingContent"
+        }
+    ],
+    "footerNavItemList": [{
+            "id": 1,
+            "name": "VIP",
+            "visableSwitch": false,
+            "settingSwitch": true,
+            "deleteSwitch": false,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingVip"
+        },
+        {
+            "id": 2,
+            "name": "常見問題",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "deleteSwitch": false,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingQA"
+        },
+        {
+            "id": 3,
+            "name": "支付選項",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "deleteSwitch": false,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingPayOption"
+        },
+        {
+            "id": 4,
+            "name": "合作夥伴",
+            "visableSwitch": true,
+            "settingSwitch": true,
+            "deleteSwitch": false,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingPartner"
+        },
+        {
+            "id": 5,
+            "name": "代理註冊",
+            "visableSwitch": false,
+            "settingSwitch": true,
+            "deleteSwitch": false,
+            "visableStatus": true,
+            "isDefine": true,
+            "setPanel": "SettingAgentReg"
+        }
+    ]
+}

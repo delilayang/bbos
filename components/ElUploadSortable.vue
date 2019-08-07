@@ -71,7 +71,7 @@ import draggable from "vuedraggable";
 import { Fragment } from "vue-fragment";
 
 //vesper 新增 20190805
-import { urlImage } from "~/model.js";
+import { urlImage } from "~/utils/model.js";
 
 export default {
   name: 'ElUploadSortable',

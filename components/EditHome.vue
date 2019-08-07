@@ -43,13 +43,14 @@
                 <!-- Vesper 新增/刪除 導航列功能 20190805 -->
                 <draggable class="list-group" :disabled="!enabled" ghost-class="ghost" @start="dragging = true" @end="dragging = false">
 
-                <li v-for="(item) in this.navItemList" :key="item.id">
+                <li v-for="(item) in this.indexBlockList" :key="item.id">
                   <span>{{item.name}}</span>
 
                   <div v-if="item.visableSwitch === true">
                     <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-                      <el-button  class="btn-setting view" @click="showToggle">
-                      <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+                      <el-button  class="btn-setting view" @click="showToggle(item)">
+                      <!-- i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i -->
+                      <i :class="{'iconfont icon-view': item.visableStatus, 'iconfont icon-view_off': !item.visableStatus}"></i>                      
                       </el-button>
                     </el-tooltip>
                   </div>
@@ -128,66 +129,26 @@
           <span>頁首導航列設定</span>
         </li>
         <draggable class="layer2-draglist">
-          <li>
-            <span>首頁</span>
-            <el-tooltip class="item" effect="light" content="設定" placement="top">
-              <el-button  class="btn-setting" @click="SettingHome">
+          <li v-for="(item) in this.navItemList" :key="item.id">
+            <span>{{item.name}}</span>
+
+            <div v-if="item.visableSwitch === true">
+              <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+                <el-button  class="btn-setting view" @click="showToggle(item)">
+                <!-- i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i -->
+                <i :class="{'iconfont icon-view': item.visableStatus, 'iconfont icon-view_off': !item.visableStatus}"></i>                      
+                </el-button>
+              </el-tooltip>
+            </div>
+            <div v-if="item.settingSwitch === true">
+              <el-button  class="btn-setting" @click="SettingSwitch(item.setPanel)">
                 <i class="el-icon-more"></i>
               </el-button>
-            </el-tooltip>
-          </li>
-          <li>
-            <span>視訊直播</span>
-            <el-button  class="btn-setting" @click="SettingLiveStream">
-              <i class="el-icon-more"></i>
-            </el-button>
-            <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-              <el-button  class="btn-setting view" @click="showToggle">
-              <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
-              </el-button>
-            </el-tooltip>
-          </li>
-          <li>
-            <span>電子遊藝</span>
-            <el-button  class="btn-setting" @click="SettingEPlay">
-              <i class="el-icon-more"></i>
-            </el-button>
-            <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-              <el-button  class="btn-setting view" @click="showToggle">
-              <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
-              </el-button>
-            </el-tooltip>
-          </li>
-          <li>
-            <span>捕魚大廳</span>
-            <el-button  class="btn-setting" @click="SettingFishing">
-              <i class="el-icon-more"></i>
-            </el-button>
-            <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-              <el-button  class="btn-setting view" @click="showToggle">
-              <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
-              </el-button>
-            </el-tooltip>
-          </li>
-          <li>
-            <span>優惠活動</span>
-            <el-tooltip class="item" effect="light" content="刪除" placement="top" @click="remove">
-              <el-button  class="btn-setting delete">
-                <i class="el-icon-delete"></i>
-              </el-button>
-            </el-tooltip>
-            <el-button  class="btn-setting" @click="SettingPreferential">
-              <i class="el-icon-more"></i>
-            </el-button>
+            </div>                  
           </li>
         </draggable>
-        <!-- li>
-          <span>新增頁面</span>
-          <el-button  class="btn-setting" @click="add">
-            <i class="el-icon-plus"></i>
-          </el-button>
-        </li -->
 
+        <!--↓ Vesper 這段目前不確定 顯示的方式 先保留 20190807 -->
         <li>
           <span>新增/刪除 導航列功能</span>
           <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
@@ -272,15 +233,20 @@
             class="list-group-item"
             v-for="(element, index) in footerNavList"
             :key="element.name">
-            {{ element.name }}
-             <el-tooltip class="item" effect="light" content="刪除" placement="top">
-              <el-button  class="btn-setting delete" @click="remove(index)">
-                <i class="el-icon-delete"></i>
+            <span> {{ element.name }} </span>
+
+            <div v-if="element.deleteSwitch === true">
+              <el-tooltip class="item" effect="light" content="刪除" placement="top">
+                <el-button  class="btn-setting delete" @click="remove(index)">
+                  <i class="el-icon-delete"></i>
+                </el-button>
+              </el-tooltip>
+            </div>
+            <div v-if="element.settingSwitch === true">
+              <el-button  class="btn-setting" @click="SettingSwitch(element.setPanel)">
+                <i class="el-icon-more"></i>
               </el-button>
-            </el-tooltip>
-            <el-button  class="btn-setting" @click="SettingVip">
-              <i class="el-icon-more"></i>
-            </el-button>
+            </div>
           </li>
       </draggable>
       <li>
@@ -513,7 +479,7 @@
     <div class="side-content setting" v-if="isVipSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="goBack3">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>VIP設定</span>
@@ -527,7 +493,7 @@
     <div class="side-content setting" v-if="isQASetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="goBack3">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>常見問題設定</span>
@@ -541,7 +507,7 @@
     <div class="side-content setting" v-if="isPayOptionSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="goBack3">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>支付選項設定</span>
@@ -555,7 +521,7 @@
     <div class="side-content setting" v-if="isPartnerSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="goBack3">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>合作夥伴設定</span>
@@ -569,7 +535,7 @@
     <div class="side-content setting" v-if="isAgentRegSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="goBack3">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>代理註冊設定</span>
@@ -588,8 +554,8 @@ import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
 
 //Vesper 新增 20190805
-import { navItem } from "~/model.js";
-import navItemList from '~/data/navItemList.json'
+import { navItem } from "~/utils/model.js";
+import menuData from '~/data/menu.json'
 
 let id = 1;
 
@@ -663,14 +629,9 @@ export default {
         { name: "內容", id: 3 }
       ],
       navItemList:[],//Vesper 新增/刪除 導航列功能 20190805 看起來 跟 moveList 是一樣的東西 但在程式上 moveList 沒用到 但不確定能不能刪
+      indexBlockList:[], //Vesper 修正首頁上 可視與否 按鈕連動問題 20190807
       //頁尾導航列list
-      footerNavList: [
-        { name: "VIP", id: 0 },
-        { name: "常見問題", id: 1 },
-        { name: "支付選項", id: 2 },
-        { name: "合作夥伴", id: 3 },
-        { name: "代理註冊", id: 4 }
-      ],
+      footerNavList: [], //Vesper 改為由外部檔案 footerNavItemList.json 餵資料
       parentmsg:''
     }
   },
@@ -702,9 +663,14 @@ export default {
   methods: {
     initData(){
       if(this.navItemList.length == 0){
-        this.navItemList = navItemList
-        //console.log(this.navItemList)
+        this.navItemList = menuData["navItemList"]
       }
+      if(this.indexBlockList.length == 0){
+        this.indexBlockList = menuData["indexBlockList"]
+      }  
+      if(this.footerNavList.length == 0){
+        this.footerNavList = menuData["footerNavItemList"]
+      }    
     },  
     navItemAdd(){
       //setp1:正式取得id
@@ -756,7 +722,30 @@ export default {
     },
 
     //view/view-off
-    showToggle() {
+    showToggle(item) {
+
+      if(typeof(item) === "object"){
+
+        item.visableStatus = ! item.visableStatus
+
+        //Vesper hotcode Emma:橫幅 與 輪播特效 只能選擇一個顯示 20190807
+        //如果還有類似的狀況 再拉出去 看規則怎設計
+        if(item.name == "橫幅"){
+          this.indexBlockList.forEach(function(item, index, object) {
+            if (item.name === "輪播特效") {
+              item.visableStatus = ! item.visableStatus
+            }
+          });
+        }
+        if(item.name == "輪播特效"){
+          this.indexBlockList.forEach(function(item, index, object) {
+            if (item.name === "橫幅") {
+              item.visableStatus = ! item.visableStatus
+            }
+          });
+        }
+      }
+
 			if(this.isView = !this.isView) {
           this.popoverContent = '顯示';
 			} else {
@@ -781,15 +770,48 @@ export default {
     },
     SettingSwitch(option){
       switch(option) {
-          case "SettingBanner":
+          //導覽列
+          case "SettingHome": //首頁  
+              this.SettingHome()
+              break
+          case "SettingLiveStream": //視訊直播 
+              this.SettingLiveStream()
+              break
+          case "SettingEPlay": //電子遊藝 
+              this.SettingEPlay()
+              break
+          case "SettingFishing": //捕魚大廳
+              this.SettingFishing()
+              break    
+          case "SettingPreferential": //優惠活動
+              this.SettingPreferential()
+              break        
+          //首頁區塊             
+          case "SettingBanner": //橫幅
               this.SettingBanner()
               break
-          case "SettingSlider":
+          case "SettingSlider": //輪播特效
               this.SettingSlider()
               break
-          case "SettingContent":  
+          case "SettingContent": //內容  
               this.SettingContent()
               break
+          //頁尾
+          case "SettingVip": //VIP
+              this.SettingVip()
+              break    
+          case "SettingQA": //常見問題
+              this.SettingQA()
+              break                 
+          case "SettingPayOption": //支付選項
+              this.SettingPayOption()
+              break
+          case "SettingPartner": //合作夥伴
+              this.SettingPartner()
+              break
+          case "SettingAgentReg": //代理註冊  
+              this.SettingAgentReg()
+              break              
           default:
               break
       } 
@@ -865,7 +887,7 @@ export default {
     //   }
     // },
     SettingVip() {
-      if(this.isHomeSetting = !this.isHomeSetting) {
+      if(this.isVipSetting = !this.isVipSetting) {
         this.isFooterNav = false;
       }
     },
@@ -918,6 +940,15 @@ export default {
         this.isAgentRegSetting = false;
       }
     },
+    goBack3() {
+      if(this.isFooterNav = !this.isFooterNav) {
+        this.isVipSetting = false;
+        this.isQASetting = false;
+        this.isPayOptionSetting = false;
+        this.isPartnerSetting = false;
+        this.isAgentRegSetting = false;
+      }
+    },    
     mainSelect(val) {
       this.$store.commit("main/updateSelect", { value: val });
     },

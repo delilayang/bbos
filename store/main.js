@@ -35,7 +35,10 @@ const state = () => ({
     }, {
         value: 'join',
         label: '加入會員'
-    },  {
+    }, {
+        value: 'agentReg',
+        label: '代理註冊'
+    }, {
         value: 'forgot',
         label: '忘記密碼'
     }],
@@ -73,7 +76,6 @@ const state = () => ({
 })
 
 const getters = {
-
     isHome: (state, getters, rootState, rootGetters) => {
         return state.currentSelect === 'home';
     },
@@ -117,7 +119,11 @@ const getters = {
     isJoin: (state, getters, rootState, rootGetters) => {
         return state.currentSelect === 'join';
     },
-    
+
+    isAgentReg: (state, getters, rootState, rootGetters) => {
+        return state.currentSelect === 'agentReg';
+    },
+
     isForgot: (state, getters, rootState, rootGetters) => {
         return state.currentSelect === 'forgot';
     },
@@ -141,8 +147,8 @@ const actions = {
 const mutations = {
 
     updateSelect(state, payload) {
-      const { value } = payload;
-      state.currentSelect = value;
+        const { value } = payload;
+        state.currentSelect = value;
     },
 
     // setBannerList(state, payload) {

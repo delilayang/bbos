@@ -25,56 +25,44 @@
                     </el-button>
                   </el-tooltip>
                 </li>
+
                 <li>
                   <span>頁首導航列</span>
                   <el-button  class="btn-setting" @click="SettingHeadNav">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
+
                 <li>
                   <span>頁尾導航列</span>
                   <el-button  class="btn-setting" @click="SettingFooterNav">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </li>
+
+                <!-- Vesper 新增/刪除 導航列功能 20190805 -->
                 <draggable class="list-group" :disabled="!enabled" ghost-class="ghost" @start="dragging = true" @end="dragging = false">
-                <li>
-                  <span>橫幅</span>
-                  <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-                    <el-button  class="btn-setting view" @click="showToggle">
-                    <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+
+                <li v-for="(item) in this.navItemList" :key="item.id">
+                  <span>{{item.name}}</span>
+
+                  <div v-if="item.visableSwitch === true">
+                    <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+                      <el-button  class="btn-setting view" @click="showToggle">
+                      <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
+                      </el-button>
+                    </el-tooltip>
+                  </div>
+                  <div v-if="item.settingSwitch === true">
+                    <el-button  class="btn-setting" @click="SettingSwitch(item.setPanel)">
+                      <i class="el-icon-more"></i>
                     </el-button>
-                  </el-tooltip>
-                  <el-button  class="btn-setting" @click="SettingBanner">
-                    <i class="el-icon-more"></i>
-                  </el-button>
+                  </div>                  
                 </li>
-                <li>
-                  <span>輪播特效</span>
-                  <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-                    <el-button  class="btn-setting view" @click="showToggle">
-                    <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
-                    </el-button>
-                  </el-tooltip>
-                  <el-button  class="btn-setting" @click="SettingSlider">
-                    <i class="el-icon-more"></i>
-                  </el-button>
-                </li>
-                <li>
-                  <span>跑馬燈</span>
-                </li>
-                <li>
-                  <span>內容</span>
-                  <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
-                    <el-button  class="btn-setting view" @click="showToggle">
-                    <i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i>
-                    </el-button>
-                  </el-tooltip>
-                  <el-button  class="btn-setting" @click="SettingContent">
-                    <i class="el-icon-more"></i>
-                  </el-button>
-                </li>
+
                 </draggable>
+                <!-- Vesper 新增/刪除 導航列功能 20190805 -->
+
                 <li>
                   <span>頁尾</span>
                   <el-button  class="btn-setting" @click="SettingFooter">
@@ -193,13 +181,73 @@
             </el-button>
           </li>
         </draggable>
-        <li>
+        <!-- li>
           <span>新增頁面</span>
           <el-button  class="btn-setting" @click="add">
             <i class="el-icon-plus"></i>
           </el-button>
-        </li>
+        </li -->
+
+        <li>
+          <span>新增/刪除 導航列功能</span>
+          <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
+          </el-tooltip>
+          <el-button  class="btn-setting" @click="dialogNavItemFormVisible = true">
+            <i class="el-icon-edit"></i>
+          </el-button>
+        </li>        
       </ul>
+
+    <!-- Vesper 新增/刪除 導航列功能 20190805 -->
+      <div style = "margin-top:8px;margin-left:8px;">        
+        <el-dialog title="新增/刪除 導航列功能" :visible.sync="dialogNavItemFormVisible" :modal-append-to-body="false">
+
+          <ul>
+            <li style="text-align:left; ">
+              <span>刪除 導航列功能</span>
+            </li>
+
+            <li v-for="(item) in this.navItemList" :key="item.id">
+              <span>{{item.name}}</span>
+
+              <div v-if="item.isDefine === false">
+                <el-button  class="btn-setting" @click="navItemRemove(item.id)">
+                  <i class="el-icon-delete"></i>
+                </el-button>          
+              </div>               
+            </li>
+          </ul>
+
+          <!-- Vesper 處理不了 上面 li 的 style 問題 暫時做一個一樣的 -->
+          <div style=" height:40px;background:#CDDDF3; text-align:center;padding-top: 10px;margin:10px 0px 10px 0px;">
+            新增 導航列功能
+          </div>
+
+          <el-form :model="navItemForm" label-width="80px">
+            <el-form-item  label="是否預設">
+              <el-switch v-model="navItemForm.isDefine"></el-switch>
+            </el-form-item>         
+            <el-form-item label="功能名稱">
+              <el-input v-model="navItemForm.name"></el-input>
+            </el-form-item>
+            <el-form-item label="可視按鈕">
+              <el-switch v-model="navItemForm.visableSwitch"></el-switch>
+            </el-form-item> 
+            <el-form-item label="設定按鈕">
+              <el-switch v-model="navItemForm.settingSwitch"></el-switch>
+            </el-form-item> 
+            <el-form-item label="設置面板">
+              <el-input v-model="navItemForm.setPanel"></el-input>
+            </el-form-item>                
+          </el-form> 
+
+          <div slot="footer" class="dialog-footer" >
+            <el-button size="small" type="primary" @click="navItemAdd();">新增</el-button>
+            <el-button size="small" type="warning" @click="navItemCancel();dialogNavItemFormVisible = false">取消</el-button>
+            <el-button size="small" type="success" @click="navItemListSave();dialogNavItemFormVisible = false">儲存</el-button>            
+          </div>
+        </el-dialog>
+      </div>    
     </div>
     </transition>
 
@@ -309,6 +357,7 @@
           <span>輪播特效設定</span>
         </li>
         <el-upload-sortable></el-upload-sortable>
+        
       </ul>
     </div>
     </transition>
@@ -340,19 +389,55 @@
           </el-button>
         </li>
       </ul>
-    </div>
+    </div>  
     </transition>
 
+    <!-- ↓ Vesper 圖文編輯功能 layout 20190806 -->
     <el-dialog
-      title="提示"
+      title="編輯區塊"
       :visible.sync="dialogVisible"
-      width="100%">
-        <span>編輯區塊</span>
-        <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-        </span>
+      width="100%"
+      :before-close="handleClose">
+      
+      <h3 style="margin-bottom:10px;font-size:16px;">圖片上傳說明</h3>
+      <p style="margin-bottom:10px;font-size:16px;">檔案⼤大⼩小: ⼤大於500KB, ⼩小於2MB</p>
+
+      <div style="margin-bottom:10px;">
+      <el-row :gutter="10">
+        <el-col :span="4">
+          <div class="grid-content bg-purple-dark">
+            <el-upload
+              class="avatar-uploader"
+              action=""
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload">
+              <img v-if="imageUrl" :src="imageUrl" class="avatar">
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>          
+          </div>
+        </el-col>
+
+        <el-col :span="20">
+          <el-row><el-input placeholder="標題" style="margin-bottom:2px;"></el-input> </el-row>
+          <el-row>
+            <el-input
+              type="textarea"
+              :rows="6"
+              placeholder="選擇與您風格和品牌故事相關的圖像和⽂文字。運⽤用⽂文字疊加讓客⼾戶更更加瞭解您的品牌。">
+            </el-input>
+          </el-row>
+        </el-col>
+      </el-row>      
+      </div>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">確 定</el-button>
+      </span>
     </el-dialog>
+    <!-- ↑ Vesper 圖文編輯功能 layout 20190806 -->
+
   <!-- layer3 -->
     <transition name="fade">
     <div class="side-content setting" v-if="isHomeSetting">
@@ -480,12 +565,32 @@
       </ul>
     </div>
     </transition>
+     <transition name="fade">
+    <div class="side-content setting" v-if="isAgentRegSetting">
+      <ul>
+        <li>
+          <el-button  class="btn-back" @click="goBack2">
+            <i class="el-icon-arrow-left"></i>
+          </el-button>
+          <span>代理註冊設定</span>
+        </li>
+        <strong><h4>標題</h4></strong>
+        <el-input v-model="input10" clearable></el-input>
+      </ul>
+    </div>
+    </transition>
 </div>
 </template>
+
 <script>
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
+
+//Vesper 新增 20190805
+import { navItem } from "~/model.js";
+import navItemList from '~/data/navItemList.json'
+
 let id = 1;
 
 export default {
@@ -493,13 +598,17 @@ export default {
   order: 0,
   components: {
     draggable,
-    ElUploadSortable
+    ElUploadSortable,
   },
   data() {
     return {
+      dialogVisible_navItemEdit: false, //Vesper 新增/刪除 導航列功能 20190805
+      navItemForm:navItem.create(), //Vesper 新增/刪除 導航列功能 20190805
+      dialogNavItemFormVisible:false, //Vesper 新增/刪除 導航列功能 20190805
+      imageUrl: '', //Vesper 圖文編輯功能 layout 20190806
       activeName: 'first',
       page: '',
-      //Edit content section
+      //Edit content section pop-up
       dialogVisible: false, 
       //Footer Copyright
       textarea1: 'Copyright © NBB GLOBAL Reserved',
@@ -507,6 +616,7 @@ export default {
       isPreview: true,
       //view/view-off
       isView: true,
+      popoverContent: '顯示',
       //layer1
       isLayer1: true,
       //layer2
@@ -517,6 +627,7 @@ export default {
       isSlider: false,
       isMarquee: false,
       isContent: false,
+      isNavEdit:false,  //Vesper 新增/刪除 導航列功能 20190805
       isFooter: false,
       //layer3
       isBannerSetting: false,
@@ -529,6 +640,7 @@ export default {
       isQASetting: false,
       isPayOptionSetting: false,
       isPartnerSetting: false,
+      isAgentRegSetting: false,
       //drag
       enabled: true,
       dragging: false,
@@ -542,6 +654,7 @@ export default {
       input7: '常見問題',
       input8: '支付選項',
       input9: '合作夥伴',
+      input10: '代理註冊',
       //頁面管理draggable
       moveList: [
         { name: "橫幅", id: 0 },
@@ -549,13 +662,16 @@ export default {
         { name: "跑馬燈", id: 2 },
         { name: "內容", id: 3 }
       ],
+      navItemList:[],//Vesper 新增/刪除 導航列功能 20190805 看起來 跟 moveList 是一樣的東西 但在程式上 moveList 沒用到 但不確定能不能刪
       //頁尾導航列list
       footerNavList: [
         { name: "VIP", id: 0 },
         { name: "常見問題", id: 1 },
         { name: "支付選項", id: 2 },
-        { name: "合作夥伴", id: 3 }
-      ]
+        { name: "合作夥伴", id: 3 },
+        { name: "代理註冊", id: 4 }
+      ],
+      parentmsg:''
     }
   },
   computed: {
@@ -572,21 +688,80 @@ export default {
       "isPartner",
       "is404",
       "isJoin",
+      "isAgentReg",
       "isForgot"
     ]),
     //drag
     draggingInfo() {
       return this.dragging ? "under drag" : "";
-    },
-    //popover
-    popoverContent(){
-      return this.isView ? "顯示" : "隱藏";
     }
   },
+  created(){
+    this.initData(); //Vesper 新增/刪除 導航列功能 20190805
+  },  
   methods: {
+    initData(){
+      if(this.navItemList.length == 0){
+        this.navItemList = navItemList
+        //console.log(this.navItemList)
+      }
+    },  
+    navItemAdd(){
+      //setp1:正式取得id
+      var id = this.navItemList.length + 1;
+      this.navItemForm.id = id
+
+      //setp2:將 item push 到 navItemList 中
+      this.navItemList.push(this.navItemForm)
+
+      //setp3:將 navItemForm 初始化
+      this.navItemForm = navItem.create()
+
+      console.log(this.navItemList);
+    },
+    navItemCancel(){
+      //將 navItemForm 初始化
+      this.navItemForm = navItem.create()      
+    },    
+    navItemRemove(id){ //Vesper 新增/刪除 導航列功能 20190805
+      this.navItemList.forEach(function(item, index, object) {
+        if (item.id === id) {
+          object.splice(index, 1);
+        }
+      });
+      //console.log("remove id is " + id.toString())
+      //console.log(this.navItemList)
+    },  
+    navItemListSave(){ //Vesper 新增/刪除 導航列功能 20190805
+      //setp1 this.navItemList 存到 navItemList.json
+
+      //setp2 this.navItemList call api 存到後台 如果需要存到後台 要注意失敗後的資料回滾
+      console.log("navItemListSave")
+    },
+    
+    handleAvatarSuccess(res, file) { //Vesper 圖文編輯功能 layout 20190806 upload
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) { //Vesper 圖文編輯功能 layout 20190806 upload
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+    },
+
     //view/view-off
     showToggle() {
-      this.isView = !this.isView;
+			if(this.isView = !this.isView) {
+          this.popoverContent = '顯示';
+			} else {
+          this.popoverContent = '隱藏';
+			}
 		},
     //layer2
     SettingLogo() {
@@ -604,6 +779,21 @@ export default {
         this.isLayer1 = false;
       };
     },
+    SettingSwitch(option){
+      switch(option) {
+          case "SettingBanner":
+              this.SettingBanner()
+              break
+          case "SettingSlider":
+              this.SettingSlider()
+              break
+          case "SettingContent":  
+              this.SettingContent()
+              break
+          default:
+              break
+      } 
+    },
     SettingBanner() {
       if(this.isBanner = !this.isBanner) {
         this.isLayer1 = false;
@@ -614,11 +804,18 @@ export default {
         this.isLayer1 = false;
       };
     },
-    SettingContent() {
+    SettingContent() { 
       if(this.isContent = !this.isContent) {
         this.isLayer1 = false;
       };
     },
+    SettingNavEdit() { //Vesper 新增/刪除 導航列功能 20190805
+      if(this.isNavEdit = !this.isNavEdit) {
+        this.isLayer1 = false;
+
+        //var navItemForm = navItem.create()
+      };
+    },    
     SettingFooter() {
       if(this.isFooter = !this.isFooter) {
         this.isLayer1 = false;
@@ -650,6 +847,23 @@ export default {
         this.isHeadNav = false;
       }
     },
+    // FooterNavLayer() {
+    //   if(this.isHomeSetting = !this.isHomeSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isQASetting = !this.isQASetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isPayOptionSetting = !this.isPayOptionSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isPartnerSetting = !this.isPartnerSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    //   else if(this.isAgentRegSetting = !this.isAgentRegSetting) {
+    //     this.isFooterNav = false;
+    //   }
+    // },
     SettingVip() {
       if(this.isHomeSetting = !this.isHomeSetting) {
         this.isFooterNav = false;
@@ -670,6 +884,11 @@ export default {
         this.isFooterNav = false;
       }
     },
+    SettingAgentReg() {
+      if(this.isAgentRegSetting = !this.isAgentRegSetting) {
+        this.isFooterNav = false;
+      }
+    },
     //Back to layer1
     goBack() {
       if(this.isLayer1 = !this.isLayer1) {
@@ -679,7 +898,8 @@ export default {
         this.isBanner = false;
         this.isSlider = false;
         this.isMarquee = false;
-        this.isContent = false;
+        this.isContent = false; 
+        this.isNavEdit = false; //Vesper 新增/刪除 導航列功能 20190805
         this.isFooter = false;
       }
     },
@@ -695,6 +915,7 @@ export default {
         this.isQASetting = false;
         this.isPayOptionSetting = false;
         this.isPartnerSetting = false;
+        this.isAgentRegSetting = false;
       }
     },
     mainSelect(val) {
@@ -721,16 +942,23 @@ export default {
     handlePreview(file) {
       console.log(file);
     },
-    //Edit content section
+    //Edit content section pop-up
     handleClose(done) {
-      this.$confirm('確認關閉?')
-      .then(_ => {
-        done();
-      })
-      .catch(_ => {});
+      // this.$confirm('確認關閉')
+      // .then(_ => {
+      //   done();
+      // })
+      // .catch(_ => {});
     }
   }
 }
 </script>
  
+<style> 
+// Vesper 圖文編輯功能 layout 暫留  layout 判斷區域大小用
+.bg-purple-dark {
+  background: #99a9bf;
+}
+ 
+</style>
  

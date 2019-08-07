@@ -1,0 +1,33 @@
+[{
+        "id": 1,
+        "name": "橫幅",
+        "visableSwitch": true,
+        "settingSwitch": true,
+        "isDefine": false,
+        "setPanel": "SettingBanner"
+    },
+    {
+        "id": 2,
+        "name": "輪播特效",
+        "visableSwitch": true,
+        "settingSwitch": true,
+        "isDefine": false,
+        "setPanel": "SettingSlider"
+    },
+    {
+        "id": 3,
+        "name": "跑馬燈",
+        "visableSwitch": false,
+        "settingSwitch": true,
+        "isDefine": true,
+        "setPanel": ""
+    },
+    {
+        "id": 4,
+        "name": "內容",
+        "visableSwitch": false,
+        "settingSwitch": true,
+        "isDefine": false,
+        "setPanel": "SettingContent"
+    }
+]

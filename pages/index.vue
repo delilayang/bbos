@@ -19,6 +19,7 @@
     <edit-partner></edit-partner>
     <edit-404></edit-404>
     <edit-join></edit-join>
+    <edit-agent-reg></edit-agent-reg>
     <edit-forgot></edit-forgot>
 
     <el-select class="other-setting" v-model="value2" placeholder="其他設定" @change="dialogVisible = true">
@@ -42,14 +43,64 @@
     
     <el-main>
       <div class="web-preview" v-if="isPreview">
-        <div class="web-preview index" v-if="isHome">
-          <index-preview></index-preview>
-          <!-- <span>首頁 Web-Preview</span>
+        <!-- div class="web-preview index" v-if="isHome">
+          <span>首頁 Web-Preview</span>
           <h2>{{ $t("hello123") }}</h2>
           <h2>{{ $t("bye123")}}</h2>
           <p>{{ $tc('car') }}</p>
-          <p>{{ $tc('car', 10, { count: 10}) }}</p> -->
+          <p>{{ $tc('car', 10, { count: 10}) }}</p>
+        </div -->
+
+        <!-- ↓ Vesper 新增內容區塊功能 20180806 -->
+        <div class="web-preview index" v-if="isHome">
+          <div class="cards">
+            <div class="title">最新消息: 選擇與您風格和品牌故事相關的圖像和文字。運用文字疊加讓客戶更加瞭解您的品牌。選擇與您風格和品牌故事</div>
+            <article class="card">
+              <img src="../static/images/samples/23m.jpg" alt="Sample photo">
+              <div class="text">
+                <h3>Seamlessly visualize quality</h3>
+                <p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
+              </div>
+            </article>
+            <article class="card">
+              <img src="../static/images/samples/24m.jpg" alt="Sample photo">
+              <div class="text">
+                <h3>Completely Synergize</h3>
+                <p>Dramatically engage seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing.</p>
+              </div>
+            </article>
+            <article class="card">
+              <img src="../static/images/samples/22l.jpg" alt="Sample photo">
+              <div class="text">
+                <h3>Dynamically Procrastinate</h3>
+                <p>Completely synergize resource taxing relationships via premier niche markets.</p>
+              </div>
+            </article>
+            <article class="card">
+              <img src="../static/images/samples/15l.jpg" alt="Sample photo">
+              <div class="text">
+                <h3>Best in class</h3>
+                <p>Imagine jumping into that boat, and just letting it sail wherever the wind takes you...</p>
+              </div>
+            </article>
+            <article class="card">
+              <img src="../static/images/samples/25m.jpg" alt="Sample photo">
+              <div class="text">
+                <h3>Dynamically innovate supply chains</h3>
+                <p>Holisticly predominate extensible testing procedures for reliable supply chains.</p>
+              </div>
+            </article>
+            <article class="card">
+              <img src="../static/images/samples/16l.jpg" alt="Sample photo">
+              <div class="text">
+                <h3>Sanity check</h3>
+                <p>Objectively innovate empowered manufactured products whereas parallel platforms.</p>
+              </div>
+            </article>          
+          </div>
         </div>
+        <!-- ↑ Vesper 新增內容區塊功能 20180806 -->
+
         <div class="web-preview live" v-if="isLiveStream"><span>視訊直播 Web-Preview</span></div>
         <div class="web-preview game" v-if="isEPlay"><span>電子遊藝 Web-Preview</span></div>
         <div class="web-preview" v-if="isPreferential"><span>優惠活動 Web-Preview</span></div>
@@ -60,6 +111,7 @@
         <div class="web-preview" v-if="isPartner"><span>合作夥伴 Web-Preview</span></div>
         <div class="web-preview" v-if="is404"><span>404 Web-Preview</span></div>
         <div class="web-preview" v-if="isJoin"><span>加入會員 Web-Preview</span></div>
+        <div class="web-preview" v-if="isAgentReg"><span>代理註冊 Web-Preview</span></div>
         <div class="web-preview" v-if="isForgot"><span>忘記密碼 Web-Preview</span></div>
       </div>
       <div class="mobile-preview" v-else></div>
@@ -94,8 +146,9 @@ import EditPayOption from "~/components/EditPayOption";
 import EditPartner from "~/components/EditPartner";
 import Edit404 from "~/components/Edit404";
 import EditJoin from "~/components/EditJoin";
+import EditAgentReg from "~/components/EditAgentReg";
 import EditForgot from "~/components/EditForgot";
-import IndexPreview from "~/components/previews/IndexPreview";
+
 export default {
   components: {
     EditHome,
@@ -109,8 +162,8 @@ export default {
     EditPartner,
     Edit404,
     EditJoin,
+    EditAgentReg,
     EditForgot,
-    IndexPreview
   },
   data() {
     return {
@@ -136,6 +189,7 @@ export default {
       "isPartner",
       "is404",
       "isJoin",
+      "isAgentReg",
       "isForgot"
     ]),
   },

@@ -26,15 +26,17 @@
                   </el-tooltip>
                 </li>
 
+                <!-- Yi 新增TopBar 20190809 -->
                 <li>
                   <span>TOP BAR</span>
                   <el-tooltip class="item" effect="light" content="設定" placement="top">
-                    <el-button  class="btn-setting">
+                    <el-button  class="btn-setting" @click="SettingTopBar">
                       <i class="el-icon-more"></i>
                     </el-button>
                   </el-tooltip>
                 </li>
-
+                <!-- Yi 新增TopBar 20190809 -->
+                
                 <li>
                   <span>頁首導航列</span>
                   <el-button  class="btn-setting" @click="SettingHeadNav">
@@ -127,6 +129,7 @@
     </div>
     </transition>
 
+    <!-- Yi 新增TopBar設定頁 20190809 -->
     <transition name="fade">
     <div class="side-content setting" v-if="isTopBar">
       <ul>
@@ -139,6 +142,7 @@
       </ul>
     </div>
     </transition>
+    <!-- Yi 新增TopBar設定頁 20190809 -->
     
     <transition name="fade">
     <div class="side-content setting" v-if="isHeadNav">
@@ -551,20 +555,6 @@
       </ul>
     </div>
     </transition>
-     <transition name="fade">
-    <div class="side-content setting" v-if="isAgentRegSetting">
-      <ul>
-        <li>
-          <el-button  class="btn-back" @click="goBack3">
-            <i class="el-icon-arrow-left"></i>
-          </el-button>
-          <span>代理註冊設定</span>
-        </li>
-        <strong><h4>標題</h4></strong>
-        <el-input v-model="input10" clearable></el-input>
-      </ul>
-    </div>
-    </transition>
 </div>
 </template>
 
@@ -626,7 +616,6 @@ export default {
       isQASetting: false,
       isPayOptionSetting: false,
       isPartnerSetting: false,
-      isAgentRegSetting: false,
       //drag
       enabled: true,
       dragging: false,
@@ -640,7 +629,6 @@ export default {
       input7: '常見問題',
       input8: '支付選項',
       input9: '合作夥伴',
-      input10: '代理註冊',
       //宜 已刪除 moveList[] 20190808
       navItemList:[],//Vesper 新增/刪除 導航列功能 20190805 看起來 跟 moveList 是一樣的東西 但在程式上 moveList 沒用到 但不確定能不能刪
       indexBlockList:[], //Vesper 修正首頁上 可視與否 按鈕連動問題 20190807
@@ -822,9 +810,6 @@ export default {
           case "SettingPartner": //合作夥伴
               this.SettingPartner()
               break
-          case "SettingAgentReg": //代理註冊  
-              this.SettingAgentReg()
-              break              
           default:
               break
       } 
@@ -899,11 +884,6 @@ export default {
     },
     SettingPartner() {
       if(this.isPartnerSetting = !this.isPartnerSetting) {
-        this.isFooterNav = false;
-      }
-    },
-    SettingAgentReg() {
-      if(this.isAgentRegSetting = !this.isAgentRegSetting) {
         this.isFooterNav = false;
       }
     },

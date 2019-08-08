@@ -100,7 +100,6 @@ import EditPayOption from "~/components/EditPayOption";
 import EditPartner from "~/components/EditPartner";
 import Edit404 from "~/components/Edit404";
 import EditJoin from "~/components/EditJoin";
-import EditAgentReg from "~/components/EditAgentReg";
 import EditForgot from "~/components/EditForgot";
 import IndexPreview from "~/components/previews/IndexPreview";
 
@@ -117,7 +116,6 @@ export default {
     EditPartner,
     Edit404,
     EditJoin,
-    EditAgentReg,
     EditForgot,
     IndexPreview
   },
@@ -145,7 +143,6 @@ export default {
       "isPartner",
       "is404",
       "isJoin",
-      "isAgentReg",
       "isForgot"
     ]),
   },

@@ -121,16 +121,6 @@
             "visableStatus": true,
             "isDefine": true,
             "setPanel": "SettingPartner"
-        },
-        {
-            "id": 5,
-            "name": "代理註冊",
-            "visableSwitch": false,
-            "settingSwitch": true,
-            "deleteSwitch": false,
-            "visableStatus": true,
-            "isDefine": true,
-            "setPanel": "SettingAgentReg"
         }
     ]
 }

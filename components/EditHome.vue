@@ -630,7 +630,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList", "logoList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",

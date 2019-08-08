@@ -644,13 +644,7 @@ export default {
       input8: '支付選項',
       input9: '合作夥伴',
       input10: '代理註冊',
-      //頁面管理draggable
-      moveList: [
-        { name: "橫幅", id: 0 },
-        { name: "輪播特效", id: 1 },
-        { name: "跑馬燈", id: 2 },
-        { name: "內容", id: 3 }
-      ],
+      //宜 已刪除 moveList[] 20190808
       navItemList:[],//Vesper 新增/刪除 導航列功能 20190805 看起來 跟 moveList 是一樣的東西 但在程式上 moveList 沒用到 但不確定能不能刪
       indexBlockList:[], //Vesper 修正首頁上 可視與否 按鈕連動問題 20190807
       //頁尾導航列list
@@ -897,23 +891,6 @@ export default {
         this.isHeadNav = false;
       }
     },
-    // FooterNavLayer() {
-    //   if(this.isHomeSetting = !this.isHomeSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isQASetting = !this.isQASetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isPayOptionSetting = !this.isPayOptionSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isPartnerSetting = !this.isPartnerSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    //   else if(this.isAgentRegSetting = !this.isAgentRegSetting) {
-    //     this.isFooterNav = false;
-    //   }
-    // },
     SettingVip() {
       if(this.isVipSetting = !this.isVipSetting) {
         this.isFooterNav = false;

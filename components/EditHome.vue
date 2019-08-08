@@ -139,6 +139,9 @@
           </el-button>
           <span>TOP BAR設定</span>
         </li>
+        <set-border></set-border>
+        <br>
+        <set-color></set-color>
       </ul>
     </div>
     </transition>
@@ -562,7 +565,8 @@
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
-
+import SetBorder from "~/components/widgets/SetBorder";
+import SetColor from "~/components/widgets/SetColor";
 //Vesper 新增 20190805
 import { navItem } from "~/utils/model.js";
 import menuData from '~/data/menu.json'
@@ -575,6 +579,8 @@ export default {
   components: {
     draggable,
     ElUploadSortable,
+    SetBorder,
+    SetColor
   },
   data() {
     return {
@@ -771,7 +777,7 @@ export default {
     },
     SettingSwitch(option){
       switch(option) {
-          //導覽列
+          //頁首導覽列
           case "SettingHome": //首頁  
               this.SettingHome()
               break
@@ -786,8 +792,8 @@ export default {
               break    
           case "SettingPreferential": //優惠活動
               this.SettingPreferential()
-              break        
-          //首頁區塊             
+              break   
+          //首頁Draggable區塊             
           case "SettingBanner": //橫幅
               this.SettingBanner()
               break
@@ -797,7 +803,7 @@ export default {
           case "SettingContent": //內容  
               this.SettingContent()
               break
-          //頁尾
+          //頁尾導覽列
           case "SettingVip": //VIP
               this.SettingVip()
               break    

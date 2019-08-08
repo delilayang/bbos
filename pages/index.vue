@@ -19,7 +19,6 @@
     <edit-partner></edit-partner>
     <edit-404></edit-404>
     <edit-join></edit-join>
-    <edit-agent-reg></edit-agent-reg>
     <edit-forgot></edit-forgot>
 
     <el-select class="other-setting" v-model="value2" placeholder="其他設定" @change="dialogVisible = true">
@@ -65,7 +64,6 @@
         <div class="web-preview" v-if="isPartner"><span>合作夥伴 Web-Preview</span></div>
         <div class="web-preview" v-if="is404"><span>404 Web-Preview</span></div>
         <div class="web-preview" v-if="isJoin"><span>加入會員 Web-Preview</span></div>
-        <div class="web-preview" v-if="isAgentReg"><span>代理註冊 Web-Preview</span></div>
         <div class="web-preview" v-if="isForgot"><span>忘記密碼 Web-Preview</span></div>
       </div>
       <div class="mobile-preview" v-else></div>

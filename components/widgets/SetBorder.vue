@@ -1,6 +1,5 @@
 <template>
     <div class="set-border">
-        <strong><h4>輸入框導角</h4></strong>
         <el-input-number v-model="num" @change="handleChange" :min="0" :max="50" label="描述文字"></el-input-number>
         <span>px</span>
     </div>

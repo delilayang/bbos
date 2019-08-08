@@ -139,8 +139,10 @@
           </el-button>
           <span>TOP BAR設定</span>
         </li>
+        <strong><h4>輸入框導角</h4></strong>
         <set-border></set-border>
         <br>
+        <strong><h4>輸入框背景顏色</h4></strong>
         <set-color></set-color>
       </ul>
     </div>

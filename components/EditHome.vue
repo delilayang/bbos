@@ -58,7 +58,6 @@
                   <div v-if="item.visableSwitch === true">
                     <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
                       <el-button  class="btn-setting view" @click="showToggle(item)">
-                      <!-- i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i -->
                       <i :class="{'iconfont icon-view': item.visableStatus, 'iconfont icon-view_off': !item.visableStatus}"></i>                      
                       </el-button>
                     </el-tooltip>
@@ -157,7 +156,6 @@
             <div v-if="item.visableSwitch === true">
               <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
                 <el-button  class="btn-setting view" @click="showToggle(item)">
-                <!-- i :class="{'iconfont icon-view': isView, 'iconfont icon-view_off': !isView}"></i -->
                 <i :class="{'iconfont icon-view': item.visableStatus, 'iconfont icon-view_off': !item.visableStatus}"></i>                      
                 </el-button>
               </el-tooltip>
@@ -603,7 +601,6 @@ export default {
       //Preview Switch
       isPreview: true,
       //view/view-off
-      isView: true,
       popoverContent: '顯示',
       //layer1
       isLayer1: true,
@@ -762,12 +759,6 @@ export default {
           });
         }
       }
-
-			if(this.isView = !this.isView) {
-          this.popoverContent = '顯示';
-			} else {
-          this.popoverContent = '隱藏';
-			}
 		},
     //layer2
     SettingLogo() {

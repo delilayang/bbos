@@ -111,6 +111,13 @@
             }
         }
     }
+    ul {
+        li {
+            &:hover {
+                border-right: 0;
+            }
+        }
+    }
 }
 
 .mobile-preview {

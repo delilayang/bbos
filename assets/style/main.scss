@@ -233,3 +233,8 @@ nav {
     color: #fff;
   }
 }
+
+//LOGO限制單張, 上傳張數
+.disabled .el-upload--picture-card {
+    display: none;
+}

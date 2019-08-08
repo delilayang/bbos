@@ -115,16 +115,7 @@
           </el-button>
           <span>LOGO設定</span>
         </li>
-          <el-upload
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList"
-            list-type="picture">
-            <el-button size="small" type="primary">點擊上傳</el-button>
-            <div slot="tip" class="el-upload__tip">只能上傳jpg/png文件，且不超過500kb</div>
-          </el-upload>
+        <upload-single></upload-single>
       </ul>
     </div>
     </transition>
@@ -395,21 +386,13 @@
       :before-close="handleClose">
       
       <h3 style="margin-bottom:10px;font-size:16px;">圖片上傳說明</h3>
-      <p style="margin-bottom:10px;font-size:16px;">檔案⼤大⼩小: ⼤大於500KB, ⼩小於2MB</p>
+      <p style="margin-bottom:10px;font-size:16px;">檔案⼤小: ⼤於500KB, ⼩於2MB</p>
 
       <div style="margin-bottom:10px;">
       <el-row :gutter="10">
         <el-col :span="4">
           <div class="grid-content bg-purple-dark">
-            <el-upload
-              class="avatar-uploader"
-              action=""
-              :show-file-list="false"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload">
-              <img v-if="imageUrl" :src="imageUrl" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload>          
+            <upload-single></upload-single> 
           </div>
         </el-col>
 
@@ -569,6 +552,7 @@ import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
 import SetBorder from "~/components/widgets/SetBorder";
 import SetColor from "~/components/widgets/SetColor";
+import UploadSingle from "~/components/widgets/UploadSingle";
 //Vesper 新增 20190805
 import { navItem } from "~/utils/model.js";
 import menuData from '~/data/menu.json'
@@ -582,14 +566,14 @@ export default {
     draggable,
     ElUploadSortable,
     SetBorder,
-    SetColor
+    SetColor,
+    UploadSingle
   },
   data() {
     return {
       dialogVisible_navItemEdit: false, //Vesper 新增/刪除 導航列功能 20190805
       navItemForm:navItem.create(), //Vesper 新增/刪除 導航列功能 20190805
       dialogNavItemFormVisible:false, //Vesper 新增/刪除 導航列功能 20190805
-      imageUrl: '', //Vesper 圖文編輯功能 layout 20190806
       activeName: 'first',
       page: '',
       //Edit content section pop-up
@@ -611,7 +595,7 @@ export default {
       isSlider: false,
       isMarquee: false,
       isContent: false,
-      isNavEdit:false,  //Vesper 新增/刪除 導航列功能 20190805
+      isNavEdit: false,  //Vesper 新增/刪除 導航列功能 20190805
       isFooter: false,
       //layer3
       isBannerSetting: false,
@@ -646,7 +630,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList", "logoList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",
@@ -714,23 +698,6 @@ export default {
       //setp2 this.navItemList call api 存到後台 如果需要存到後台 要注意失敗後的資料回滾
       console.log("navItemListSave")
     },
-    
-    handleAvatarSuccess(res, file) { //Vesper 圖文編輯功能 layout 20190806 upload
-      this.imageUrl = URL.createObjectURL(file.raw);
-    },
-    beforeAvatarUpload(file) { //Vesper 圖文編輯功能 layout 20190806 upload
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
-    },
-
     //view/view-off
     showToggle(item) {
 
@@ -953,7 +920,6 @@ export default {
     },
     //Upload
     handleRemove(file, fileList) {
-      console.log(file, fileList);
     },
     handlePreview(file) {
       console.log(file);
@@ -970,11 +936,10 @@ export default {
 }
 </script>
  
-<style> 
+<style lang="scss"> 
 /* Vesper 圖文編輯功能 layout 暫留  layout 判斷區域大小用 */
 .bg-purple-dark {
   background: #99a9bf;
 }
- 
 </style>
  

@@ -13,3 +13,14 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - npm install
           - npm run build
+    - step:
+        name: Deploy to test
+        deployment: test
+        # trigger: manual  # Uncomment to make this a manual deployment.
+        script:
+         - pipe: atlassian/ftp-deploy:0.2.0
+           variables:
+              USER: pinetree-devwin\kooco_admin2
+              PASSWORD: Koo29152407co
+              SERVER: ftp://waws-prod-hk1-009.ftp.azurewebsites.windows.net
+              REMOTE_PATH: /site/wwwroot

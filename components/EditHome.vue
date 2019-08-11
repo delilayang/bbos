@@ -272,16 +272,7 @@
           </el-button>
           <span>頁尾設定</span>
         </li>
-        <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
-          list-type="picture">
-          <el-button size="small" type="primary">點擊上傳</el-button>
-          <div slot="tip" class="el-upload__tip">只能上傳jpg/png文件，且不超過500kb</div>
-        </el-upload>
+        <upload-multi></upload-multi>
         <div style="margin: 20px 0;"></div>
         <el-input
           type="textarea"
@@ -302,18 +293,7 @@
           </el-button>
           <span>橫幅設定</span>
         </li>
-        <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
-          list-type="picture">
-          <el-button size="small" type="primary">點擊上傳</el-button>
-          <div slot="tip" class="el-upload__tip">
-            只能上傳pg/png文件，且不超過500kb<br>
-            檔案尺寸: 1920*400px</div>
-        </el-upload>
+        <upload-multi></upload-multi>
       </ul>
     </div>
     </transition>
@@ -327,7 +307,6 @@
           <span>輪播特效設定</span>
         </li>
         <el-upload-sortable></el-upload-sortable>
-        
       </ul>
     </div>
     </transition>
@@ -406,7 +385,7 @@
     <div class="side-content setting" v-if="isHomeSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="headNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>首頁設定</span>
@@ -420,7 +399,7 @@
     <div class="side-content setting" v-if="isLiveStreamSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="headNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>視訊直播設定</span>
@@ -434,7 +413,7 @@
     <div class="side-content setting" v-if="isEPlaySetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="headNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>電子遊藝設定</span>
@@ -448,7 +427,7 @@
     <div class="side-content setting" v-if="isFishingSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="headNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>捕魚遊戲設定</span>
@@ -462,7 +441,7 @@
     <div class="side-content setting" v-if="isPreferentialSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack2">
+          <el-button  class="btn-back" @click="headNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>優惠活動設定</span>
@@ -476,7 +455,7 @@
     <div class="side-content setting" v-if="isVipSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack3">
+          <el-button  class="btn-back" @click="footerNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>VIP設定</span>
@@ -490,7 +469,7 @@
     <div class="side-content setting" v-if="isQASetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack3">
+          <el-button  class="btn-back" @click="footerNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>常見問題設定</span>
@@ -504,7 +483,7 @@
     <div class="side-content setting" v-if="isPayOptionSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack3">
+          <el-button  class="btn-back" @click="footerNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>支付選項設定</span>
@@ -518,7 +497,7 @@
     <div class="side-content setting" v-if="isPartnerSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack3">
+          <el-button  class="btn-back" @click="footerNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>合作夥伴設定</span>
@@ -539,6 +518,7 @@ import ElUploadSortable from "./ElUploadSortable";
 import SetBorder from "~/components/widgets/SetBorder";
 import SetColor from "~/components/widgets/SetColor";
 import UploadSingle from "~/components/widgets/UploadSingle";
+import UploadMulti from "~/components/widgets/UploadMulti";
 import PageSelect from "~/components/common/PageSelect";
 import FloatingImg from "~/components/sidemenu/floatingimg/FloatingImg";
 import SystemSetting from "~/components/sidemenu/systemsetting/SystemSetting";
@@ -558,6 +538,7 @@ export default {
     SetBorder,
     SetColor,
     UploadSingle,
+    UploadMulti,
     FloatingImg,
     SystemSetting
   },
@@ -620,7 +601,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "fileList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",
@@ -868,7 +849,7 @@ export default {
       }
     },
     //Back to layer2
-    goBack2() {
+    headNavGoBack() {
       if(this.isHeadNav = !this.isHeadNav) {
         this.isHomeSetting = false;
         this.isLiveStreamSetting = false;
@@ -882,7 +863,7 @@ export default {
         this.isAgentRegSetting = false;
       }
     },
-    goBack3() {
+    footerNavGoBack() {
       if(this.isFooterNav = !this.isFooterNav) {
         this.isVipSetting = false;
         this.isQASetting = false;
@@ -909,11 +890,11 @@ export default {
       this.$delete(this.footerNavList, index);
     },
     //Upload
-    handleRemove(file, fileList) {
-    },
-    handlePreview(file) {
-      console.log(file);
-    },
+    // handleRemove(file, fileList) {
+    // },
+    // handlePreview(file) {
+    //   console.log(file);
+    // },
     //Edit content section pop-up
     handleClose(done) {
       // this.$confirm('確認關閉')

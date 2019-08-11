@@ -11,39 +11,19 @@
           <el-tab-pane label="頁面管理" name="first">
             <div class="page-management">
               <ul>
-                <li>
-                  <span>LOGO</span>
-                  <el-tooltip class="item" effect="light" content="設定" placement="top">
-                    <el-button  class="btn-setting" @click="SettingLogo">
-                      <i class="el-icon-more"></i>
-                    </el-button>
-                  </el-tooltip>
-                </li>
-
-                <!-- Yi 新增TopBar 20190809 -->
-                <li>
-                  <span>TOP BAR</span>
-                  <el-tooltip class="item" effect="light" content="設定" placement="top">
-                    <el-button  class="btn-setting" @click="SettingTopBar">
-                      <i class="el-icon-more"></i>
-                    </el-button>
-                  </el-tooltip>
-                </li>
-                <!-- Yi 新增TopBar 20190809 -->
-                
-                <li>
-                  <span>頁首導航列</span>
-                  <el-button  class="btn-setting" @click="SettingHeadNav">
+                <!-- Yi refactor 20190811 -->
+                <li
+                class="list-group-item"
+                v-for="(element) in headNavList"
+                :key="element.name">
+                <span> {{ element.name }} </span>
+                <div v-if="element.settingSwitch === true">
+                  <el-button  class="btn-setting" @click="SettingSwitch(element.setPanel)">
                     <i class="el-icon-more"></i>
                   </el-button>
-                </li>
-
-                <li>
-                  <span>頁尾導航列</span>
-                  <el-button  class="btn-setting" @click="SettingFooterNav">
-                    <i class="el-icon-more"></i>
-                  </el-button>
-                </li>
+                </div>
+              </li>
+              <!-- Yi refactor 20190811 -->
 
                 <!-- Vesper 新增/刪除 導航列功能 20190805 -->
                 <draggable class="list-group" :disabled="!enabled" ghost-class="ghost" @start="dragging = true" @end="dragging = false">
@@ -77,12 +57,14 @@
               </ul>
             </div>
           </el-tab-pane>
+          <!-- Yi 拆成component 20190811 -->
           <el-tab-pane label="系統設置" name="second">
             <system-setting></system-setting>
           </el-tab-pane>
           <el-tab-pane label="浮動圖" name="third">
             <floating-img></floating-img>
           </el-tab-pane>
+          <!-- Yi 拆成component 20190811 -->
         </el-tabs>    
       </div>
       
@@ -391,7 +373,7 @@
           <span>首頁設定</span>
         </li>
         <strong><h4>標題</h4></strong>
-        <el-input v-model="input1" clearable></el-input>
+        <el-input model="input1" clearable></el-input>
       </ul>
     </div>
     </transition>
@@ -515,6 +497,7 @@
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
+//Yi 新增component 20190809～20190811
 import SetBorder from "~/components/widgets/SetBorder";
 import SetColor from "~/components/widgets/SetColor";
 import UploadSingle from "~/components/widgets/UploadSingle";
@@ -522,6 +505,8 @@ import UploadMulti from "~/components/widgets/UploadMulti";
 import PageSelect from "~/components/common/PageSelect";
 import FloatingImg from "~/components/sidemenu/floatingimg/FloatingImg";
 import SystemSetting from "~/components/sidemenu/systemsetting/SystemSetting";
+//Yi 新增component 20190809～20190811
+
 //Vesper 新增 20190805
 import { navItem } from "~/utils/model.js";
 import menuData from '~/data/menu.json'
@@ -535,12 +520,14 @@ export default {
     PageSelect,
     draggable,
     ElUploadSortable,
+    //Yi 20190811新增
     SetBorder,
     SetColor,
     UploadSingle,
     UploadMulti,
     FloatingImg,
     SystemSetting
+    //Yi 20190811新增
   },
   data() {
     return {
@@ -592,11 +579,11 @@ export default {
       input7: '常見問題',
       input8: '支付選項',
       input9: '合作夥伴',
-      //宜 已刪除 moveList[] 20190808
-      navItemList:[],//Vesper 新增/刪除 導航列功能 20190805 看起來 跟 moveList 是一樣的東西 但在程式上 moveList 沒用到 但不確定能不能刪
+      navItemList:[],//Vesper 新增/刪除 導航列功能 20190805 
       indexBlockList:[], //Vesper 修正首頁上 可視與否 按鈕連動問題 20190807
       //頁尾導航列list
       footerNavList: [], //Vesper 改為由外部檔案 footerNavItemList.json 餵資料
+      headNavList: [], //Yi 20190811 新增一組資料
       parentmsg:''
     }
   },
@@ -635,7 +622,10 @@ export default {
       }  
       if(this.footerNavList.length == 0){
         this.footerNavList = menuData["footerNavItemList"]
-      }    
+      }
+      if(this.headNavList.length == 0){
+        this.headNavList = menuData["headNavList"] //Yi 20190811 新增一組資料
+      }       
     },  
     navItemAdd(){
       //setp1:正式取得id
@@ -717,6 +707,22 @@ export default {
     },
     SettingSwitch(option){
       switch(option) {
+           //頁面管理（Yi 20190811 新增）
+          case "SettingLogo": //LOGO  
+              this.SettingLogo()
+              break
+          case "SettingTopBar": //TOP BAR 
+              this.SettingTopBar()
+              break
+          case "SettingHeadNav": //頁首導覽列 
+              this.SettingHeadNav()
+              break
+          case "SettingFooterNav": //頁尾導覽列
+              this.SettingFooterNav()
+              break 
+          case "SettingFooter": //頁尾
+              this.SettingFooter()
+              break     
           //頁首導覽列
           case "SettingHome": //首頁  
               this.SettingHome()
@@ -889,12 +895,6 @@ export default {
     remove(index) {
       this.$delete(this.footerNavList, index);
     },
-    //Upload
-    // handleRemove(file, fileList) {
-    // },
-    // handlePreview(file) {
-    //   console.log(file);
-    // },
     //Edit content section pop-up
     handleClose(done) {
       // this.$confirm('確認關閉')

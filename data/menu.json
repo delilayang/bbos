@@ -85,7 +85,7 @@
     "footerNavItemList": [{
             "id": 1,
             "name": "VIP",
-            "visableSwitch": false,
+            "visableSwitch": true,
             "settingSwitch": true,
             "deleteSwitch": false,
             "visableStatus": true,
@@ -122,5 +122,29 @@
             "isDefine": true,
             "setPanel": "SettingPartner"
         }
-    ]
+    ],
+    "headNavList": [{
+            "id": 1,
+            "name": "LOGO",
+            "settingSwitch": true,
+            "setPanel": "SettingLogo"
+    }, 
+    {
+            "id": 2,
+            "name": "TOP BAR",
+            "settingSwitch": true,
+            "setPanel": "SettingTopBar"
+    },
+    {
+            "id": 3,
+            "name": "頁首導航列",
+            "settingSwitch": true,
+            "setPanel": "SettingHeadNav"
+    }, 
+    {
+            "id": 4,
+            "name": "頁尾導航列",
+            "settingSwitch": true,
+            "setPanel": "SettingFooterNav"
+    }]
 }

@@ -1,6 +1,7 @@
  <template>
  <div class="edit-home">
-   <!-- layer1 -->
+  <!-- layer1 -->
+  <div  class="toggle-layer1">
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
       <page-select></page-select>
@@ -77,28 +78,19 @@
             </div>
           </el-tab-pane>
           <el-tab-pane label="系統設置" name="second">
-            <div class="system-setting">
-              <ul>
-                <li>排版</li>
-                <li>字型</li>
-                <li>顏色</li>
-                <li>社群媒體</li>
-              </ul>
-            </div>
+            <system-setting></system-setting>
           </el-tab-pane>
           <el-tab-pane label="浮動圖" name="third">
-            <div class="floating-img">
-              <ul>
-                <li>浮動圖設定</li>
-              </ul>
-            </div>
+            <floating-img></floating-img>
           </el-tab-pane>
         </el-tabs>    
       </div>
       
     </div>
     </transition>
+  </div>
   <!-- layer2 -->
+  <div  class="toggle-layer2">
     <transition name="fade">
     <div class="side-content setting" v-if="isLOGO">
       <ul>
@@ -408,8 +400,9 @@
       </span>
     </el-dialog>
     <!-- ↑ Vesper 圖文編輯功能 layout 20190806 -->
-
+  </div>
   <!-- layer3 -->
+  <div class="toggle-layer3">
     <transition name="fade">
     <div class="side-content setting" v-if="isHomeSetting">
       <ul>
@@ -536,6 +529,7 @@
       </ul>
     </div>
     </transition>
+  </div>
 </div>
 </template>
 
@@ -547,6 +541,8 @@ import SetBorder from "~/components/widgets/SetBorder";
 import SetColor from "~/components/widgets/SetColor";
 import UploadSingle from "~/components/widgets/UploadSingle";
 import PageSelect from "~/components/common/PageSelect";
+import FloatingImg from "~/components/sidemenu/floatingimg/FloatingImg";
+import SystemSetting from "~/components/sidemenu/systemsetting/SystemSetting";
 //Vesper 新增 20190805
 import { navItem } from "~/utils/model.js";
 import menuData from '~/data/menu.json'
@@ -562,7 +558,9 @@ export default {
     ElUploadSortable,
     SetBorder,
     SetColor,
-    UploadSingle
+    UploadSingle,
+    FloatingImg,
+    SystemSetting
   },
   data() {
     return {
@@ -575,8 +573,6 @@ export default {
       dialogVisible: false, 
       //Footer Copyright
       textarea1: 'Copyright © NBB GLOBAL Reserved',
-      //Preview Switch
-      isPreview: true,
       //view/view-off
       popoverContent: '顯示',
       //layer1

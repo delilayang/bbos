@@ -69,7 +69,47 @@ const state = () => ({
     fileList: [
         { name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' },
         { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }
-    ]
+    ],
+    headNavList: [{
+        "id": 1,
+        "name": "LOGO",
+        "settingSwitch": true,
+        "setPanel": "SettingLogo"
+    },
+    {
+        "id": 2,
+        "name": "TOP BAR",
+        "settingSwitch": true,
+        "setPanel": "SettingTopBar"
+    },
+    {
+        "id": 3,
+        "name": "頁首導航列",
+        "settingSwitch": true,
+        "setPanel": "SettingHeadNav"
+    },
+    {
+        "id": 4,
+        "name": "頁尾導航列",
+        "settingSwitch": true,
+        "setPanel": "SettingFooterNav"
+    }],
+    footerNavSettingList: [{
+        "id": 1,
+        "name": "VIP設定"
+    },
+    {
+        "id": 2,
+        "name": "常見問題設定"
+    },
+    {
+        "id": 3,
+        "name": "支付選項設定"
+    },
+    {
+        "id": 4,
+        "name": "合作夥伴設定"
+    }]
 })
 
 const getters = {

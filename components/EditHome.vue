@@ -57,6 +57,7 @@
               </ul>
             </div>
           </el-tab-pane>
+
           <!-- Yi 拆成component 20190811 -->
           <el-tab-pane label="系統設置" name="second">
             <system-setting></system-setting>
@@ -65,6 +66,7 @@
             <floating-img></floating-img>
           </el-tab-pane>
           <!-- Yi 拆成component 20190811 -->
+
         </el-tabs>    
       </div>
       
@@ -583,12 +585,11 @@ export default {
       indexBlockList:[], //Vesper 修正首頁上 可視與否 按鈕連動問題 20190807
       //頁尾導航列list
       footerNavList: [], //Vesper 改為由外部檔案 footerNavItemList.json 餵資料
-      headNavList: [], //Yi 20190811 新增一組資料
       parentmsg:''
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "headNavList", "footerNavSettingList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",
@@ -625,7 +626,7 @@ export default {
       }
       if(this.headNavList.length == 0){
         this.headNavList = menuData["headNavList"] //Yi 20190811 新增一組資料
-      }       
+      }      
     },  
     navItemAdd(){
       //setp1:正式取得id
@@ -707,7 +708,7 @@ export default {
     },
     SettingSwitch(option){
       switch(option) {
-           //頁面管理（Yi 20190811 新增）
+          //頁面管理（Yi 20190811 新增）
           case "SettingLogo": //LOGO  
               this.SettingLogo()
               break
@@ -722,7 +723,7 @@ export default {
               break 
           case "SettingFooter": //頁尾
               this.SettingFooter()
-              break     
+              break        
           //頁首導覽列
           case "SettingHome": //首頁  
               this.SettingHome()

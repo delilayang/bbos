@@ -3,14 +3,7 @@
    <!-- layer1 -->
     <transition name="fade">
     <div class="side-content main" v-if="isLayer1">
-      <el-select v-model="page" placeholder="請選擇頁面" @change="mainSelect">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+      <page-select></page-select>
 
       <div class="tab-menu" v-if="isHome">
         <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -553,6 +546,7 @@ import ElUploadSortable from "./ElUploadSortable";
 import SetBorder from "~/components/widgets/SetBorder";
 import SetColor from "~/components/widgets/SetColor";
 import UploadSingle from "~/components/widgets/UploadSingle";
+import PageSelect from "~/components/common/PageSelect";
 //Vesper 新增 20190805
 import { navItem } from "~/utils/model.js";
 import menuData from '~/data/menu.json'
@@ -563,6 +557,7 @@ export default {
   display: "Simple",
   order: 0,
   components: {
+    PageSelect,
     draggable,
     ElUploadSortable,
     SetBorder,

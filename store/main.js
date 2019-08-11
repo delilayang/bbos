@@ -39,7 +39,7 @@ const state = () => ({
         value: 'forgot',
         label: '忘記密碼'
     }],
-    setting: [{
+    otherSetting: [{
         value: 'list01',
         label: '選擇模版'
     }, {

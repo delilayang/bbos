@@ -23,7 +23,7 @@
 
     <el-select class="other-setting" v-model="value2" placeholder="其他設定" @change="dialogVisible = true">
         <el-option
-          v-for="list in setting"
+          v-for="list in otherSetting"
           :key="list.value"
           :label="list.label"
           :value="list.value">
@@ -101,6 +101,7 @@ import EditJoin from "~/components/EditJoin";
 import EditForgot from "~/components/EditForgot";
 import IndexPreview from "~/components/previews/IndexPreview";
 
+
 export default {
   components: {
     EditHome,
@@ -128,7 +129,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList"]),
+    ...mapState("main", ["locales", "options", "otherSetting", "tabList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",

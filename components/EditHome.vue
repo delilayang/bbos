@@ -118,7 +118,6 @@
         <strong><h4>輸入框導角</h4></strong>
         <set-border></set-border>
         <br>
-        <strong><h4>輸入框背景顏色</h4></strong>
         <set-color></set-color>
       </ul>
     </div>
@@ -268,7 +267,7 @@
     <div class="side-content setting" v-if="isFooter">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="goBack">
+          <el-button class="btn-back" @click="goBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>頁尾設定</span>

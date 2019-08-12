@@ -1,5 +1,6 @@
 <template>
-    <div class="system-setting" v-if="isSystemSetting">
+    <div class="system-setting">
+        <div v-if="isSystemSetting">
         <ul>
             <li
                 class="list-group-item"
@@ -13,7 +14,8 @@
                 </div>
             </li>
         </ul>
-        
+        </div>
+        <transition name="fade">
             <div class="side-content setting" v-if="isFont">
                 <ul>
                     <li>
@@ -25,7 +27,7 @@
                     </li>
                 </ul>
             </div>
-        
+        </transition>
         <transition name="fade">
             <div class="side-content setting" v-if="isColor">
                 <ul>

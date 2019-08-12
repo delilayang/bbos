@@ -1,9 +1,6 @@
 <template>
     <div class="system-setting">
         <ul>
-            <!-- <li>字型</li>
-            <li>顏色</li>
-            <li>社群媒體</li> -->
             <li
                 class="list-group-item"
                 v-for="(element) in systemSettingList"
@@ -19,9 +16,34 @@
     </div>
 </template>
 <script>
+import { mapState, mapGetters } from "vuex";
 export default {
     data() {
         return {}
+    },
+    methods: {
+        SettingFont() {},
+        SettingColor() {},
+        SettingSocialMedia() {},
+        SettingSwitch(option) {
+            switch(option) {
+            //系統設置
+            case "SettingFont": //字型  
+                this.SettingFont()
+                break
+            case "SettingColor": //顏色
+                this.SettingColor()
+                break
+            case "SettingSocialMedia": //社群媒體 
+                this.SettingSocialMedia()
+                break
+            default:
+                break
+            } 
+        }
+    },
+    computed: {
+        ...mapState("main", ["systemSettingList"])
     }
 }
 </script>

@@ -113,6 +113,22 @@ const state = () => ({
         "id": 4,
         "name": "合作夥伴設定",
         "setPanel": "isPartnerSetting"
+    }],
+    systemSettingList: [
+    {
+        "id": 1,
+        "name": "字型",
+        "setPanel": "isFontSetting"
+    },
+    {
+        "id": 2,
+        "name": "顏色",
+        "setPanel": "isColorSetting"
+    },
+    {
+        "id": 3,
+        "name": "社群媒體",
+        "setPanel": "isSocialMediaSetting"
     }]
 })
 

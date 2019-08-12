@@ -19,7 +19,11 @@
 import { mapState, mapGetters } from "vuex";
 export default {
     data() {
-        return {}
+        return {
+            isFont: false,
+            isColor: false,
+            isSocialMedia: false
+        }
     },
     methods: {
         SettingFont() {},

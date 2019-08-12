@@ -118,17 +118,17 @@ const state = () => ({
     {
         "id": 1,
         "name": "字型",
-        "setPanel": "isFontSetting"
+        "setPanel": "isFont"
     },
     {
         "id": 2,
         "name": "顏色",
-        "setPanel": "isColorSetting"
+        "setPanel": "isColor"
     },
     {
         "id": 3,
         "name": "社群媒體",
-        "setPanel": "isSocialMediaSetting"
+        "setPanel": "isSocialMedia"
     }]
 })
 

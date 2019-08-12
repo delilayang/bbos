@@ -60,7 +60,19 @@
 
           <!-- Yi 拆成component 20190811 -->
           <el-tab-pane label="系統設置" name="second">
-            <system-setting></system-setting>
+            <ul>
+                <li
+                    class="list-group-item"
+                    v-for="element in systemSettingList"
+                    :key="element.name">
+                    <span> {{ element.name }} </span>
+                    <div v-if="element.settingSwitch === true">
+                    <el-button class="btn-setting" @click="SettingSwitch(element.setPanel)">
+                        <i class="el-icon-more"></i>
+                    </el-button>
+                    </div>
+                </li>
+            </ul>
           </el-tab-pane>
           <el-tab-pane label="浮動圖" name="third">
             <floating-img></floating-img>
@@ -325,6 +337,50 @@
     </div>  
     </transition>
 
+    <transition name="fade">
+        <div class="side-content setting" v-if="isFont">
+                <ul>
+                    <li>
+                    <el-button class="btn-back" @click="goBack">
+                      <i class="el-icon-arrow-left"></i>
+                    </el-button>
+                    <span>字型設定</span>
+                    </li>
+                    <global-font></global-font>
+                </ul>
+            </div>
+      </transition>
+            
+        
+      <transition name="fade">
+            <div class="side-content setting" v-if="isColor">
+                <ul>
+                    <li>
+                    <el-button  class="btn-back" @click="goBack">
+                        <i class="el-icon-arrow-left"></i>
+                    </el-button>
+                    <span>顏色設定</span>
+                    </li>
+                    <global-color></global-color>
+                </ul>
+            </div>
+      </transition>
+
+      <transition name="fade">
+            <div class="side-content setting" v-if="isSocialMedia">
+                <ul>
+                    <li>
+                    <el-button  class="btn-back" @click="goBack">
+                        <i class="el-icon-arrow-left"></i>
+                    </el-button>
+                    <span>社群媒體設定</span>
+                    </li>
+                    <global-socialmedia></global-socialmedia>
+                </ul>
+            </div>
+      </transition>
+  </div>
+
     <!-- ↓ Vesper 圖文編輯功能 layout 20190806 -->
     <el-dialog
       title="編輯區塊"
@@ -362,7 +418,8 @@
       </span>
     </el-dialog>
     <!-- ↑ Vesper 圖文編輯功能 layout 20190806 -->
-  </div>
+
+    
   <!-- layer3 -->
   <div class="toggle-layer3">
     <transition name="fade">
@@ -500,7 +557,7 @@
 import { mapState, mapGetters } from "vuex";
 import draggable from "vuedraggable";
 import ElUploadSortable from "./ElUploadSortable";
-//Yi 新增component 20190809～20190811
+//Yi 新增component 20190809～20190812
 import SetBorder from "~/components/widgets/SetBorder";
 import SetColor from "~/components/widgets/SetColor";
 import UploadSingle from "~/components/widgets/UploadSingle";
@@ -508,7 +565,10 @@ import UploadMulti from "~/components/widgets/UploadMulti";
 import PageSelect from "~/components/common/PageSelect";
 import FloatingImg from "~/components/sidemenu/floatingimg/FloatingImg";
 import SystemSetting from "~/components/sidemenu/systemsetting/SystemSetting";
-//Yi 新增component 20190809～20190811
+import GlobalFont from "~/components/widgets/GlobalFont";
+import GlobalColor from "~/components/widgets/GlobalColor";
+import GlobalSocialMedia from "~/components/widgets/GlobalSocialMedia";
+//Yi 新增component 20190809～20190812
 
 //Vesper 新增 20190805
 import { navItem } from "~/utils/model.js";
@@ -523,14 +583,17 @@ export default {
     PageSelect,
     draggable,
     ElUploadSortable,
-    //Yi 20190811新增
+    //Yi 20190812新增
     SetBorder,
     SetColor,
     UploadSingle,
     UploadMulti,
     FloatingImg,
-    SystemSetting
-    //Yi 20190811新增
+    SystemSetting,
+    GlobalFont,
+    GlobalColor,
+    GlobalSocialMedia
+    //Yi 20190812新增
   },
   data() {
     return {
@@ -558,6 +621,9 @@ export default {
       isContent: false,
       isNavEdit: false,  //Vesper 新增/刪除 導航列功能 20190805
       isFooter: false,
+      isFont: false, //system setting
+      isColor: false,//system setting
+      isSocialMedia: false,//system setting
       //layer3
       isBannerSetting: false,
       isHomeSetting: false,
@@ -590,7 +656,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("main", ["locales", "options", "setting", "tabList", "headNavList", "footerNavSettingList"]),
+    ...mapState("main", ["locales", "options", "setting", "tabList", "headNavList", "footerNavSettingList", "systemSettingList"]),
     ...mapGetters("main", [
       "isHome",
       "isLiveStream",
@@ -709,6 +775,16 @@ export default {
     },
     SettingSwitch(option){
       switch(option) {
+        //系統設置Yi 20190812 新增）
+            case "SettingFont": //字型  
+                this.SettingFont()
+                break
+            case "SettingColor": //顏色
+                this.SettingColor()
+                break
+            case "SettingSocialMedia": //社群媒體 
+                this.SettingSocialMedia()
+                break
           //頁面管理（Yi 20190811 新增）
           case "SettingLogo": //LOGO  
               this.SettingLogo()
@@ -795,6 +871,21 @@ export default {
         this.isLayer1 = false;
       };
     },
+    SettingFont() {
+      if(this.isFont = !this.isFont) {
+        this.isLayer1 = false;
+      }
+    },
+    SettingColor() {
+      if(this.isColor = !this.isColor) {
+        this.isLayer1 = false;
+      }
+    },
+    SettingSocialMedia() {
+      if(this.isSocialMedia = !this.isSocialMedia) {
+        this.isLayer1 = false;
+      }
+    },
     //layer3
     SettingHome() {
       if(this.isHomeSetting = !this.isHomeSetting) {
@@ -854,6 +945,9 @@ export default {
         this.isContent = false; 
         this.isNavEdit = false; //Vesper 新增/刪除 導航列功能 20190805
         this.isFooter = false;
+        this.isFont = false;
+        this.isColor = false;
+        this.isSocialMedia = false;
       }
     },
     //Back to layer2

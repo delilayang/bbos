@@ -117,19 +117,19 @@ const state = () => ({
     systemSettingList: [{
         "id": 1,
         "name": "字型",
-        "sysSettingSwitch": true,
+        "settingSwitch": true,
         "setPanel": "SettingFont"
     },
     {
         "id": 2,
         "name": "顏色",
-        "sysSettingSwitch": true,
+        "settingSwitch": true,
         "setPanel": "SettingColor"
     },
     {
         "id": 3,
         "name": "社群媒體",
-        "sysSettingSwitch": true,
+        "settingSwitch": true,
         "setPanel": "SettingSocialMedia"
     }],
     fontList: [{ 

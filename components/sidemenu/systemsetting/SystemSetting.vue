@@ -1,25 +1,26 @@
 <template>
     <div class="system-setting">
         <div v-if="isSystemSetting">
-        <ul>
-            <li
-                class="list-group-item"
-                v-for="element in systemSettingList"
-                :key="element.name">
-                <span> {{ element.name }} </span>
-                <div v-if="element.sysSettingSwitch === true">
-                  <el-button class="btn-setting" @click="sysSettingSwitch(element.setPanel)">
-                    <i class="el-icon-more"></i>
-                  </el-button>
-                </div>
-            </li>
-        </ul>
+            <ul>
+                <li
+                    class="list-group-item"
+                    v-for="element in systemSettingList"
+                    :key="element.name">
+                    <span> {{ element.name }} </span>
+                    <div v-if="element.settingSwitch === true">
+                    <el-button class="btn-setting" @click="SettingSwitch(element.setPanel)">
+                        <i class="el-icon-more"></i>
+                    </el-button>
+                    </div>
+                </li>
+            </ul>
         </div>
+
         <transition name="fade">
-            <div class="side-content setting" v-if="isFont">
+        <div class="side-content setting">
                 <ul>
                     <li>
-                    <el-button class="btn-back" @click="goBack">
+                    <el-button class="btn-back" >
                         <i class="el-icon-arrow-left"></i>
                     </el-button>
                     <span>字型設定</span>
@@ -28,6 +29,8 @@
                 </ul>
             </div>
         </transition>
+            
+        
         <transition name="fade">
             <div class="side-content setting" v-if="isColor">
                 <ul>
@@ -70,7 +73,7 @@ export default {
     data() {
         return {
             isSystemSetting: true,
-            isFont: false,
+            isFont: false, 
             isColor: false,
             isSocialMedia: false
         }
@@ -81,30 +84,34 @@ export default {
                 this.isFont = false;
                 this.isColor = false;
                 this.isSocialMedia = false;
+            } else {
+                this.isFont = true;
+                this.isColor = true;
+                this.isSocialMedia = true;
             }
         },
         SettingFont() {
             if(this.isFont === true) {
-                this.isSystemSetting = false;
-            } else {
                 this.isSystemSetting = true;
+            } else {
+                this.isSystemSetting = false;
             }
         },
         SettingColor() {
             if(this.isColor === true) {
-                this.isSystemSetting = false;
-            } else {
                 this.isSystemSetting = true;
+            } else {
+                this.isSystemSetting = false;
             }
         },
         SettingSocialMedia() {
             if(this.isSocialMedia === true) {
-                this.isSystemSetting = false;
-            } else {
                 this.isSystemSetting = true;
+            } else {
+                this.isSystemSetting = false;
             }
         },
-        sysSettingSwitch(option) {
+        SettingSwitch(option) {
             switch(option) {
             //系統設置
             case "SettingFont": //字型  

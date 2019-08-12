@@ -96,19 +96,23 @@ const state = () => ({
     }],
     footerNavSettingList: [{
         "id": 1,
-        "name": "VIP設定"
+        "name": "VIP設定",
+        "setPanel": "isVipSetting"
     },
     {
         "id": 2,
-        "name": "常見問題設定"
+        "name": "常見問題設定",
+        "setPanel": "isQASetting"
     },
     {
         "id": 3,
-        "name": "支付選項設定"
+        "name": "支付選項設定",
+        "setPanel": "isPayOptionSetting"
     },
     {
         "id": 4,
-        "name": "合作夥伴設定"
+        "name": "合作夥伴設定",
+        "setPanel": "isPartnerSetting"
     }]
 })
 

@@ -375,7 +375,7 @@
           <span>首頁設定</span>
         </li>
         <strong><h4>標題</h4></strong>
-        <el-input model="input1" clearable></el-input>
+        <el-input v-model="input1" clearable></el-input>
       </ul>
     </div>
     </transition>
@@ -435,6 +435,7 @@
       </ul>
     </div>
     </transition>
+
     <transition name="fade">
     <div class="side-content setting" v-if="isVipSetting">
       <ul>

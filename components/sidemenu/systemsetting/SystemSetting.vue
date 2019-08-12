@@ -77,26 +77,32 @@ export default {
     },
     methods: {
         goBack() {
-            if(this.isSystemSetting = !this.isSystemSetting) {
+            if(this.isSystemSetting === false) {
                 this.isFont = false;
                 this.isColor = false;
                 this.isSocialMedia = false;
             }
         },
         SettingFont() {
-            if(this.isFont = !this.isFont) {
+            if(this.isFont === true) {
                 this.isSystemSetting = false;
-            };
+            } else {
+                this.isSystemSetting = true;
+            }
         },
         SettingColor() {
-            if(this.isColor = !this.isColor) {
+            if(this.isColor === true) {
                 this.isSystemSetting = false;
-            };
+            } else {
+                this.isSystemSetting = true;
+            }
         },
         SettingSocialMedia() {
-            if(this.isSocialMedia = !this.isSocialMedia) {
+            if(this.isSocialMedia === true) {
                 this.isSystemSetting = false;
-            };
+            } else {
+                this.isSystemSetting = true;
+            }
         },
         sysSettingSwitch(option) {
             switch(option) {

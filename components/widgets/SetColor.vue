@@ -1,5 +1,5 @@
 <template>
-    <div class="set-border">
+    <div class="set-color">
         <div class="block">
             <strong><h4>輸入框背景顏色</h4></strong>
             <el-color-picker v-model="color1"></el-color-picker>

@@ -1,35 +1,102 @@
 <template>
-    <div class="system-setting">
+    <div class="system-setting" v-if="isSystemSetting">
         <ul>
             <li
                 class="list-group-item"
-                v-for="(element) in systemSettingList"
+                v-for="element in systemSettingList"
                 :key="element.name">
                 <span> {{ element.name }} </span>
-                <div v-if="element.settingSwitch === true">
-                  <el-button  class="btn-setting" @click="SettingSwitch(element.setPanel)">
+                <div v-if="element.sysSettingSwitch === true">
+                  <el-button class="btn-setting" @click="sysSettingSwitch(element.setPanel)">
                     <i class="el-icon-more"></i>
                   </el-button>
                 </div>
             </li>
         </ul>
+        
+            <div class="side-content setting" v-if="isFont">
+                <ul>
+                    <li>
+                    <el-button class="btn-back" @click="goBack">
+                        <i class="el-icon-arrow-left"></i>
+                    </el-button>
+                    <span>字型設定</span>
+                    <global-font></global-font>
+                    </li>
+                </ul>
+            </div>
+        
+        <transition name="fade">
+            <div class="side-content setting" v-if="isColor">
+                <ul>
+                    <li>
+                    <el-button  class="btn-back" @click="goBack">
+                        <i class="el-icon-arrow-left"></i>
+                    </el-button>
+                    <span>顏色設定</span>
+                    <global-color></global-color>
+                    </li>
+                </ul>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="side-content setting" v-if="isSocialMedia">
+                <ul>
+                    <li>
+                    <el-button  class="btn-back" @click="goBack">
+                        <i class="el-icon-arrow-left"></i>
+                    </el-button>
+                    <span>社群媒體設定</span>
+                    <global-socialmedia></global-socialmedia>
+                    </li>
+                </ul>
+            </div>
+        </transition>
     </div>
 </template>
 <script>
 import { mapState, mapGetters } from "vuex";
+import GlobalFont from "~/components/widgets/GlobalFont";
+import GlobalColor from "~/components/widgets/GlobalColor";
+import GlobalSocialMedia from "~/components/widgets/GlobalSocialMedia";
 export default {
+    components: {
+        GlobalFont,
+        GlobalColor,
+        GlobalSocialMedia
+    },
     data() {
         return {
+            isSystemSetting: true,
             isFont: false,
             isColor: false,
             isSocialMedia: false
         }
     },
     methods: {
-        SettingFont() {},
-        SettingColor() {},
-        SettingSocialMedia() {},
-        SettingSwitch(option) {
+        goBack() {
+            if(this.isSystemSetting = !this.isSystemSetting) {
+                this.isFont = false;
+                this.isColor = false;
+                this.isSocialMedia = false;
+            }
+        },
+        SettingFont() {
+            if(this.isFont = !this.isFont) {
+                this.isSystemSetting = false;
+            };
+        },
+        SettingColor() {
+            if(this.isColor = !this.isColor) {
+                this.isSystemSetting = false;
+            };
+        },
+        SettingSocialMedia() {
+            if(this.isSocialMedia = !this.isSocialMedia) {
+                this.isSystemSetting = false;
+            };
+        },
+        sysSettingSwitch(option) {
             switch(option) {
             //系統設置
             case "SettingFont": //字型  
@@ -51,6 +118,3 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-
-</style>

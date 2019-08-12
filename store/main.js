@@ -114,21 +114,39 @@ const state = () => ({
         "name": "合作夥伴設定",
         "setPanel": "isPartnerSetting"
     }],
-    systemSettingList: [
-    {
+    systemSettingList: [{
         "id": 1,
         "name": "字型",
-        "setPanel": "isFont"
+        "sysSettingSwitch": true,
+        "setPanel": "SettingFont"
     },
     {
         "id": 2,
         "name": "顏色",
-        "setPanel": "isColor"
+        "sysSettingSwitch": true,
+        "setPanel": "SettingColor"
     },
     {
         "id": 3,
         "name": "社群媒體",
-        "setPanel": "isSocialMedia"
+        "sysSettingSwitch": true,
+        "setPanel": "SettingSocialMedia"
+    }],
+    fontList: [{ 
+        value: '1',
+        label: '現代'
+    }, 
+    {
+        value: '2',
+        label: '標準'
+    }, 
+    {
+        value: '3',
+        label: '傳統'
+    },
+    {
+        value: '4',
+        label: '雅黑'
     }]
 })
 

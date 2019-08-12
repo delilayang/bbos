@@ -411,7 +411,7 @@
     <div class="side-content setting" v-if="isFishingSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="headNavGoBack">
+          <el-button class="btn-back" @click="headNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>捕魚遊戲設定</span>
@@ -425,7 +425,7 @@
     <div class="side-content setting" v-if="isPreferentialSetting">
       <ul>
         <li>
-          <el-button  class="btn-back" @click="headNavGoBack">
+          <el-button class="btn-back" @click="headNavGoBack">
             <i class="el-icon-arrow-left"></i>
           </el-button>
           <span>優惠活動設定</span>

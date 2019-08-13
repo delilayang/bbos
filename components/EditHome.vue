@@ -96,6 +96,8 @@
           </el-button>
           <span>LOGO設定</span>
         </li>
+        <h3 style="margin-bottom:10px;font-size:16px;">圖片上傳說明</h3>
+        <p style="margin-bottom:10px;font-size:14px;">只能上傳jpg/png文件，且不超過500kb</p>
         <upload-single></upload-single>
       </ul>
     </div>
@@ -268,7 +270,9 @@
           </el-button>
           <span>頁尾設定</span>
         </li>
-        <upload-multi></upload-multi>
+        <h3 style="margin-bottom:10px;font-size:16px;">圖片上傳說明</h3>
+        <p style="margin-bottom:10px;font-size:14px;">只能上傳jpg/png文件，且不超過500kb</p>
+        <upload-single></upload-single>
         <div style="margin: 20px 0;"></div>
         <el-input
           type="textarea"
@@ -289,7 +293,9 @@
           </el-button>
           <span>橫幅設定</span>
         </li>
-        <upload-multi></upload-multi>
+        <h3 style="margin-bottom:10px;font-size:16px;">圖片上傳說明</h3>
+        <p style="margin-bottom:10px;font-size:14px;">只能上傳jpg/png文件，且不超過500kb</p>
+        <upload-single></upload-single>
       </ul>
     </div>
     </transition>
@@ -389,7 +395,7 @@
       :before-close="handleClose">
       
       <h3 style="margin-bottom:10px;font-size:16px;">圖片上傳說明</h3>
-      <p style="margin-bottom:10px;font-size:16px;">檔案⼤小: ⼤於500KB, ⼩於2MB</p>
+      <p style="margin-bottom:10px;font-size:14px;">檔案⼤小: ⼤於500KB, ⼩於2MB</p>
 
       <div style="margin-bottom:10px;">
       <el-row :gutter="10">

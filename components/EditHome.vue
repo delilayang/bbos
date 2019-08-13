@@ -138,7 +138,7 @@
             <div v-if="item.visableSwitch === true">
               <el-tooltip class="item" effect="light" :content="popoverContent" placement="top">
                 <el-button  class="btn-setting view" @click="showToggle(item)">
-                <i :class="{'iconfont icon-view': item.visableStatus, 'iconfont icon-view_off': !item.visableStatus}"></i>                      
+                  <i :class="{'iconfont icon-view': item.visableStatus, 'iconfont icon-view_off': !item.visableStatus}"></i>                      
                 </el-button>
               </el-tooltip>
             </div>
@@ -578,7 +578,6 @@ import GlobalSocial from "~/components/widgets/GlobalSocial";
 //Vesper 新增 20190805
 import { navItem } from "~/utils/model.js";
 import menuData from '~/data/menu.json'
-
 let id = 1;
 
 export default {
@@ -656,7 +655,7 @@ export default {
       indexBlockList:[], //Vesper 修正首頁上 可視與否 按鈕連動問題 20190807
       //頁尾導航列list
       footerNavList: [], //Vesper 改為由外部檔案 footerNavItemList.json 餵資料
-      parentmsg:''
+      parentmsg:'',
     }
   },
   computed: {
@@ -697,7 +696,7 @@ export default {
       }
       if(this.headNavList.length == 0){
         this.headNavList = menuData["headNavList"] //Yi 20190811 新增一組資料
-      }      
+      } 
     },  
     navItemAdd(){
       //setp1:正式取得id

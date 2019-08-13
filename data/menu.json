@@ -121,6 +121,35 @@
             "visableStatus": true,
             "isDefine": true,
             "setPanel": "SettingPartner"
-        }
-    ]
+        }],
+        "globalSocialList": [{
+                "id": 1,
+                "class": "iconfont icon-line icon-social-media",
+                "visableStatus": true
+            },
+            {
+                "id": 2,
+                "class": "iconfont icon-blogger icon-social-media",
+                "visableStatus": true
+            },
+            {
+                "id": 3,
+                "class": "iconfont icon-twitterlogo icon-social-media",
+                "visableStatus": true
+            },
+            {
+                "id": 4,
+                "class": "iconfont icon-Instagram icon-social-media",
+                "visableStatus": true
+            },
+            {
+                "id": 5,
+                "class": "iconfont icon-telegram icon-social-media",
+                "visableStatus": true
+            },
+            {
+                "id": 6,
+                "class": "iconfont icon-youtube-square icon-social-media",
+                "visableStatus": true
+            }]
 }

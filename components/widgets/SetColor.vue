@@ -1,11 +1,10 @@
 <template>
     <div class="set-color">
-        <div class="block">
-            <strong><h4>輸入框背景顏色</h4></strong>
-            <el-color-picker v-model="color1"></el-color-picker>
-            <strong><h4>TOP BAR背景顏色</h4></strong>
-            <el-color-picker v-model="color2"></el-color-picker>
-        </div>
+        <strong><h4>輸入框</h4></strong>
+        <div class="flex-row"><el-color-picker v-model="color1"></el-color-picker><span class="color-status">背景色</span></div>
+        <div style="margin: 20px;"></div>
+        <strong><h4>TOP BAR</h4></strong>
+        <div class="flex-row"><el-color-picker v-model="color2"></el-color-picker><span class="color-status">背景色</span></div>       
     </div>
 </template>
 <script>
@@ -18,10 +17,3 @@ export default {
     }
 }
 </script>
-<style lang="scss">
-.el-color-picker {
-    .el-color-picker__trigger {
-        width: 180px;
-    }
-}
-</style>

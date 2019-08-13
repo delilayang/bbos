@@ -367,7 +367,7 @@
       </transition>
 
       <transition name="fade">
-            <div class="side-content setting" v-if="isSocialMedia">
+            <div class="side-content setting" v-if="isSocial">
                 <ul>
                     <li>
                     <el-button  class="btn-back" @click="goBack">
@@ -375,7 +375,7 @@
                     </el-button>
                     <span>社群媒體設定</span>
                     </li>
-                    <global-socialmedia></global-socialmedia>
+                    <global-social></global-social>
                 </ul>
             </div>
       </transition>
@@ -564,10 +564,9 @@ import UploadSingle from "~/components/widgets/UploadSingle";
 import UploadMulti from "~/components/widgets/UploadMulti";
 import PageSelect from "~/components/common/PageSelect";
 import FloatingImg from "~/components/sidemenu/floatingimg/FloatingImg";
-import SystemSetting from "~/components/sidemenu/systemsetting/SystemSetting";
 import GlobalFont from "~/components/widgets/GlobalFont";
 import GlobalColor from "~/components/widgets/GlobalColor";
-import GlobalSocialMedia from "~/components/widgets/GlobalSocialMedia";
+import GlobalSocial from "~/components/widgets/GlobalSocial";
 //Yi 新增component 20190809～20190812
 
 //Vesper 新增 20190805
@@ -589,10 +588,9 @@ export default {
     UploadSingle,
     UploadMulti,
     FloatingImg,
-    SystemSetting,
     GlobalFont,
     GlobalColor,
-    GlobalSocialMedia
+    GlobalSocial
     //Yi 20190812新增
   },
   data() {
@@ -623,7 +621,7 @@ export default {
       isFooter: false,
       isFont: false, //system setting
       isColor: false,//system setting
-      isSocialMedia: false,//system setting
+      isSocial: false,//system setting
       //layer3
       isBannerSetting: false,
       isHomeSetting: false,
@@ -782,8 +780,8 @@ export default {
             case "SettingColor": //顏色
                 this.SettingColor()
                 break
-            case "SettingSocialMedia": //社群媒體 
-                this.SettingSocialMedia()
+            case "SettingSocial": //社群媒體 
+                this.SettingSocial()
                 break
           //頁面管理（Yi 20190811 新增）
           case "SettingLogo": //LOGO  
@@ -881,8 +879,8 @@ export default {
         this.isLayer1 = false;
       }
     },
-    SettingSocialMedia() {
-      if(this.isSocialMedia = !this.isSocialMedia) {
+    SettingSocial() {
+      if(this.isSocial = !this.isSocial) {
         this.isLayer1 = false;
       }
     },
@@ -947,7 +945,7 @@ export default {
         this.isFooter = false;
         this.isFont = false;
         this.isColor = false;
-        this.isSocialMedia = false;
+        this.isSocial = false;
       }
     },
     //Back to layer2

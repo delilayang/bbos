@@ -17,7 +17,6 @@
     <edit-qa></edit-qa>
     <edit-pay-option></edit-pay-option>
     <edit-partner></edit-partner>
-    <edit-404></edit-404>
     <edit-join></edit-join>
     <edit-forgot></edit-forgot>
 
@@ -62,7 +61,6 @@
         <div class="web-preview" v-if="isQA"><span>常見問題 Web-Preview</span></div>
         <div class="web-preview" v-if="isPayOption"><span>支付選項 Web-Preview</span></div>
         <div class="web-preview" v-if="isPartner"><span>合作夥伴 Web-Preview</span></div>
-        <div class="web-preview" v-if="is404"><span>404 Web-Preview</span></div>
         <div class="web-preview" v-if="isJoin"><span>加入會員 Web-Preview</span></div>
         <div class="web-preview" v-if="isForgot"><span>忘記密碼 Web-Preview</span></div>
       </div>
@@ -96,7 +94,6 @@ import EditVip from "~/components/EditVip";
 import EditQa from "~/components/EditQa";
 import EditPayOption from "~/components/EditPayOption";
 import EditPartner from "~/components/EditPartner";
-import Edit404 from "~/components/Edit404";
 import EditJoin from "~/components/EditJoin";
 import EditForgot from "~/components/EditForgot";
 import IndexPreview from "~/components/previews/IndexPreview";
@@ -113,7 +110,6 @@ export default {
     EditQa,
     EditPayOption,
     EditPartner,
-    Edit404,
     EditJoin,
     EditForgot,
     IndexPreview
@@ -140,7 +136,6 @@ export default {
       "isQA",
       "isPayOption",
       "isPartner",
-      "is404",
       "isJoin",
       "isForgot"
     ]),

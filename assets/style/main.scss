@@ -238,3 +238,15 @@ nav {
 .disabled .el-upload--picture-card {
     display: none;
 }
+
+//Global-color
+.flex-row {
+    display: inline-flex; 
+    align-items: center;
+    .el-color-picker {
+        margin-left: 10px;
+        .el-color-picker__trigger {
+            width: 80px;
+        }
+    }
+}

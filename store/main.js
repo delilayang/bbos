@@ -30,9 +30,6 @@ const state = () => ({
         value: 'partner',
         label: '合作夥伴'
     }, {
-        value: '404',
-        label: '404'
-    }, {
         value: 'join',
         label: '加入會員'
     }, {
@@ -130,7 +127,7 @@ const state = () => ({
         "id": 3,
         "name": "社群媒體",
         "settingSwitch": true,
-        "setPanel": "SettingSocialMedia"
+        "setPanel": "SettingSocial"
     }],
     fontList: [{ 
         value: '1',
@@ -185,10 +182,6 @@ const getters = {
 
     isPartner: (state, getters, rootState, rootGetters) => {
         return state.currentSelect === 'partner';
-    },
-
-    is404: (state, getters, rootState, rootGetters) => {
-        return state.currentSelect === '404';
     },
 
     isJoin: (state, getters, rootState, rootGetters) => {
